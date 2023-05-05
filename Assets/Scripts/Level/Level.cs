@@ -69,6 +69,8 @@ public class Level : MonoBehaviour
     {
         CurrentLevelPoints = 0;
         _portal.gameObject.SetActive(false);
+
+        // TODO: Equip random weapon
     }
 
     private void Update()

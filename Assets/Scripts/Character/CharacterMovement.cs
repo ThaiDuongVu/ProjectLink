@@ -46,12 +46,12 @@ public class CharacterMovement : MonoBehaviour
 
         // rigidbody.MovePosition(rigidbody.position + CurrentDirection * _currentSpeed * Time.fixedDeltaTime);
         if (_currentSpeed > 0f) Rigidbody.velocity = CurrentDirection * _currentSpeed;
-        ScaleAnimationSpeed();
     }
 
     protected virtual void Update()
     {
         if (_lookDirectionSet && LookDirection != Vector2.zero) transform.up = Vector2.Lerp(transform.up, LookDirection, 0.2f);
+        ScaleAnimationSpeed();
     }
 
     #endregion

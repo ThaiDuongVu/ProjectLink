@@ -87,6 +87,7 @@ public class PlayerCombat : CharacterCombat
     private void FireOnCanceled(InputAction.CallbackContext context)
     {
         InputTypeController.Instance.CheckInputType(context);
+        if (_player.CombatDisabled) return;
 
         CurrentWeapon?.CancelFire();
     }

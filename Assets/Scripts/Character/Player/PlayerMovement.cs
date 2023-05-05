@@ -92,6 +92,7 @@ public class PlayerMovement : CharacterMovement
     private void MoveOnCanceled(InputAction.CallbackContext context)
     {
         InputTypeController.Instance.CheckInputType(context);
+        if (_player.MovementDisabled) return;
 
         Stop();
     }

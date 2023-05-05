@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using Pathfinding;
 
@@ -14,7 +15,8 @@ public class ZombieWaveController : MonoBehaviour
 
     [Header("Zombie References")]
     [SerializeField] private Zombie[] zombiePrefabs;
-    [SerializeField] private Transform zombiesHolder;
+    [SerializeField] private Transform zombiesParent;
+    [SerializeField] private Transform zombieHolder;
 
     [Header("Population Control")]
     [SerializeField] private int maxZombiesPopulation;
@@ -49,7 +51,7 @@ public class ZombieWaveController : MonoBehaviour
 
         if (_spawnTimer.IsReached())
         {
-            Spawn();
+            StartCoroutine(Spawn());
             _spawnTimer = new Timer(Random.Range(spawnIntervalRange.x, spawnIntervalRange.y));
         }
 
@@ -75,9 +77,9 @@ public class ZombieWaveController : MonoBehaviour
         _isInWave = false;
     }
 
-    private void Spawn()
+    private IEnumerator Spawn()
     {
-        if (FindObjectsOfType<Zombie>().Length >= maxZombiesPopulation) return;
+        if (FindObjectsOfType<Zombie>().Length >= maxZombiesPopulation) yield break;
 
         // Regenerate position if too close to player
         var position = GenerateSpawnPosition();
@@ -85,7 +87,11 @@ public class ZombieWaveController : MonoBehaviour
         while (Vector2.Distance(position, playerPosition) <= playerAvoidRadius) position = GenerateSpawnPosition();
 
         // Spawn zombie
-        Instantiate(zombiePrefabs[Random.Range(0, zombiePrefabs.Length)], position, Quaternion.identity).transform.SetParent(zombiesHolder);
+        var holder = Instantiate(zombieHolder, position, Quaternion.identity);
+        yield return new WaitForSeconds(0.5f);
+
+        Instantiate(zombiePrefabs[Random.Range(0, zombiePrefabs.Length)], position, Quaternion.identity).transform.SetParent(zombiesParent);
+        Destroy(holder.gameObject);
     }
 
     public void DestroyAllEnemies()
