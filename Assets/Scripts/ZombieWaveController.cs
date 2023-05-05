@@ -45,7 +45,7 @@ public class ZombieWaveController : MonoBehaviour
         if (startWaveOnAwake) StartWave();
     }
 
-    private void FixedUpdate()
+    private void Update()
     {
         if (!_isInWave || GameController.Instance.State != GameState.InProgress) return;
 

@@ -52,17 +52,18 @@ public class Level : MonoBehaviour
         }
     }
 
-    private Portal _portal;
-
     private ZombieWaveController _zombieWaveController;
+    private Portal _portal;
+    private Player _player;
 
     #region Unity Events
 
     private void Awake()
     {
         _astarPath = GetComponent<AstarPath>();
-        _portal = GetComponentInChildren<Portal>();
         _zombieWaveController = GetComponent<ZombieWaveController>();
+        _portal = GetComponentInChildren<Portal>();
+        _player = GetComponentInChildren<Player>();
     }
 
     private void Start()
@@ -88,7 +89,9 @@ public class Level : MonoBehaviour
     {
         yield return new WaitForSeconds(1f);
 
-        // TODO: Save temp data
+        var tempData = new TempSaveData(_player.CollectedCoins, _player.Health);
+        SaveLoadController.SaveTempData(tempData);
+
         SceneLoader.Instance.Restart();
     }
 }

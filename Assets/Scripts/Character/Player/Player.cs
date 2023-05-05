@@ -54,8 +54,8 @@ public class Player : Character
     private const float PortalEnterInterpolationRatio = 0.25f;
     private static readonly int PortalEnterAnimationBool = Animator.StringToHash("isInPortal");
 
-    private PlayerMovement _playerMovement;
     public PlayerCombat PlayerCombat { get; private set; }
+    private PlayerMovement _playerMovement;
     private PlayerCombo _playerCombo;
 
     #region Unity Events
@@ -64,14 +64,18 @@ public class Player : Character
     {
         base.Awake();
 
-        _playerMovement = GetComponent<PlayerMovement>();
         PlayerCombat = GetComponent<PlayerCombat>();
+        _playerMovement = GetComponent<PlayerMovement>();
         _playerCombo = GetComponent<PlayerCombo>();
     }
 
     protected override void Start()
     {
         base.Start();
+
+        var tempData = SaveLoadController.LoadTempData();
+        Health = tempData != null ? tempData.playerHealth : baseHealth;
+        CollectedCoins = tempData != null ? tempData.playerCollectedCoins : 0;
 
         MovementDisabled = CombatDisabled = false;
     }

@@ -52,7 +52,7 @@ public class SceneLoader : MonoBehaviour
 
     public void Load(string scene)
     {
-        Time.timeScale = 1f;
+        GameController.SetTimeScale(1f);
         _sceneToLoad = scene;
         StartCoroutine(Load());
     }

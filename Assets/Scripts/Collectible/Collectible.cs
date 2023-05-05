@@ -27,7 +27,7 @@ public class Collectible : MonoBehaviour
         Invoke(nameof(EnableCollect), CollectDelay);
     }
 
-    private void FixedUpdate()
+    private void Update()
     {
         if (_isCollected && _target) transform.position = Vector2.Lerp(transform.position, _target.position, CollectInterpolationRatio);
     }

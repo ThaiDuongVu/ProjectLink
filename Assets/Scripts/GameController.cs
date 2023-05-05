@@ -26,7 +26,6 @@ public class GameController : MonoBehaviour
     [SerializeField] private Canvas mainUI;
     private Menu _pauseMenu;
     private Menu _gameOverMenu;
-    private Menu _levelCompleteMenu;
 
     private InputManager _inputManager;
 
@@ -51,7 +50,6 @@ public class GameController : MonoBehaviour
     {
         _pauseMenu = mainUI.GetComponentsInChildren<Menu>()[0];
         _gameOverMenu = mainUI.GetComponentsInChildren<Menu>()[1];
-        _levelCompleteMenu = mainUI.GetComponentsInChildren<Menu>()[2];
     }
 
     private void Start()
@@ -109,21 +107,11 @@ public class GameController : MonoBehaviour
 
     public IEnumerator GameOver(string message = "", float delay = 0.5f)
     {
+        SaveLoadController.DeleteTempData();
         yield return new WaitForSeconds(delay);
 
         State = GameState.NotInProgress;
         _gameOverMenu.SetActive(true, message);
-
-        PostProcessingController.Instance.SetDepthOfField(true);
-        SetCursorEnabled(true);
-    }
-
-    public IEnumerator CompleteLevel(float delay = 1f)
-    {
-        yield return new WaitForSeconds(delay);
-
-        State = GameState.NotInProgress;
-        _levelCompleteMenu.SetActive(true);
 
         PostProcessingController.Instance.SetDepthOfField(true);
         SetCursorEnabled(true);
