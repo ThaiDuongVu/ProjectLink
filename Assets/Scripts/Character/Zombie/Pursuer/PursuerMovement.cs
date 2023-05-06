@@ -1,10 +1,10 @@
 using UnityEngine;
 
-public class RookieMovement : ZombieMovement
+public class PursuerMovement : ZombieMovement
 {
     private static readonly int RunAnimationBool = Animator.StringToHash("isRunning");
 
-    private Rookie _rookie;
+    private Pursuer _pursuer;
 
     #region Unity Events
 
@@ -12,7 +12,7 @@ public class RookieMovement : ZombieMovement
     {
         base.Awake();
 
-        _rookie = GetComponent<Rookie>();
+        _pursuer = GetComponent<Pursuer>();
     }
 
     #endregion

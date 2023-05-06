@@ -1,13 +1,13 @@
 using UnityEngine;
 
-public class Rookie : Zombie
+public class Pursuer : Zombie
 {
-    [Header("Rookie Stats")]
+    [Header("Pursuer Stats")]
     [SerializeField] private float trackRate;
 
     private Player _player;
 
-    private RookiePathfinder _rookiePathfinder;
+    private PursuerPathfinder _pursuerPathfinder;
 
     #region Unity Events
 
@@ -15,7 +15,7 @@ public class Rookie : Zombie
     {
         base.Awake();
 
-        _rookiePathfinder = GetComponent<RookiePathfinder>();
+        _pursuerPathfinder = GetComponent<PursuerPathfinder>();
         _player = FindObjectOfType<Player>();
     }
 
@@ -32,16 +32,16 @@ public class Rookie : Zombie
     {
         base.EnableStagger();
 
-        _rookiePathfinder.Stop();
+        _pursuerPathfinder.Stop();
     }
 
     private void TrackPlayer()
     {
         if (!_player || IsStagger)
         {
-            _rookiePathfinder.Stop();
+            _pursuerPathfinder.Stop();
             return;
         }
-        _rookiePathfinder.Track(_player.transform);
+        _pursuerPathfinder.Track(_player.transform);
     }
 }

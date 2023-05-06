@@ -452,7 +452,7 @@ GameObject:
   - component: {fileID: 5606151735162627662}
   - component: {fileID: 204371451491721441}
   m_Layer: 0
-  m_Name: Rookie
+  m_Name: Pursuer
   m_TagString: Zombie
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

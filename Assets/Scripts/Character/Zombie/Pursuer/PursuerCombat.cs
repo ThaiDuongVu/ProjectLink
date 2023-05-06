@@ -1,8 +1,8 @@
 using UnityEngine;
 
-public class RookieCombat : ZombieCombat
+public class PursuerCombat : ZombieCombat
 {
-    [Header("Rookie Combat Stats")]
+    [Header("Pursuer Combat Stats")]
     [SerializeField] private float damage;
     [SerializeField] private Color damageColor;
 
@@ -10,8 +10,8 @@ public class RookieCombat : ZombieCombat
 
     private static readonly int PushAnimationTrigger = Animator.StringToHash("push");
 
-    private Rookie _rookie;
-    private RookieMovement _rookieMovement;
+    private Pursuer _pursuer;
+    private PursuerMovement _pursuerMovement;
 
     #region Unity Events
 
@@ -19,21 +19,21 @@ public class RookieCombat : ZombieCombat
     {
         base.Awake();
 
-        _rookie = GetComponent<Rookie>();
-        _rookieMovement = GetComponent<RookieMovement>();
+        _pursuer = GetComponent<Pursuer>();
+        _pursuerMovement = GetComponent<PursuerMovement>();
     }
 
     #endregion
 
     private void OnCollisionEnter2D(Collision2D other)
     {
-        if (!other.transform.CompareTag("Player") || _rookie.IsStagger) return;
+        if (!other.transform.CompareTag("Player") || _pursuer.IsStagger) return;
 
         var player = other.transform.GetComponent<Player>();
-        player.TakeDamage(damage, _rookieMovement.CurrentDirection, other.GetContact(0).point);
-        player.Knockback(_rookieMovement.CurrentDirection, knockbackForce);
+        player.TakeDamage(damage, _pursuerMovement.CurrentDirection, other.GetContact(0).point);
+        player.Knockback(_pursuerMovement.CurrentDirection, knockbackForce);
 
-        _rookieMovement.Stop();
+        _pursuerMovement.Stop();
         Animator.SetTrigger(PushAnimationTrigger);
 
         EffectsController.Instance.SpawnPopText(other.GetContact(0).point, damageColor, damage.ToString());
