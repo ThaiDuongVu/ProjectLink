@@ -74,8 +74,8 @@ public class PlayerCombat : CharacterCombat
 
     private void FireOnPerformed(InputAction.CallbackContext context)
     {
-        InputTypeController.Instance.CheckInputType(context);
-        if (GameController.Instance.State != GameState.InProgress) return;
+        InputTypeController.Instance?.CheckInputType(context);
+        if (GameController.Instance?.State != GameState.InProgress) return;
         if (TutorialController.Instance.IsTutorialDisplayed) return;
         if (_player.CombatDisabled) return;
 
@@ -84,7 +84,7 @@ public class PlayerCombat : CharacterCombat
 
     private void FireOnCanceled(InputAction.CallbackContext context)
     {
-        InputTypeController.Instance.CheckInputType(context);
+        InputTypeController.Instance?.CheckInputType(context);
         if (_player.CombatDisabled) return;
 
         CurrentWeapon?.CancelFire();
@@ -92,8 +92,8 @@ public class PlayerCombat : CharacterCombat
 
     private void ExecuteOnPerformed(InputAction.CallbackContext context)
     {
-        InputTypeController.Instance.CheckInputType(context);
-        if (GameController.Instance.State != GameState.InProgress) return;
+        InputTypeController.Instance?.CheckInputType(context);
+        if (GameController.Instance?.State != GameState.InProgress) return;
         if (TutorialController.Instance.IsTutorialDisplayed) return;
         if (_player.CombatDisabled) return;
 
@@ -102,7 +102,7 @@ public class PlayerCombat : CharacterCombat
 
     private void ExecuteOnCanceled(InputAction.CallbackContext context)
     {
-        InputTypeController.Instance.CheckInputType(context);
+        InputTypeController.Instance?.CheckInputType(context);
     }
 
     #endregion

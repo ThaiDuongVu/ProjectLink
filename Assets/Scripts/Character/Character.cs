@@ -70,7 +70,7 @@ public class Character : MonoBehaviour, IDamageable, IKnockbackable
         if (_characterMovement)
         {
             _characterMovement.StopImmediate();
-            StartCoroutine(_characterMovement.TemporarilyDisableRun(force / 10f));
+            StartCoroutine(_characterMovement.TemporarilyDisableRun(force / 40f));
         }
 
         Rigidbody?.AddForce(direction * force, ForceMode2D.Impulse);

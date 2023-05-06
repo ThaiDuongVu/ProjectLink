@@ -80,8 +80,8 @@ public class PlayerMovement : CharacterMovement
 
     private void MoveOnPerformed(InputAction.CallbackContext context)
     {
-        InputTypeController.Instance.CheckInputType(context);
-        if (GameController.Instance.State != GameState.InProgress) return;
+        InputTypeController.Instance?.CheckInputType(context);
+        if (GameController.Instance?.State != GameState.InProgress) return;
         if (TutorialController.Instance.IsTutorialDisplayed) return;
         if (_player.MovementDisabled) return;
 
@@ -91,7 +91,7 @@ public class PlayerMovement : CharacterMovement
 
     private void MoveOnCanceled(InputAction.CallbackContext context)
     {
-        InputTypeController.Instance.CheckInputType(context);
+        InputTypeController.Instance?.CheckInputType(context);
         if (_player.MovementDisabled) return;
 
         Stop();
@@ -99,9 +99,9 @@ public class PlayerMovement : CharacterMovement
 
     private void DashOnPerformed(InputAction.CallbackContext context)
     {
-        if (GameController.Instance.State != GameState.InProgress) return;
+        InputTypeController.Instance?.CheckInputType(context);
+        if (GameController.Instance?.State != GameState.InProgress) return;
         if (TutorialController.Instance.IsTutorialDisplayed) return;
-        InputTypeController.Instance.CheckInputType(context);
         if (_player.MovementDisabled) return;
 
         Dash(CurrentDirection);
@@ -109,7 +109,7 @@ public class PlayerMovement : CharacterMovement
 
     private void DashOnCanceled(InputAction.CallbackContext context)
     {
-        InputTypeController.Instance.CheckInputType(context);
+        InputTypeController.Instance?.CheckInputType(context);
     }
 
     #endregion
