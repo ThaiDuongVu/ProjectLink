@@ -57,14 +57,12 @@ public class PlayerCombat : CharacterCombat
     protected override void Start()
     {
         base.Start();
-
-        CurrentWeapon = weaponHolder.GetComponentInChildren<Weapon>();
     }
 
     protected override void Update()
     {
         _virtualCursor.SetColor(CurrentWeapon ? CurrentWeapon.CrosshairColor : Color.white);
-        _virtualCursor.SetAimAssist(CurrentWeapon?.ZombieTarget != null);
+        _virtualCursor.SetAimAssist(CurrentWeapon?.CurrentDamageTarget != null);
 
         if (_executionTarget) transform.position = Vector2.Lerp(transform.position, _executionPosition, 0.5f);
         else _playerMovement.SetLookDirection((_virtualCursor.transform.position - transform.position).normalized);
@@ -99,7 +97,7 @@ public class PlayerCombat : CharacterCombat
         if (TutorialController.Instance.IsTutorialDisplayed) return;
         if (_player.CombatDisabled) return;
 
-        Execute(CurrentWeapon.ZombieTarget);
+        Execute(CurrentWeapon.CurrentZombieTarget);
     }
 
     private void ExecuteOnCanceled(InputAction.CallbackContext context)
@@ -111,14 +109,14 @@ public class PlayerCombat : CharacterCombat
 
     #region Weapon Methods
 
-    private void EquipWeapon(Weapon weapon)
+    public void EquipWeapon(Weapon weapon)
     {
         CurrentWeapon = weapon;
         CurrentWeapon.transform.SetParent(weaponHolder);
         CurrentWeapon.transform.localPosition = Vector2.zero;
     }
 
-    private void UnequipCurrentWeapon()
+    public void UnequipCurrentWeapon()
     {
         CurrentWeapon.transform.SetParent(null);
         CurrentWeapon = null;

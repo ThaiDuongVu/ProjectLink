@@ -71,7 +71,9 @@ public class Level : MonoBehaviour
         CurrentLevelPoints = 0;
         _portal.gameObject.SetActive(false);
 
-        // TODO: Equip random weapon
+        var weapons = Resources.LoadAll<Weapon>("Weapons");
+        var weaponToSpawn = weapons[Random.Range(0, weapons.Length)];
+        _player.PlayerCombat.EquipWeapon(Instantiate(weaponToSpawn, _player.transform.position, Quaternion.identity));
     }
 
     private void Update()

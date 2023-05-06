@@ -5,6 +5,8 @@ using TMPro;
 
 public class Weapon : MonoBehaviour
 {
+    public new string name;
+
     [Header("Weapon Stats")]
     public float range;
     public int fireRate;
@@ -44,11 +46,10 @@ public class Weapon : MonoBehaviour
 
     public Color CrosshairColor => crosshair.color;
 
-    private IDamageable _currentDamageTarget;
+    public IDamageable CurrentDamageTarget { get; protected set; }
+    public Zombie CurrentZombieTarget { get; protected set; }
     private Vector2 _currentDamageTargetContactPoint;
     private IKnockbackable _currentKnockbackTarget;
-
-    public Zombie ZombieTarget { get; protected set; }
 
     #region Unity Events
 
@@ -73,7 +74,7 @@ public class Weapon : MonoBehaviour
         if (!_canFire && _fireTimer.IsReached()) _canFire = true;
 
         GetDamageableFromRaycast();
-        crosshair.color = hitLine.startColor = hitLine.endColor = _currentDamageTarget == null ? regularColor : hitColor;
+        crosshair.color = hitLine.startColor = hitLine.endColor = CurrentDamageTarget == null ? regularColor : hitColor;
 
         if (_ammoRechargeTimer.IsReached())
         {
@@ -122,21 +123,21 @@ public class Weapon : MonoBehaviour
     {
         var hit = Physics2D.Raycast(firePoint.position, transform.up, range);
 
-        _currentDamageTarget = hit ? hit.transform.GetComponent<IDamageable>() : null;
+        CurrentDamageTarget = hit ? hit.transform.GetComponent<IDamageable>() : null;
         _currentKnockbackTarget = hit ? hit.transform.GetComponent<IKnockbackable>() : null;
         _currentDamageTargetContactPoint = hit ? hit.point : new Vector2(-20f, -20f);
 
-        ZombieTarget = hit ? hit.transform.GetComponent<Zombie>() : null;
+        CurrentZombieTarget = hit ? hit.transform.GetComponent<Zombie>() : null;
     }
 
     private void DealDamageToCurrentTarget()
     {
-        if (_currentDamageTarget == null) return;
+        if (CurrentDamageTarget == null) return;
 
-        _currentDamageTarget?.TakeDamage(damagePerShot, transform.up, _currentDamageTargetContactPoint);
+        CurrentDamageTarget?.TakeDamage(damagePerShot, transform.up, _currentDamageTargetContactPoint);
         _currentKnockbackTarget?.Knockback(transform.up, knockbackPerShot);
 
-        if (_currentDamageTarget.CurrentHealth <= 0f)
+        if (CurrentDamageTarget.CurrentHealth <= 0f)
         {
             CameraShaker.Instance.Shake(CameraShakeMode.Light);
             GameController.Instance.PlaySlowMotionEffect();

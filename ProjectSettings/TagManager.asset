@@ -9,6 +9,7 @@ TagManager:
   - Zombie
   - Collectible
   - Portal
+  - Interactable
   layers:
   - Default
   - TransparentFX
