@@ -1381,7 +1381,7 @@ MonoBehaviour:
   speed: 6
   acceleration: 24
   deceleration: 24
-  dashDistance: 2.5
+  dashDistance: 2
   dashInterpolationRatio: 0.15
   dashStoppingDistance: 0.1
   dashRate: 4

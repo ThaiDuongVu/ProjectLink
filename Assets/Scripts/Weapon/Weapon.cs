@@ -5,8 +5,6 @@ using TMPro;
 
 public class Weapon : MonoBehaviour
 {
-    public new string name;
-
     [Header("Weapon Stats")]
     public float range;
     public int fireRate;
@@ -40,6 +38,10 @@ public class Weapon : MonoBehaviour
         }
     }
 
+    [Header("Name References")]
+    public new string name;
+    [SerializeField] private TMP_Text nameText;
+
     [Header("Color References")]
     public Color regularColor;
     public Color hitColor;
@@ -67,6 +69,8 @@ public class Weapon : MonoBehaviour
 
         CurrentAmmo = maxAmmo;
         _ammoRechargeTimer = new Timer(ammoRechargeTime);
+
+        nameText.SetText(name);
     }
 
     protected virtual void Update()
