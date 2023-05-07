@@ -28,6 +28,12 @@ public class Player : Character
         }
     }
 
+    [Header("Player Rig References")]
+    [SerializeField] private SpriteRenderer head;
+    [SerializeField] private SpriteRenderer body;
+    [SerializeField] private SpriteRenderer handLeft;
+    [SerializeField] private SpriteRenderer handRight;
+
     private static readonly int HurtAnimationTrigger = Animator.StringToHash("hurt");
 
     private bool _movementDisabled;
@@ -78,6 +84,8 @@ public class Player : Character
         CollectedCoins = tempData != null ? tempData.playerCollectedCoins : 0;
 
         MovementDisabled = CombatDisabled = false;
+        // TODO: Player skin customization
+        ApplySkin(Resources.Load<PlayerSkin>("Player/PlayerSkins/PlayerDefaultSkin"));
     }
 
     protected override void Update()
@@ -113,6 +121,8 @@ public class Player : Character
 
     #endregion
 
+    #region Portal Methods
+
     private void EnterPortal(Portal portal)
     {
         _enteredPortal = portal;
@@ -132,6 +142,15 @@ public class Player : Character
 
         MovementDisabled = CombatDisabled = false;
         Animator.SetBool(PortalEnterAnimationBool, false);
+    }
+
+    #endregion
+
+    private void ApplySkin(PlayerSkin skin)
+    {
+        head.sprite = skin.headSprite;
+        body.sprite = skin.bodySprite;
+        handLeft.sprite = handRight.sprite = skin.handSprite;
     }
 
     private void OnTriggerStay2D(Collider2D other)

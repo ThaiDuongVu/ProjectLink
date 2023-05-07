@@ -112,10 +112,10 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1048958632550012579}
   - {fileID: 6658232639280751569}
-  - {fileID: 1393415155593799129}
+  - {fileID: 1048958632550012579}
   - {fileID: 8866972865494827255}
+  - {fileID: 1393415155593799129}
   m_Father: {fileID: 7078110934686053832}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1344,7 +1344,7 @@ MonoBehaviour:
   - {x: 0.5, y: -0.25, z: 0}
   m_ShapePathHash: 0
   m_Mesh: {fileID: 0}
-  m_InstanceId: 31122
+  m_InstanceId: 31294
   m_LocalBounds:
     m_Center: {x: 0, y: 0, z: 0}
     m_Extent: {x: 0.5, y: 0.25, z: 0}
@@ -1366,6 +1366,10 @@ MonoBehaviour:
   deathExplosionPrefab: {fileID: 2487755348245098086, guid: 0011eec8a994890449bf760779ec4541, type: 3}
   healthBar: {fileID: 5110166013920759035}
   coinText: {fileID: 4414354875731474653}
+  head: {fileID: 3842483419605730824}
+  body: {fileID: 3569424914276281019}
+  handLeft: {fileID: 6236115804499990260}
+  handRight: {fileID: 789673347137875887}
 --- !u!114 &3815275903743339818
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1381,7 +1385,7 @@ MonoBehaviour:
   speed: 6
   acceleration: 24
   deceleration: 24
-  dashDistance: 2
+  dashDistance: 2.5
   dashInterpolationRatio: 0.15
   dashStoppingDistance: 0.1
   dashRate: 4
