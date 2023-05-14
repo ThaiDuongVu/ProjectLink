@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2542443229581528891}
   - component: {fileID: 1898474279504802500}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -125,7 +125,7 @@ GameObject:
   - component: {fileID: 7472085261911565565}
   - component: {fileID: 6162985701719881301}
   - component: {fileID: 4584414223480589462}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: ExplosiveBarrel
   m_TagString: Interactable
   m_Icon: {fileID: 0}
@@ -290,7 +290,7 @@ GameObject:
   m_Component:
   - component: {fileID: 698130674423501011}
   - component: {fileID: 1559165558275906035}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}

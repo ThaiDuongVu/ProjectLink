@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6624956409575220810}
   - component: {fileID: 5746179950287317894}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -129,7 +129,7 @@ GameObject:
   - component: {fileID: 7068095264528544124}
   - component: {fileID: 6369820369907884458}
   - component: {fileID: 2608084948449253138}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Thrower
   m_TagString: Zombie
   m_Icon: {fileID: 0}
@@ -152,7 +152,7 @@ Transform:
   - {fileID: 6624956409575220810}
   - {fileID: 6951487522364879162}
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!50 &9190243733764240390
 Rigidbody2D:
@@ -263,7 +263,7 @@ MonoBehaviour:
   - {x: 0.5, y: -0.25, z: 0}
   m_ShapePathHash: 0
   m_Mesh: {fileID: 0}
-  m_InstanceId: 26026
+  m_InstanceId: 30628
   m_LocalBounds:
     m_Center: {x: 0, y: 0, z: 0}
     m_Extent: {x: 0.5, y: 0.25, z: 0}
@@ -313,6 +313,7 @@ MonoBehaviour:
   deathExplosionPrefab: {fileID: 2487755348245098086, guid: 0011eec8a994890449bf760779ec4541, type: 3}
   staggerHealthThreshold: 10
   staggerDuration: 3
+  trackRate: 1
 --- !u!114 &7068095264528544124
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -325,9 +326,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71489b76877044b4580fc2f3e5561c82, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 2
-  acceleration: 8
-  deceleration: 8
+  speed: 4
+  acceleration: 16
+  deceleration: 16
 --- !u!114 &6369820369907884458
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -369,7 +370,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5259374701885542143}
   - component: {fileID: 2787622516707682924}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: HandLeft
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -384,7 +385,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1652265396399346515}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.5, y: 0, z: 0}
+  m_LocalPosition: {x: -0.5, y: 0.125, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -452,7 +453,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8168870670603699929}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Rig
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -488,7 +489,7 @@ GameObject:
   m_Component:
   - component: {fileID: 709517634325609670}
   - component: {fileID: 1895284221738460450}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Head
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -572,7 +573,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1338030468769134812}
   - component: {fileID: 6384167779318638283}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -655,7 +656,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6951487522364879162}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: CollectibleSpawners
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -687,7 +688,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6265249453378549638}
   - component: {fileID: 4838801561455161635}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: HandRight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -702,7 +703,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8930989388254727026}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.625, y: 0.125, z: 0}
+  m_LocalPosition: {x: 0.5, y: 0.125, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

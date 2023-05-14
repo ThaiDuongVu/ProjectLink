@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1714955947817296801}
   - component: {fileID: 4928019161573754532}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: HandRight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -93,7 +93,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5759714818088909650}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: CollectibleSpawners
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -129,7 +129,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5692923609749233688}
   - component: {fileID: 5711472019864117621}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: HandLeft
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -213,7 +213,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1159829008616192006}
   - component: {fileID: 5672671561300752574}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Head
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -297,7 +297,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5902215647047560060}
   - component: {fileID: 2914244570664613357}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -407,7 +407,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8185144536502288324}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Rig
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -451,7 +451,7 @@ GameObject:
   - component: {fileID: 7620699363966568063}
   - component: {fileID: 5606151735162627662}
   - component: {fileID: 204371451491721441}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Pursuer
   m_TagString: Zombie
   m_Icon: {fileID: 0}
@@ -635,7 +635,6 @@ MonoBehaviour:
   deathExplosionPrefab: {fileID: 2487755348245098086, guid: 0011eec8a994890449bf760779ec4541, type: 3}
   staggerHealthThreshold: 15
   staggerDuration: 3
-  levelPointsAwardedOnDeath: 2
   trackRate: 2
 --- !u!114 &7620699363966568063
 MonoBehaviour:
@@ -696,7 +695,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8560444274345800829}
   - component: {fileID: 7010620569113650309}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -778,6 +777,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 5759714818088909650}
     m_Modifications:
+    - target: {fileID: 3353587244694282794, guid: 4e8b8bd37fc02164abd38db6615467fd, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 4783135391719639282, guid: 4e8b8bd37fc02164abd38db6615467fd, type: 3}
       propertyPath: amountRange.x
       value: 1
@@ -924,6 +927,10 @@ PrefabInstance:
       propertyPath: amountRange.y
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6411280430785265467, guid: 6e8d7bfcadf86054181eae463ff4338d, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -957,6 +964,10 @@ PrefabInstance:
     - target: {fileID: 2401102764058975924, guid: 4a07331641b9cda4bba1e915bdf52faa, type: 3}
       propertyPath: amountRange.y
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4525277698087729071, guid: 4a07331641b9cda4bba1e915bdf52faa, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 4534158385795689793, guid: 4a07331641b9cda4bba1e915bdf52faa, type: 3}
       propertyPath: m_RootOrder
@@ -1067,6 +1078,10 @@ PrefabInstance:
     - target: {fileID: 3712009945900095929, guid: 8c96befddf99ef94f95a82d69158ab03, type: 3}
       propertyPath: m_Name
       value: AmmoSpawner
+      objectReference: {fileID: 0}
+    - target: {fileID: 3712009945900095929, guid: 8c96befddf99ef94f95a82d69158ab03, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 4233004014026606132, guid: 8c96befddf99ef94f95a82d69158ab03, type: 3}
       propertyPath: amountRange.x
