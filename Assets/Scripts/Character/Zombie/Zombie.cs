@@ -6,9 +6,6 @@ public class Zombie : Character
     public float staggerHealthThreshold;
     public float staggerDuration;
 
-    [Header("Level Stats")]
-    public float levelPointsAwardedOnDeath;
-
     public bool IsStagger { get; protected set; }
     private static readonly int StaggerAnimationBool = Animator.StringToHash("isStagger");
 
