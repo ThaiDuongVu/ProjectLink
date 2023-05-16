@@ -80,6 +80,7 @@ public class ZombieWaveController : MonoBehaviour
     private IEnumerator Spawn()
     {
         if (FindObjectsOfType<Zombie>().Length >= maxZombiesPopulation) yield break;
+        if (!_player) yield break;
 
         // Regenerate position if too close to player
         var position = GenerateSpawnPosition();

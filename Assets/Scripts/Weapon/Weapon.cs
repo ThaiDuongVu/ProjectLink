@@ -6,6 +6,7 @@ using TMPro;
 public class Weapon : MonoBehaviour
 {
     [Header("Weapon Stats")]
+    public WeaponFireMode fireMode;
     public float range;
     public int fireRate;
     public float damagePerShot;
@@ -93,6 +94,15 @@ public class Weapon : MonoBehaviour
 
     public void Fire()
     {
+        switch (fireMode)
+        {
+            case WeaponFireMode.NonAutomatic:
+                FireNonAutomatic();
+                break;
+
+            default:
+                return;
+        }
         FireNonAutomatic();
     }
 
@@ -119,7 +129,7 @@ public class Weapon : MonoBehaviour
 
     public void FireBurst()
     {
-        
+
     }
 
     public void CancelFire()

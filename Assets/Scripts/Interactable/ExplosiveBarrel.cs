@@ -40,8 +40,8 @@ public class ExplosiveBarrel : Interactable, IDamageable
         {
             if (hit == GetComponent<Collider2D>()) continue;
 
-            var hitDamageable = hit.GetComponent<IDamageable>();
-            var hitKnockbackable = hit.GetComponent<IKnockbackable>();
+            var hitDamageable = hit.transform.GetComponent<IDamageable>();
+            var hitKnockbackable = hit.transform.GetComponent<IKnockbackable>();
 
             var hitPosition = hit.ClosestPoint(transform.position);
             var distance = (hitPosition - (Vector2)transform.position).magnitude;
