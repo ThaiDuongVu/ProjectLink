@@ -61,8 +61,8 @@ public class VirtualCursor : MonoBehaviour
 
     private void AimOnPerformed(InputAction.CallbackContext context)
     {
-        InputTypeController.Instance.CheckInputType(context);
-        if (GameController.Instance.State != GameState.InProgress) return;
+        InputTypeController.Instance?.CheckInputType(context);
+        if (GameController.Instance?.State != GameState.InProgress) return;
         if (TutorialController.Instance.IsTutorialDisplayed) return;
 
         _direction = Vector2.ClampMagnitude(context.ReadValue<Vector2>(), 1f);
@@ -70,7 +70,7 @@ public class VirtualCursor : MonoBehaviour
 
     private void AimOnCanceled(InputAction.CallbackContext context)
     {
-        InputTypeController.Instance.CheckInputType(context);
+        InputTypeController.Instance?.CheckInputType(context);
 
         _direction = Vector2.zero;
     }

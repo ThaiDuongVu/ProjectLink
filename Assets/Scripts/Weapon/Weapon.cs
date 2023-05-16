@@ -93,6 +93,11 @@ public class Weapon : MonoBehaviour
 
     public void Fire()
     {
+        FireNonAutomatic();
+    }
+
+    public void FireNonAutomatic()
+    {
         if (!_canFire) return;
         if (CurrentAmmo <= 0) return;
 
@@ -105,6 +110,16 @@ public class Weapon : MonoBehaviour
         muzzle.Play();
         StartCoroutine(PlayHitLineEffect(0.1f));
         CameraShaker.Instance.Shake(CameraShakeMode.Light);
+    }
+
+    public void FireAutomatic()
+    {
+
+    }
+
+    public void FireBurst()
+    {
+        
     }
 
     public void CancelFire()
@@ -125,13 +140,15 @@ public class Weapon : MonoBehaviour
 
     private void GetDamageableFromRaycast()
     {
+        // Get raycast target
         var hit = Physics2D.Raycast(firePoint.position, transform.up, range);
 
+        // Get damage & knockback target from raycast hit
         CurrentDamageTarget = hit ? hit.transform.GetComponent<IDamageable>() : null;
         _currentKnockbackTarget = hit ? hit.transform.GetComponent<IKnockbackable>() : null;
-        _currentDamageTargetContactPoint = hit ? hit.point : new Vector2(-20f, -20f);
-
         CurrentZombieTarget = hit ? hit.transform.GetComponent<Zombie>() : null;
+
+        _currentDamageTargetContactPoint = hit ? hit.point : new Vector2(-20f, -20f);
     }
 
     private void DealDamageToCurrentTarget()
