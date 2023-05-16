@@ -5,6 +5,7 @@ public class Thrower : Zombie
 {
     [Header("Thrower Stats")]
     [SerializeField] private float trackRate;
+    [SerializeField] private float throwRate;
 
     private Player _player;
 
@@ -30,6 +31,7 @@ public class Thrower : Zombie
         base.Start();
 
         InvokeRepeating(nameof(TrackPlayer), 0f, trackRate);
+        InvokeRepeating(nameof(Throw), throwRate, throwRate);
     }
 
     protected override void Update()
@@ -72,8 +74,18 @@ public class Thrower : Zombie
         return (hit.transform.GetComponent<Player>() != null);
     }
 
+    private void Throw()
+    {
+        if (!CanSeePlayer()) return;
+        StartCoroutine(ThrowProcess());
+    }
+
     private IEnumerator ThrowProcess()
     {
         yield return new WaitForSeconds(1f);
+
+        // TODO: Play throw animation
+        yield return new WaitForSeconds(0.5f);
+        _throwerCombat.Throw(_throwerMovement.LookDirection);
     }
 }

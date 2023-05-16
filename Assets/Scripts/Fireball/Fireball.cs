@@ -5,6 +5,7 @@ public class Fireball : MonoBehaviour
     [Header("Stats")]
     public float speed;
     public float damage;
+    public float knockbackForce;
 
     [Header("References")]
     [SerializeField] private ParticleSystem explosion;
@@ -37,6 +38,12 @@ public class Fireball : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D other)
     {
+        var damageable = other.transform.GetComponent<IDamageable>();
+        var knockbackable = other.transform.GetComponent<IKnockbackable>();
+
+        damageable?.TakeDamage(damage, CurrentDirection, other.contacts[0].point);
+        knockbackable?.Knockback(CurrentDirection, knockbackForce);
+
         Explode();
     }
 }
