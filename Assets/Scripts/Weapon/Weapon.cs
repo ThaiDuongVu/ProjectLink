@@ -133,6 +133,11 @@ public class Weapon : MonoBehaviour
 
     }
 
+    public void FireProjectile()
+    {
+        
+    }
+
     public void CancelFire()
     {
 
