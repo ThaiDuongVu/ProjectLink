@@ -65,6 +65,7 @@ public class Weapon : MonoBehaviour
     {
         crosshair.transform.position = transform.position + transform.up * range;
 
+        hitLine.SetPosition(0, firePoint.localPosition);
         hitLine.SetPosition(1, crosshair.transform.localPosition);
         hitLine.gameObject.SetActive(false);
 

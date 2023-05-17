@@ -388,7 +388,7 @@ MonoBehaviour:
   hitLine: {fileID: 5828869222877819672}
   firePoint: {fileID: 9126634177055919286}
   maxAmmo: 6
-  ammoRechargeTime: 5
+  ammoRechargeTime: 3
   ammoDisplay: {fileID: 5735436692632760060}
   name: Revolver
   nameText: {fileID: 7451806493377165916}
