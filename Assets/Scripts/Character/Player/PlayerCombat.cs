@@ -136,8 +136,8 @@ public class PlayerCombat : CharacterCombat
         var direction = (target.transform.position - transform.position).normalized;
         _executionPosition = target.transform.position - direction;
 
-        // Disable movement & combat
-        _player.MovementDisabled = _player.CombatDisabled = true;
+        // Disable movement & combat & damage
+        _player.MovementDisabled = _player.CombatDisabled = _player.IsInvulnerable = true;
 
         // Pick an execution move to perform
         var allExecutionMoves = Resources.LoadAll<ExecutionMove>("Player/ExecutionMoves");
@@ -158,8 +158,8 @@ public class PlayerCombat : CharacterCombat
 
     private void EndExecution()
     {
-        // Enable movement & combat
-        _player.MovementDisabled = _player.CombatDisabled = false;
+        // Enable movement & combat & damage
+        _player.MovementDisabled = _player.CombatDisabled = _player.IsInvulnerable = false;
         _playerCombo.Add();
         _playerCombo.Unpause();
 

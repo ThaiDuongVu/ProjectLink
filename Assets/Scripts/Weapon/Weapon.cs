@@ -5,11 +5,14 @@ using TMPro;
 
 public class Weapon : MonoBehaviour
 {
-    [Header("Weapon Stats")]
+    [Header("Weapon General Stats")]
     public WeaponFireMode fireMode;
     public float range;
     public int fireRate;
-    public float damagePerShot;
+
+    [Header("Weapon Damage Stats")]
+    public float bodyDamagePerShot;
+    public float headDamagePerShot;
     public float knockbackPerShot;
 
     [Header("Weapon References")]
@@ -167,11 +170,12 @@ public class Weapon : MonoBehaviour
         _currentDamageTargetContactPoint = hit ? hit.point : new Vector2(-20f, -20f);
     }
 
-    private void DealDamageToCurrentTarget()
+    private void DealDamageToCurrentTarget(bool isHeadDamage = false)
     {
         if (CurrentDamageTarget == null) return;
 
-        CurrentDamageTarget?.TakeDamage(damagePerShot, transform.up, _currentDamageTargetContactPoint);
+        var damageDealt = CurrentDamageTarget?.CurrentHealth <= bodyDamagePerShot ? CurrentDamageTarget?.CurrentHealth : bodyDamagePerShot;
+        CurrentDamageTarget?.TakeDamage(bodyDamagePerShot, transform.up, _currentDamageTargetContactPoint);
         _currentKnockbackTarget?.Knockback(transform.up, knockbackPerShot);
 
         if (CurrentDamageTarget.CurrentHealth <= 0f)
@@ -179,8 +183,8 @@ public class Weapon : MonoBehaviour
             CameraShaker.Instance.Shake(CameraShakeMode.Light);
             GameController.Instance.PlaySlowMotionEffect();
         }
-
-        EffectsController.Instance.SpawnPopText(_currentDamageTargetContactPoint, hitColor, damagePerShot.ToString());
+        
+        EffectsController.Instance.SpawnPopText(_currentDamageTargetContactPoint, hitColor, damageDealt.ToString());
     }
 
     #endregion

@@ -54,6 +54,8 @@ public class Player : Character
         set => _combatDisabled = value;
     }
 
+    public bool IsInvulnerable { get; set; }
+
     public int ComboMultiplier => _playerCombo.Multiplier;
 
     private Portal _enteredPortal;
@@ -102,6 +104,8 @@ public class Player : Character
 
     public override void TakeDamage(float damage, Vector2 direction, Vector2 contactPoint)
     {
+        if (IsInvulnerable) return;
+
         base.TakeDamage(damage, direction, contactPoint);
 
         _playerCombo.Cancel();

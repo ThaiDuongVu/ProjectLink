@@ -381,7 +381,8 @@ MonoBehaviour:
   fireMode: 0
   range: 4
   fireRate: 2
-  damagePerShot: 15
+  bodyDamagePerShot: 15
+  headDamagePerShot: 30
   knockbackPerShot: 7.5
   crosshair: {fileID: 8496005083950781896}
   muzzle: {fileID: 7096183982723040519}

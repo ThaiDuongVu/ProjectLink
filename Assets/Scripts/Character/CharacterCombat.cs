@@ -4,6 +4,7 @@ public class CharacterCombat : MonoBehaviour
 {
     protected Animator Animator;
     protected Rigidbody2D Rigidbody;
+    protected Collider2D Collider;
 
     #region Unity Events
 
@@ -11,6 +12,7 @@ public class CharacterCombat : MonoBehaviour
     {
         Animator = GetComponent<Animator>();
         Rigidbody = GetComponent<Rigidbody2D>();
+        Collider = GetComponent<Collider2D>();
     }
 
     protected virtual void Start()
