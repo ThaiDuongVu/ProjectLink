@@ -1,32 +1,13 @@
 using UnityEngine;
 
-public class Fireball : MonoBehaviour
+public class Fireball : Projectile
 {
-    [Header("Stats")]
-    public float speed;
+    [Header("Fireball Stats")]
     public float damage;
     public float knockbackForce;
 
-    [Header("References")]
+    [Header("Fireball References")]
     [SerializeField] private ParticleSystem explosion;
-
-    public Vector2 CurrentDirection { get; set; } = Vector2.up;
-
-    private Rigidbody2D _rigidbody;
-
-    #region Unity Events
-
-    private void Awake()
-    {
-        _rigidbody = GetComponent<Rigidbody2D>();
-    }
-
-    private void FixedUpdate()
-    {
-        if (CurrentDirection != Vector2.zero) _rigidbody.velocity = CurrentDirection * speed;
-    }
-
-    #endregion
 
     private void Explode()
     {

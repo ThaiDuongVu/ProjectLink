@@ -10,7 +10,7 @@ TagManager:
   - Collectible
   - Portal
   - Interactable
-  - Fireball
+  - Projectile
   layers:
   - Default
   - TransparentFX

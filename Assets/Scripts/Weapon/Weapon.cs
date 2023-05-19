@@ -21,6 +21,9 @@ public class Weapon : MonoBehaviour
     [SerializeField] private SpriteRenderer crosshair;
     [SerializeField] private LineRenderer hitLine;
 
+    [Header("Projectile References")]
+    [SerializeField] private Projectile projectilePrefab;
+
     private bool _canFire = true;
     private Timer _fireTimer;
 
@@ -100,6 +103,9 @@ public class Weapon : MonoBehaviour
 
     public virtual void Fire()
     {
+        if (!_canFire) return;
+        if (CurrentAmmo <= 0) return;
+
         switch (fireMode)
         {
             case WeaponFireMode.NonAutomatic:
@@ -113,18 +119,15 @@ public class Weapon : MonoBehaviour
             default:
                 return;
         }
+
+        _canFire = false;
+        _fireTimer = new Timer(1f / fireRate);
     }
 
     public virtual void FireNonAutomatic()
     {
-        if (!_canFire) return;
-        if (CurrentAmmo <= 0) return;
-
         DealDamageToCurrentTarget();
         CurrentAmmo--;
-
-        _canFire = false;
-        _fireTimer = new Timer(1f / fireRate);
 
         muzzle.Play();
         StartCoroutine(PlayHitLineEffect(0.1f));
@@ -143,7 +146,11 @@ public class Weapon : MonoBehaviour
 
     public virtual void FireProjectile()
     {
-        
+        Instantiate(projectilePrefab, firePoint.position, Quaternion.identity).CurrentDirection = transform.up;
+        CurrentAmmo--;
+
+        muzzle.Play();
+        CameraShaker.Instance.Shake(CameraShakeMode.Light);
     }
 
     public virtual void CancelFire()
@@ -188,7 +195,7 @@ public class Weapon : MonoBehaviour
             CameraShaker.Instance.Shake(CameraShakeMode.Light);
             GameController.Instance.PlaySlowMotionEffect();
         }
-        
+
         EffectsController.Instance.SpawnPopText(_currentDamageTargetContactPoint, hitColor, damageDealt.ToString());
     }
 
