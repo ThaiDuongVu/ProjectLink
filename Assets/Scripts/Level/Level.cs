@@ -71,8 +71,9 @@ public class Level : MonoBehaviour
         CurrentLevelPoints = 0;
         _portal.gameObject.SetActive(false);
 
-        var weapons = Resources.LoadAll<Weapon>("Weapons");
-        var weaponToSpawn = weapons[Random.Range(0, weapons.Length)];
+        // var weapons = Resources.LoadAll<Weapon>("Weapons");
+        // var weaponToSpawn = weapons[Random.Range(0, weapons.Length)];
+        var weaponToSpawn = Resources.Load<Weapon>("Weapons/RocketLauncher");
         _player.PlayerCombat.EquipWeapon(Instantiate(weaponToSpawn, _player.transform.position, Quaternion.identity));
     }
 

@@ -10,16 +10,16 @@ public class Weapon : MonoBehaviour
     public float range;
     public int fireRate;
 
-    [Header("Weapon Damage Stats")]
+    [Header("Hitscan Damage Stats")]
     public float bodyDamagePerShot;
     public float headDamagePerShot;
     public float knockbackPerShot;
 
     [Header("Weapon References")]
-    [SerializeField] private SpriteRenderer crosshair;
-    [SerializeField] private ParticleSystem muzzle;
-    [SerializeField] private LineRenderer hitLine;
     [SerializeField] private Transform firePoint;
+    [SerializeField] private ParticleSystem muzzle;
+    [SerializeField] private SpriteRenderer crosshair;
+    [SerializeField] private LineRenderer hitLine;
 
     private bool _canFire = true;
     private Timer _fireTimer;
@@ -82,8 +82,10 @@ public class Weapon : MonoBehaviour
     {
         if (!_canFire && _fireTimer.IsReached()) _canFire = true;
 
-        GetDamageableFromRaycast();
-        crosshair.color = hitLine.startColor = hitLine.endColor = CurrentDamageTarget == null ? regularColor : hitColor;
+        GetDamageableFromHitscan();
+
+        if (fireMode != WeaponFireMode.Projectile)
+            crosshair.color = hitLine.startColor = hitLine.endColor = CurrentDamageTarget == null ? regularColor : hitColor;
 
         if (_ammoRechargeTimer.IsReached())
         {
@@ -96,7 +98,7 @@ public class Weapon : MonoBehaviour
 
     #region Fire Methods
 
-    public void Fire()
+    public virtual void Fire()
     {
         switch (fireMode)
         {
@@ -104,13 +106,16 @@ public class Weapon : MonoBehaviour
                 FireNonAutomatic();
                 break;
 
+            case WeaponFireMode.Projectile:
+                FireProjectile();
+                break;
+
             default:
                 return;
         }
-        FireNonAutomatic();
     }
 
-    public void FireNonAutomatic()
+    public virtual void FireNonAutomatic()
     {
         if (!_canFire) return;
         if (CurrentAmmo <= 0) return;
@@ -126,22 +131,22 @@ public class Weapon : MonoBehaviour
         CameraShaker.Instance.Shake(CameraShakeMode.Light);
     }
 
-    public void FireAutomatic()
+    public virtual void FireAutomatic()
     {
 
     }
 
-    public void FireBurst()
+    public virtual void FireBurst()
     {
 
     }
 
-    public void FireProjectile()
+    public virtual void FireProjectile()
     {
         
     }
 
-    public void CancelFire()
+    public virtual void CancelFire()
     {
 
     }
@@ -157,7 +162,7 @@ public class Weapon : MonoBehaviour
 
     #region Damage Methods
 
-    private void GetDamageableFromRaycast()
+    private void GetDamageableFromHitscan()
     {
         // Get raycast target
         var hit = Physics2D.Raycast(firePoint.position, transform.up, range);
