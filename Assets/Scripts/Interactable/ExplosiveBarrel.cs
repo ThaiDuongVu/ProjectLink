@@ -40,13 +40,16 @@ public class ExplosiveBarrel : Interactable, IDamageable
         {
             if (hit == GetComponent<Collider2D>()) continue;
 
+            // Get damageable and knockbackable from overlap hit
             var hitDamageable = hit.transform.GetComponentInParent<IDamageable>();
             var hitKnockbackable = hit.transform.GetComponentInParent<IKnockbackable>();
 
+            // Get hit position, distance & direction
             var hitPosition = hit.ClosestPoint(transform.position);
             var distance = (hitPosition - (Vector2)transform.position).magnitude;
             var direction = (hitPosition - (Vector2)transform.position).normalized;
 
+            // Deal damage based on distance
             if (hitDamageable != null)
             {
                 var damage = maxDamage - (distance / radius) * maxDamage;
@@ -54,6 +57,7 @@ public class ExplosiveBarrel : Interactable, IDamageable
                 EffectsController.Instance.SpawnPopText(hitPosition, damageColor, ((int)damage).ToString());
             }
 
+            // Deal knockback based on distance
             if (hitKnockbackable != null)
             {
                 var force = maxForce - (distance / radius) * maxForce;
