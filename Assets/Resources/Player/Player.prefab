@@ -1417,7 +1417,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d7c5e9d0674270a4aa407ead384951b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  comboDuration: 3
+  comboDuration: 5
   text: {fileID: 43526770119386759}
 --- !u!1 &8969275062503062669
 GameObject:

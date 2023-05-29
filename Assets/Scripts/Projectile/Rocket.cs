@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class Rocket : Projectile
 {
-    [Header("Stats")]
+    [Header("Rocket Stats")]
     public float radius;
     public float maxDamage;
     public float maxForce;
@@ -53,12 +53,6 @@ public class Rocket : Projectile
 
     private void OnCollisionEnter2D(Collision2D other)
     {
-        // var damageable = other.transform.GetComponent<IDamageable>();
-        // var knockbackable = other.transform.GetComponent<IKnockbackable>();
-
-        // damageable?.TakeDamage(damage, CurrentDirection, other.contacts[0].point);
-        // knockbackable?.Knockback(CurrentDirection, knockbackForce);
-
         Explode();
     }
 }

@@ -3,5 +3,6 @@ public enum WeaponFireMode
     NonAutomatic,
     Automatic,
     Burst,
-    Projectile
+    Projectile,
+    Beam
 }

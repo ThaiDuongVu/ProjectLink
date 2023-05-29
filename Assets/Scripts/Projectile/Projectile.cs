@@ -9,10 +9,10 @@ public class Projectile : MonoBehaviour
     [SerializeField] private Transform sprite;
 
     private Vector2 _currentDirection;
-    public Vector2 CurrentDirection
+    public virtual Vector2 CurrentDirection
     {
         get => _currentDirection;
-        set 
+        set
         {
             _currentDirection = value;
             sprite.up = value;
@@ -30,8 +30,13 @@ public class Projectile : MonoBehaviour
 
     protected virtual void FixedUpdate()
     {
-        if (CurrentDirection != Vector2.zero) _rigidbody.velocity = CurrentDirection * speed;
+        HandleMovement();
     }
 
     #endregion
+
+    protected virtual void HandleMovement()
+    {
+        if (CurrentDirection != Vector2.zero) _rigidbody.velocity = CurrentDirection * speed;
+    }
 }
