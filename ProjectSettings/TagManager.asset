@@ -5,12 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - Title
-  - Weapon
   - Zombie
   - Collectible
-  - Portal
-  - Interactable
-  - Projectile
   layers:
   - Default
   - TransparentFX
