@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 96f3265443debfa4a874515087cdebc5
+guid: 4bf02c5d785ccf64a8aa6c49e723a74e
 ScriptedImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -119,18 +119,18 @@ ScriptedImporter:
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
   animatedSpriteImportData:
-  - name: player_foot
+  - name: arrow
     originalName: 
-    pivot: {x: 0.5, y: 0}
+    pivot: {x: 0.5, y: -1.5}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
       x: 4
       y: 4
-      width: 4
-      height: 6
-    spriteID: c0d1bae3502792042811dc36dde60f27
+      width: 8
+      height: 4
+    spriteID: a505d8694bb44d34fab6b8ca7bb16390
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -142,20 +142,20 @@ ScriptedImporter:
   spriteSheetImportData: []
   asepriteLayers:
   - layerIndex: 0
-    guid: -1356431236
-    name: player_foot
+    guid: 308325349
+    name: arrow
     layerFlags: 0
     layerType: 0
     blendMode: 0
     cells:
-    - name: player_foot
+    - name: arrow
       frameIndex: 0
       cellRect:
-        x: 6
-        y: 0
-        width: 4
-        height: 6
-      spriteId: c0d1bae3502792042811dc36dde60f27
+        x: 4
+        y: 6
+        width: 8
+        height: 4
+      spriteId: a505d8694bb44d34fab6b8ca7bb16390
     linkedCells: []
     parentIndex: -1
   platformSettings: []

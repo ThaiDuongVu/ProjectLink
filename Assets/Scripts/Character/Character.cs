@@ -1,4 +1,3 @@
-using System.Collections;
 using UnityEngine;
 
 public class Character : MonoBehaviour, IDamageable, IKnockbackable
@@ -67,12 +66,7 @@ public class Character : MonoBehaviour, IDamageable, IKnockbackable
 
     public virtual void Knockback(Vector2 direction, float force)
     {
-        if (_characterMovement)
-        {
-            _characterMovement.StopImmediate();
-            StartCoroutine(_characterMovement.TemporarilyDisableRun(force / 40f));
-        }
-
+        _characterMovement?.StopImmediate();
         Rigidbody?.AddForce(direction * force, ForceMode2D.Impulse);
     }
 

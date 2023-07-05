@@ -1,4 +1,3 @@
-using System.Collections;
 using UnityEngine;
 
 public class CharacterMovement : MonoBehaviour
@@ -7,8 +6,6 @@ public class CharacterMovement : MonoBehaviour
     [SerializeField] private float speed;
     [SerializeField] private float acceleration;
     [SerializeField] private float deceleration;
-
-    public bool RunDisabled { get; set; } = false;
 
     private bool _isRunning;
     private float _currentSpeed;
@@ -72,10 +69,8 @@ public class CharacterMovement : MonoBehaviour
 
     public virtual void Run(Vector2 direction)
     {
-        if (RunDisabled) return;
-
-        CurrentDirection = direction;
         _isRunning = true;
+        CurrentDirection = direction;
     }
 
     public virtual void Stop()
@@ -86,8 +81,8 @@ public class CharacterMovement : MonoBehaviour
     public virtual void StopImmediate()
     {
         _isRunning = false;
-
         _currentSpeed = 0f;
+
         Rigidbody.velocity = Vector2.zero;
     }
 
@@ -102,8 +97,8 @@ public class CharacterMovement : MonoBehaviour
 
     public virtual void SetLookDirection(Vector2 direction)
     {
-        LookDirection = direction;
         _lookDirectionSet = true;
+        LookDirection = direction;
     }
 
     public virtual void UnsetLookDirection()
@@ -113,11 +108,4 @@ public class CharacterMovement : MonoBehaviour
     }
 
     #endregion
-
-    public IEnumerator TemporarilyDisableRun(float duration)
-    {
-        RunDisabled = true;
-        yield return new WaitForSeconds(duration);
-        RunDisabled = false;
-    }
 }
