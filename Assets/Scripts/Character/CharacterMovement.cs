@@ -13,6 +13,7 @@ public class CharacterMovement : MonoBehaviour
 
     private bool _lookDirectionSet;
     public Vector2 LookDirection { get; protected set; } = Vector2.up;
+    private const float LookInterpolationRatio = 0.2f;
 
     protected Rigidbody2D Rigidbody;
     protected Animator Animator;
@@ -41,13 +42,12 @@ public class CharacterMovement : MonoBehaviour
         if (_isRunning) Accelerate();
         else Decelerate();
 
-        // rigidbody.MovePosition(rigidbody.position + CurrentDirection * _currentSpeed * Time.fixedDeltaTime);
         if (_currentSpeed > 0f) Rigidbody.velocity = CurrentDirection * _currentSpeed;
     }
 
     protected virtual void Update()
     {
-        if (_lookDirectionSet && LookDirection != Vector2.zero) transform.up = Vector2.Lerp(transform.up, LookDirection, 0.2f);
+        if (_lookDirectionSet && LookDirection != Vector2.zero) transform.up = Vector2.Lerp(transform.up, LookDirection, LookInterpolationRatio);
         ScaleAnimationSpeed();
     }
 

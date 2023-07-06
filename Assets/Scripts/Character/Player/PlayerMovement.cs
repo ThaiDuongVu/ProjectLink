@@ -34,7 +34,7 @@ public class PlayerMovement : CharacterMovement
         InputTypeController.Instance?.CheckInputType(context);
         if (GameController.Instance.State != GameState.InProgress) return;
 
-        var direction = context.ReadValue<Vector2>();
+        var direction = context.ReadValue<Vector2>().normalized;
         Run(direction);
         SetLookDirection(direction);
     }
