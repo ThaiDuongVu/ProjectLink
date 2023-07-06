@@ -3,6 +3,21 @@ using UnityEngine.InputSystem;
 
 public class PlayerCombat : CharacterCombat
 {
+    [Header("Stats")]
+    [SerializeField] private float range;
+    [SerializeField] private float pushForce;
+
+    [Header("References")]
+    [SerializeField] private Transform crosshair;
+
+    [Header("Color References")]
+    [SerializeField] private Color crosshairRegularColor;
+    [SerializeField] private Color crosshairTargetColor;
+
+    private SpriteRenderer _crosshairSprite;
+
+    private static readonly int PushAnimationTrigger = Animator.StringToHash("push");
+
     private InputManager _inputManager;
 
     #region Unity Events
@@ -26,6 +41,20 @@ public class PlayerCombat : CharacterCombat
         _inputManager.Disable();
     }
 
+    protected override void Awake()
+    {
+        base.Awake();
+
+        _crosshairSprite = crosshair.GetComponentInChildren<SpriteRenderer>();
+    }
+
+    protected override void Update()
+    {
+        base.Update();
+
+        CheckTarget();
+    }
+
     #endregion
 
     #region Input Handlers
@@ -45,11 +74,50 @@ public class PlayerCombat : CharacterCombat
     {
         InputTypeController.Instance?.CheckInputType(context);
         if (GameController.Instance.State != GameState.InProgress) return;
+
+        Animator.SetTrigger(PushAnimationTrigger);
+        CameraShaker.Instance.Shake(CameraShakeMode.Light);
     }
 
     private void PushOnCanceled(InputAction.CallbackContext context)
     {
         InputTypeController.Instance?.CheckInputType(context);
+    }
+
+    #endregion
+
+    private void CheckTarget()
+    {
+        // Raycast forward to acquire item target
+        var hit = Physics2D.Raycast(transform.position, transform.up, range, LayerMask.GetMask("Items"));
+        if (!hit)
+        {
+            _crosshairSprite.color = crosshairRegularColor;
+            return;
+        }
+
+        _crosshairSprite.color = crosshairTargetColor;
+    }
+
+    #region Hold Methods
+
+    private void Hold(Item item)
+    {
+
+    }
+
+    private void ReleaseCurrentItem()
+    {
+
+    }
+
+    #endregion
+
+    #region Push Methods
+
+    private void Push(Item item)
+    {
+
     }
 
     #endregion

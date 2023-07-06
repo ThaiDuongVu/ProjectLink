@@ -5,7 +5,9 @@ TagManager:
   serializedVersion: 2
   tags:
   - Title
+  - Item
   - Zombie
+  - Interactable
   - Collectible
   layers:
   - Default
@@ -19,7 +21,7 @@ TagManager:
   - Items
   - Zombies
   - Interactables
-  - 
+  - Collectibles
   - 
   - 
   - 
