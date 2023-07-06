@@ -18,6 +18,8 @@ public class PlayerCombat : CharacterCombat
 
     private static readonly int PushAnimationTrigger = Animator.StringToHash("push");
 
+    private Item _targetItem;
+
     private InputManager _inputManager;
 
     #region Unity Events
@@ -75,8 +77,7 @@ public class PlayerCombat : CharacterCombat
         InputTypeController.Instance?.CheckInputType(context);
         if (GameController.Instance.State != GameState.InProgress) return;
 
-        Animator.SetTrigger(PushAnimationTrigger);
-        CameraShaker.Instance.Shake(CameraShakeMode.Light);
+        Push(_targetItem);
     }
 
     private void PushOnCanceled(InputAction.CallbackContext context)
@@ -92,11 +93,21 @@ public class PlayerCombat : CharacterCombat
         var hit = Physics2D.Raycast(transform.position, transform.up, range, LayerMask.GetMask("Items"));
         if (!hit)
         {
-            _crosshairSprite.color = crosshairRegularColor;
+            // _crosshairSprite.color = crosshairRegularColor;
+            crosshair.gameObject.SetActive(true);
+            if (_targetItem)
+            {
+                _targetItem.SetHighlight(false);
+                _targetItem = null;
+            }
             return;
         }
 
-        _crosshairSprite.color = crosshairTargetColor;
+        if (!_targetItem) _targetItem = hit.transform.GetComponent<Item>();
+
+        _targetItem.SetHighlight(true, transform);
+        // _crosshairSprite.color = crosshairTargetColor;
+        crosshair.gameObject.SetActive(false);
     }
 
     #region Hold Methods
@@ -117,7 +128,13 @@ public class PlayerCombat : CharacterCombat
 
     private void Push(Item item)
     {
+        if (item)
+        {
+            item.AddForce(transform.up, pushForce);
+        }
 
+        Animator.SetTrigger(PushAnimationTrigger);
+        CameraShaker.Instance.Shake(CameraShakeMode.Light);
     }
 
     #endregion
