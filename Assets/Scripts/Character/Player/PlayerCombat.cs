@@ -9,16 +9,12 @@ public class PlayerCombat : CharacterCombat
 
     [Header("References")]
     [SerializeField] private Transform crosshair;
-
-    [Header("Color References")]
-    [SerializeField] private Color crosshairRegularColor;
-    [SerializeField] private Color crosshairTargetColor;
-
-    private SpriteRenderer _crosshairSprite;
+    [SerializeField] private ParticleSystem muzzle;
 
     private static readonly int PushAnimationTrigger = Animator.StringToHash("push");
 
     private Item _targetItem;
+    private Item _heldItem;
 
     private InputManager _inputManager;
 
@@ -43,18 +39,11 @@ public class PlayerCombat : CharacterCombat
         _inputManager.Disable();
     }
 
-    protected override void Awake()
-    {
-        base.Awake();
-
-        _crosshairSprite = crosshair.GetComponentInChildren<SpriteRenderer>();
-    }
-
     protected override void Update()
     {
         base.Update();
 
-        CheckTarget();
+        if (!_heldItem) CheckTarget();
     }
 
     #endregion
@@ -93,7 +82,6 @@ public class PlayerCombat : CharacterCombat
         var hit = Physics2D.Raycast(transform.position, transform.up, range, LayerMask.GetMask("Items"));
         if (!hit)
         {
-            // _crosshairSprite.color = crosshairRegularColor;
             crosshair.gameObject.SetActive(true);
             if (_targetItem)
             {
@@ -106,7 +94,6 @@ public class PlayerCombat : CharacterCombat
         if (!_targetItem) _targetItem = hit.transform.GetComponent<Item>();
 
         _targetItem.SetHighlight(true, transform);
-        // _crosshairSprite.color = crosshairTargetColor;
         crosshair.gameObject.SetActive(false);
     }
 
@@ -131,6 +118,7 @@ public class PlayerCombat : CharacterCombat
         if (item)
         {
             item.AddForce(transform.up, pushForce);
+            muzzle.Play();
         }
 
         Animator.SetTrigger(PushAnimationTrigger);
