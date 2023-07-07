@@ -5,12 +5,10 @@ TagManager:
   serializedVersion: 2
   tags:
   - Title
-  - Weapon
+  - Item
   - Zombie
-  - Collectible
-  - Portal
   - Interactable
-  - Projectile
+  - Collectible
   layers:
   - Default
   - TransparentFX
@@ -18,12 +16,12 @@ TagManager:
   - PostProcessing
   - Water
   - UI
-  - Obstacles
+  - Map
   - Player
+  - Items
   - Zombies
   - Interactables
-  - 
-  - 
+  - Collectibles
   - 
   - 
   - 

@@ -1,4 +1,3 @@
-using System.Collections;
 using UnityEngine;
 
 public class CharacterMovement : MonoBehaviour
@@ -8,14 +7,13 @@ public class CharacterMovement : MonoBehaviour
     [SerializeField] private float acceleration;
     [SerializeField] private float deceleration;
 
-    public bool RunDisabled { get; set; } = false;
-
     private bool _isRunning;
     private float _currentSpeed;
     public Vector2 CurrentDirection { get; protected set; } = Vector2.up;
 
     private bool _lookDirectionSet;
     public Vector2 LookDirection { get; protected set; } = Vector2.up;
+    private const float LookInterpolationRatio = 0.25f;
 
     protected Rigidbody2D Rigidbody;
     protected Animator Animator;
@@ -44,13 +42,12 @@ public class CharacterMovement : MonoBehaviour
         if (_isRunning) Accelerate();
         else Decelerate();
 
-        // rigidbody.MovePosition(rigidbody.position + CurrentDirection * _currentSpeed * Time.fixedDeltaTime);
         if (_currentSpeed > 0f) Rigidbody.velocity = CurrentDirection * _currentSpeed;
     }
 
     protected virtual void Update()
     {
-        if (_lookDirectionSet && LookDirection != Vector2.zero) transform.up = Vector2.Lerp(transform.up, LookDirection, 0.2f);
+        if (_lookDirectionSet && LookDirection != Vector2.zero) transform.up = Vector2.Lerp(transform.up, LookDirection, LookInterpolationRatio);
         ScaleAnimationSpeed();
     }
 
@@ -72,10 +69,8 @@ public class CharacterMovement : MonoBehaviour
 
     public virtual void Run(Vector2 direction)
     {
-        if (RunDisabled) return;
-
-        CurrentDirection = direction;
         _isRunning = true;
+        CurrentDirection = direction;
     }
 
     public virtual void Stop()
@@ -86,8 +81,8 @@ public class CharacterMovement : MonoBehaviour
     public virtual void StopImmediate()
     {
         _isRunning = false;
-
         _currentSpeed = 0f;
+
         Rigidbody.velocity = Vector2.zero;
     }
 
@@ -102,8 +97,8 @@ public class CharacterMovement : MonoBehaviour
 
     public virtual void SetLookDirection(Vector2 direction)
     {
-        LookDirection = direction;
         _lookDirectionSet = true;
+        LookDirection = direction;
     }
 
     public virtual void UnsetLookDirection()
@@ -113,11 +108,4 @@ public class CharacterMovement : MonoBehaviour
     }
 
     #endregion
-
-    public IEnumerator TemporarilyDisableRun(float duration)
-    {
-        RunDisabled = true;
-        yield return new WaitForSeconds(duration);
-        RunDisabled = false;
-    }
 }
