@@ -10,6 +10,7 @@ public class PlayerCombat : CharacterCombat
     [Header("References")]
     [SerializeField] private Transform crosshair;
     [SerializeField] private ParticleSystem muzzle;
+    [SerializeField] private Color textColor;
 
     private static readonly int PushAnimationTrigger = Animator.StringToHash("push");
 
@@ -54,11 +55,15 @@ public class PlayerCombat : CharacterCombat
     {
         InputTypeController.Instance?.CheckInputType(context);
         if (GameController.Instance.State != GameState.InProgress) return;
+
+        Hold(_targetItem);
     }
 
     private void HoldOnCanceled(InputAction.CallbackContext context)
     {
         InputTypeController.Instance?.CheckInputType(context);
+
+        ReleaseHeldItem();
     }
 
     private void PushOnPerformed(InputAction.CallbackContext context)
@@ -66,7 +71,7 @@ public class PlayerCombat : CharacterCombat
         InputTypeController.Instance?.CheckInputType(context);
         if (GameController.Instance.State != GameState.InProgress) return;
 
-        Push(_targetItem);
+        Push(_heldItem ?? _targetItem);
     }
 
     private void PushOnCanceled(InputAction.CallbackContext context)
@@ -82,18 +87,20 @@ public class PlayerCombat : CharacterCombat
         var hit = Physics2D.Raycast(transform.position, transform.up, range, LayerMask.GetMask("Items"));
         if (!hit)
         {
-            crosshair.gameObject.SetActive(true);
             if (_targetItem)
             {
                 _targetItem.SetHighlight(false);
+                _targetItem.SetPusher();
                 _targetItem = null;
             }
+            crosshair.gameObject.SetActive(true);
             return;
         }
 
         if (!_targetItem) _targetItem = hit.transform.GetComponent<Item>();
 
-        _targetItem.SetHighlight(true, transform);
+        _targetItem.SetHighlight(true);
+        _targetItem.SetPusher(transform);
         crosshair.gameObject.SetActive(false);
     }
 
@@ -101,12 +108,18 @@ public class PlayerCombat : CharacterCombat
 
     private void Hold(Item item)
     {
+        if (!item) return;
 
+        _heldItem = item;
+        _heldItem.SetHolder(transform);
     }
 
-    private void ReleaseCurrentItem()
+    private void ReleaseHeldItem()
     {
+        if (!_heldItem) return;
 
+        _heldItem.SetHolder();
+        _heldItem = null;
     }
 
     #endregion
@@ -115,9 +128,13 @@ public class PlayerCombat : CharacterCombat
 
     private void Push(Item item)
     {
+        ReleaseHeldItem();
+
         if (item)
         {
             item.AddForce(transform.up, pushForce);
+
+            EffectsController.Instance.SpawnPopText(crosshair.position, textColor, "Bam");
             muzzle.Play();
         }
 

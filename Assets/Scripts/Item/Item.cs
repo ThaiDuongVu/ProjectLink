@@ -4,6 +4,7 @@ public class Item : MonoBehaviour
 {
     [Header("References")]
     [SerializeField] private Transform indicator;
+    private Transform _currentPusher;
     private Transform _currentHolder;
 
     private static readonly int HighlightAnimationBool = Animator.StringToHash("isHighlighted");
@@ -21,7 +22,22 @@ public class Item : MonoBehaviour
 
     protected virtual void Update()
     {
+        if (_currentPusher) indicator.up = _currentPusher.up;
         if (_currentHolder) indicator.up = _currentHolder.up;
+    }
+
+    #endregion
+
+    #region Holder & Pusher Methods
+
+    public virtual void SetHolder(Transform holder = null)
+    {
+        _currentHolder = holder;
+    }
+
+    public virtual void SetPusher(Transform pusher = null)
+    {
+        _currentPusher = pusher;
     }
 
     #endregion
@@ -31,9 +47,8 @@ public class Item : MonoBehaviour
         Rigidbody.AddForce(direction * force, ForceMode2D.Impulse);
     }
 
-    public virtual void SetHighlight(bool isHighlighted, Transform holder = null)
+    public virtual void SetHighlight(bool isHighlighted)
     {
         Animator.SetBool(HighlightAnimationBool, isHighlighted);
-        _currentHolder = holder;
     }
 }
