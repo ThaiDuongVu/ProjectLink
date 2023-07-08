@@ -7,8 +7,8 @@ public class CharacterMovement : MonoBehaviour
     [SerializeField] private float acceleration;
     [SerializeField] private float deceleration;
 
-    private bool _isRunning;
-    private float _currentSpeed;
+    protected bool IsRunning;
+    protected float CurrentSpeed;
     public Vector2 CurrentDirection { get; protected set; } = Vector2.up;
 
     private bool _lookDirectionSet;
@@ -39,10 +39,10 @@ public class CharacterMovement : MonoBehaviour
 
     protected virtual void FixedUpdate()
     {
-        if (_isRunning) Accelerate();
+        if (IsRunning) Accelerate();
         else Decelerate();
 
-        if (_currentSpeed > 0f) Rigidbody.velocity = CurrentDirection * _currentSpeed;
+        if (CurrentSpeed > 0f) Rigidbody.velocity = CurrentDirection * CurrentSpeed;
     }
 
     protected virtual void Update()
@@ -57,31 +57,31 @@ public class CharacterMovement : MonoBehaviour
 
     private void Accelerate()
     {
-        if (_currentSpeed < speed) _currentSpeed += acceleration * Time.fixedDeltaTime;
-        else if (_currentSpeed > speed) _currentSpeed = speed;
+        if (CurrentSpeed < speed) CurrentSpeed += acceleration * Time.fixedDeltaTime;
+        else if (CurrentSpeed > speed) CurrentSpeed = speed;
     }
 
     private void Decelerate()
     {
-        if (_currentSpeed > 0f) _currentSpeed -= deceleration * Time.fixedDeltaTime;
-        else if (_currentSpeed < 0f) _currentSpeed = 0f;
+        if (CurrentSpeed > 0f) CurrentSpeed -= deceleration * Time.fixedDeltaTime;
+        else if (CurrentSpeed < 0f) CurrentSpeed = 0f;
     }
 
     public virtual void Run(Vector2 direction)
     {
-        _isRunning = true;
+        IsRunning = true;
         CurrentDirection = direction;
     }
 
     public virtual void Stop()
     {
-        _isRunning = false;
+        IsRunning = false;
     }
 
     public virtual void StopImmediate()
     {
-        _isRunning = false;
-        _currentSpeed = 0f;
+        IsRunning = false;
+        CurrentSpeed = 0f;
 
         Rigidbody.velocity = Vector2.zero;
     }
@@ -90,7 +90,7 @@ public class CharacterMovement : MonoBehaviour
 
     protected virtual void ScaleAnimationSpeed()
     {
-        Animator.speed = _isRunning ? _currentSpeed / speed : 1f;
+        Animator.speed = IsRunning ? CurrentSpeed / speed : 1f;
     }
 
     #region Look Direction Methods

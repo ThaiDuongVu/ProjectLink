@@ -352,7 +352,7 @@ MonoBehaviour:
   - {x: 0.5, y: -0.25, z: 0}
   m_ShapePathHash: 0
   m_Mesh: {fileID: 0}
-  m_InstanceId: 30202
+  m_InstanceId: -2804
   m_LocalBounds:
     m_Center: {x: 0, y: 0, z: 0}
     m_Extent: {x: 0.5, y: 0.25, z: 0}
@@ -408,6 +408,8 @@ MonoBehaviour:
   itemHolder: {fileID: 298329794178826468}
   holdTextColor: {r: 0.78431374, g: 0.8392157, b: 0.8980392, a: 1}
   pushTextColor: {r: 0.039215688, g: 0.7411765, b: 0.8901961, a: 1}
+  regularAnimator: {fileID: 9100000, guid: 0ad0f41f5ec6aca4fb2b8ddfd147a743, type: 2}
+  holdingAnimator: {fileID: 22100000, guid: fa2be28a766f3e747b87c1094a8adbd0, type: 2}
 --- !u!1 &2036742937305288354
 GameObject:
   m_ObjectHideFlags: 0

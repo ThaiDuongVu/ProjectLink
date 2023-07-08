@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Animations;
 
 public class PlayerCombat : CharacterCombat
 {
@@ -15,6 +16,10 @@ public class PlayerCombat : CharacterCombat
     [Header("Colors")]
     [SerializeField] private Color holdTextColor;
     [SerializeField] private Color pushTextColor;
+
+    [Header("Animators")]
+    [SerializeField] private RuntimeAnimatorController regularAnimator;
+    [SerializeField] private AnimatorOverrideController holdingAnimator;
 
     private static readonly int PushAnimationTrigger = Animator.StringToHash("push");
     private string[] _pushTexts = new string[] { "Bam", "Boom", "Tada" };
@@ -118,6 +123,7 @@ public class PlayerCombat : CharacterCombat
         _heldItem = item;
         _heldItem.SetHolder(itemHolder);
 
+        Animator.runtimeAnimatorController = holdingAnimator;
         EffectsController.Instance.SpawnPopText(crosshair.position, holdTextColor, _heldItem.name);
     }
 
@@ -127,6 +133,8 @@ public class PlayerCombat : CharacterCombat
 
         _heldItem.SetHolder();
         _heldItem = null;
+
+        Animator.runtimeAnimatorController = regularAnimator;
     }
 
     #endregion

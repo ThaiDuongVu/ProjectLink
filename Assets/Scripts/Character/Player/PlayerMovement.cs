@@ -46,22 +46,11 @@ public class PlayerMovement : CharacterMovement
         Stop();
     }
 
-    #endregion
-
-    #region Movement Methods
-
-    public override void Run(Vector2 direction)
+    protected override void FixedUpdate()
     {
-        base.Run(direction);
+        base.FixedUpdate();
 
-        Animator.SetBool(RunAnimationBool, true);
-    }
-
-    public override void Stop()
-    {
-        base.Stop();
-
-        Animator.SetBool(RunAnimationBool, false);
+        Animator.SetBool(RunAnimationBool, CurrentSpeed > 0f);
     }
 
     #endregion
