@@ -10,9 +10,14 @@ public class PlayerCombat : CharacterCombat
     [Header("References")]
     [SerializeField] private Transform crosshair;
     [SerializeField] private ParticleSystem muzzle;
-    [SerializeField] private Color textColor;
+    [SerializeField] private Transform itemHolder;
+
+    [Header("Colors")]
+    [SerializeField] private Color holdTextColor;
+    [SerializeField] private Color pushTextColor;
 
     private static readonly int PushAnimationTrigger = Animator.StringToHash("push");
+    private string[] _pushTexts = new string[] { "Bam", "Boom", "Tada" };
 
     private Item _targetItem;
     private Item _heldItem;
@@ -111,7 +116,9 @@ public class PlayerCombat : CharacterCombat
         if (!item) return;
 
         _heldItem = item;
-        _heldItem.SetHolder(transform);
+        _heldItem.SetHolder(itemHolder);
+
+        EffectsController.Instance.SpawnPopText(crosshair.position, holdTextColor, _heldItem.name);
     }
 
     private void ReleaseHeldItem()
@@ -128,13 +135,15 @@ public class PlayerCombat : CharacterCombat
 
     private void Push(Item item)
     {
+        // Release currently held item first (if applicable)
         ReleaseHeldItem();
 
+        // Add force (and effects) to item
         if (item)
         {
             item.AddForce(transform.up, pushForce);
 
-            EffectsController.Instance.SpawnPopText(crosshair.position, textColor, "Bam");
+            EffectsController.Instance.SpawnPopText(crosshair.position, pushTextColor, _pushTexts[Random.Range(0, _pushTexts.Length)]);
             muzzle.Play();
         }
 

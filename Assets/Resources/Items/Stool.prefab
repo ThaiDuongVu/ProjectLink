@@ -549,7 +549,7 @@ MonoBehaviour:
   - {x: 0.4000001, y: -0.4000001, z: 0}
   m_ShapePathHash: 0
   m_Mesh: {fileID: 0}
-  m_InstanceId: 49698
+  m_InstanceId: 47994
   m_LocalBounds:
     m_Center: {x: 0, y: 0, z: 0}
     m_Extent: {x: 0.4000001, y: 0.4000001, z: 0}
@@ -565,4 +565,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab92603fa83286c4fb6367be1eaa5f02, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  name: Stool
   indicator: {fileID: 2336067078691875830}
