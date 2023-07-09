@@ -566,4 +566,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   name: Stool
+  collisionTextColor: {r: 0.5137255, g: 0.58431375, b: 0.654902, a: 1}
   indicator: {fileID: 2336067078691875830}
+  collisionSplashPrefab: {fileID: 2487755348245098086, guid: 25741bf3a8164bb4b8e6af2caeebfb95, type: 3}

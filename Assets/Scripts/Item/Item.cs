@@ -4,9 +4,11 @@ public class Item : MonoBehaviour
 {
     [Header("Stats")]
     public new string name;
+    [SerializeField] private Color collisionTextColor;
 
     [Header("References")]
     [SerializeField] private Transform indicator;
+    [SerializeField] private ParticleSystem collisionSplashPrefab;
     private Transform _currentPusher;
     private Transform _currentHolder;
 
@@ -58,5 +60,17 @@ public class Item : MonoBehaviour
     public virtual void SetHighlight(bool isHighlighted)
     {
         Animator.SetBool(HighlightAnimationBool, isHighlighted);
+    }
+
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        if (other.transform.CompareTag("Player") || _currentHolder) return;
+
+        var contactPoint = other.GetContact(0).point;
+        var relativeVelocity = other.relativeVelocity;
+
+        Instantiate(collisionSplashPrefab, contactPoint, Quaternion.identity).transform.up = relativeVelocity.normalized;
+        EffectsController.Instance.SpawnPopText(contactPoint, collisionTextColor, ((int)relativeVelocity.magnitude).ToString());
+        CameraShaker.Instance.Shake(CameraShakeMode.Nano);
     }
 }
