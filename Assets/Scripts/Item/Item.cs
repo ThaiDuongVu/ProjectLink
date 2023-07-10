@@ -71,6 +71,5 @@ public class Item : MonoBehaviour
 
         Instantiate(collisionSplashPrefab, contactPoint, Quaternion.identity).transform.up = relativeVelocity.normalized;
         EffectsController.Instance.SpawnPopText(contactPoint, collisionTextColor, ((int)relativeVelocity.magnitude).ToString());
-        CameraShaker.Instance.Shake(CameraShakeMode.Nano);
     }
 }
