@@ -27,7 +27,6 @@ public class CharacterPathfinder : MonoBehaviour
 
     protected virtual void Awake()
     {
-        GetComponent<Character>();
         _characterMovement = GetComponent<CharacterMovement>();
         _seeker = GetComponent<Seeker>();
     }
