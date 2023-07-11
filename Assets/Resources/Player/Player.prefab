@@ -402,7 +402,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   range: 2
-  pushForce: 50
+  pushForce: 40
   crosshair: {fileID: 3390019286237933386}
   muzzle: {fileID: 428587051493624086}
   itemHolder: {fileID: 298329794178826468}

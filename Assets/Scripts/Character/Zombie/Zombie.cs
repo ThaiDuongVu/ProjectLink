@@ -28,6 +28,17 @@ public class Zombie : Character
 
     #endregion
 
+    #region Interface Implementations
+
+    public override void Die()
+    {
+        CameraShaker.Instance.Shake(CameraShakeMode.Micro);
+
+        base.Die();
+    }
+
+    #endregion
+
     private void TrackPlayer()
     {
         _zombiePathfinder.Track(_player.transform);
