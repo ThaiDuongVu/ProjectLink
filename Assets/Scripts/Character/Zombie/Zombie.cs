@@ -33,6 +33,7 @@ public class Zombie : Character
     public override void Die()
     {
         CameraShaker.Instance.Shake(CameraShakeMode.Micro);
+        GameController.Instance.PlaySlowMotionEffect();
 
         base.Die();
     }

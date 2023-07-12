@@ -89,7 +89,8 @@ public class Item : MonoBehaviour
         {
             damageable.TakeDamage(damage, relativeVelocity.normalized, contactPoint);
             EffectsController.Instance.SpawnPopText(contactPoint, damageTextColor, ((int)damage).ToString());
-            StartCoroutine(SetVelocityDelay(-relativeVelocity, 0.02f));
+            Rigidbody.velocity = -relativeVelocity;
+            // StartCoroutine(SetVelocityDelay(-relativeVelocity, 0f));
         }
     }
 }
