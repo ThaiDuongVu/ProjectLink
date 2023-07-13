@@ -1,4 +1,3 @@
-using System.Collections;
 using UnityEngine;
 
 public class Item : MonoBehaviour
@@ -13,6 +12,8 @@ public class Item : MonoBehaviour
     [SerializeField] private ParticleSystem collisionSplashPrefab;
     private Transform _currentPusher;
     private Transform _currentHolder;
+    private Quaternion _holderRotation;
+    private Vector2 _tempDirection;
 
     private static readonly int HighlightAnimationBool = Animator.StringToHash("isHighlighted");
     private const float HoldInterpolationRatio = 0.5f;
@@ -33,9 +34,14 @@ public class Item : MonoBehaviour
     protected virtual void Update()
     {
         if (_currentPusher) indicator.up = _currentPusher.up;
-        if (_currentHolder) Rigidbody.MovePosition(
-            Vector2.Lerp(transform.position, _currentHolder.position + _currentHolder.up * CircleCollider.radius, HoldInterpolationRatio)
-        );
+        if (_currentHolder)
+        {
+            Rigidbody.MovePosition(
+                Vector2.Lerp(transform.position, _currentHolder.position + _currentHolder.up * CircleCollider.radius, HoldInterpolationRatio)
+            );
+
+            transform.up = (Vector2)_currentHolder.up - _tempDirection;
+        }
     }
 
     #endregion
@@ -45,6 +51,7 @@ public class Item : MonoBehaviour
     public virtual void SetHolder(Transform holder = null)
     {
         _currentHolder = holder;
+        if (holder) _tempDirection = _currentHolder.up - transform.up;
     }
 
     public virtual void SetPusher(Transform pusher = null)
@@ -62,12 +69,6 @@ public class Item : MonoBehaviour
     public virtual void SetHighlight(bool isHighlighted)
     {
         Animator.SetBool(HighlightAnimationBool, isHighlighted);
-    }
-
-    private IEnumerator SetVelocityDelay(Vector2 velocity, float delay = 0)
-    {
-        yield return new WaitForSeconds(delay);
-        Rigidbody.velocity = velocity;
     }
 
     private void OnCollisionEnter2D(Collision2D other)
@@ -89,7 +90,7 @@ public class Item : MonoBehaviour
         {
             damageable.TakeDamage(damage, relativeVelocity.normalized, contactPoint);
             EffectsController.Instance.SpawnPopText(contactPoint, damageTextColor, ((int)damage).ToString());
-            Rigidbody.velocity = -relativeVelocity;
+            // Rigidbody.velocity = -relativeVelocity;
             // StartCoroutine(SetVelocityDelay(-relativeVelocity, 0f));
         }
     }

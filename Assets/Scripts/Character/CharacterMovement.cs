@@ -13,7 +13,7 @@ public class CharacterMovement : MonoBehaviour
 
     private bool _lookDirectionSet;
     public Vector2 LookDirection { get; protected set; } = Vector2.up;
-    private const float LookInterpolationRatio = 0.25f;
+    private const float LookInterpolationRatio = 0.4f;
 
     protected Rigidbody2D Rigidbody;
     protected Animator Animator;

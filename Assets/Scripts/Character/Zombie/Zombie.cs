@@ -42,6 +42,12 @@ public class Zombie : Character
 
     private void TrackPlayer()
     {
+        if (!_player)
+        {
+            _zombiePathfinder.Stop();
+            return;
+        }
+
         _zombiePathfinder.Track(_player.transform);
     }
 }

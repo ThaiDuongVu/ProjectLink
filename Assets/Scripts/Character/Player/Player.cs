@@ -28,4 +28,18 @@ public class Player : Character
             coinText.SetText(value.ToString());
         }
     }
+
+    public override void TakeDamage(float damage, Vector2 direction, Vector2 contactPoint)
+    {
+        base.TakeDamage(damage, direction, contactPoint);
+
+        CameraShaker.Instance.Shake(CameraShakeMode.Light);
+    }
+
+    public override void Die()
+    {
+        GameController.Instance.StartCoroutine(GameController.Instance.GameOver("You died"));
+
+        base.Die();
+    }
 }
