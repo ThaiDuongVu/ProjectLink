@@ -13,7 +13,9 @@ public class Item : MonoBehaviour
     private Transform _currentPusher;
     private Transform _currentHolder;
     private Quaternion _holderRotation;
-    private Vector2 _tempDirection;
+
+    private float _tempRotation;
+    private Rigidbody2D _holderRigidbody;
 
     private static readonly int HighlightAnimationBool = Animator.StringToHash("isHighlighted");
     private const float HoldInterpolationRatio = 0.5f;
@@ -40,7 +42,7 @@ public class Item : MonoBehaviour
                 Vector2.Lerp(transform.position, _currentHolder.position + _currentHolder.up * CircleCollider.radius, HoldInterpolationRatio)
             );
 
-            transform.up = (Vector2)_currentHolder.up - _tempDirection;
+            Rigidbody.SetRotation(_holderRigidbody.rotation - _tempRotation);
         }
     }
 
@@ -51,7 +53,11 @@ public class Item : MonoBehaviour
     public virtual void SetHolder(Transform holder = null)
     {
         _currentHolder = holder;
-        if (holder) _tempDirection = _currentHolder.up - transform.up;
+        if (holder)
+        {
+            _holderRigidbody = _currentHolder.GetComponentInParent<Rigidbody2D>();
+            _tempRotation = _holderRigidbody.rotation - Rigidbody.rotation;
+        }
     }
 
     public virtual void SetPusher(Transform pusher = null)
