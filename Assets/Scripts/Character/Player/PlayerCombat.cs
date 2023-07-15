@@ -1,31 +1,23 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.Animations;
 
 public class PlayerCombat : CharacterCombat
 {
-    [Header("Stats")]
-    [SerializeField] private float range;
-    [SerializeField] private float pushForce;
+    [Header("Dash Stats")]
+    [SerializeField] private float dashRange;
+    [SerializeField] private float dashInterpolationRatio;
+    [SerializeField] private float dashEpsilon;
+    [SerializeField] private int dashRate;
 
-    [Header("References")]
-    [SerializeField] private Transform crosshair;
-    [SerializeField] private ParticleSystem muzzle;
-    [SerializeField] private Transform itemHolder;
+    [Header("Dash References")]
+    [SerializeField] private ParticleSystem dashMuzzlePrefab;
+    [SerializeField] private GameObject dashLinePrefab;
 
-    [Header("Colors")]
-    [SerializeField] private Color holdTextColor;
-    [SerializeField] private Color pushTextColor;
-
-    [Header("Animators")]
-    [SerializeField] private RuntimeAnimatorController regularAnimator;
-    [SerializeField] private AnimatorOverrideController holdingAnimator;
-
-    private static readonly int PushAnimationTrigger = Animator.StringToHash("push");
-    private string[] _pushTexts = new string[] { "Bam", "Boom", "Tada" };
-
-    private Item _targetItem;
-    private Item _heldItem;
+    private bool _isDashing;
+    private Vector2 _dashPosition;
+    private static readonly int DashAnimationBool = Animator.StringToHash("isDashing");
+    private bool _canDash = true;
+    private Timer _dashTimer;
 
     private InputManager _inputManager;
 
@@ -35,12 +27,9 @@ public class PlayerCombat : CharacterCombat
     {
         _inputManager = new InputManager();
 
-        // Handle hold/push input
-        _inputManager.Player.Hold.performed += HoldOnPerformed;
-        _inputManager.Player.Hold.canceled += HoldOnCanceled;
-
-        _inputManager.Player.Push.performed += PushOnPerformed;
-        _inputManager.Player.Push.canceled += PushOnCanceled;
+        // Handle player dash input
+        _inputManager.Player.Dash.performed += DashOnPerformed;
+        _inputManager.Player.Dash.canceled += DashOnCanceled;
 
         _inputManager.Enable();
     }
@@ -54,110 +43,60 @@ public class PlayerCombat : CharacterCombat
     {
         base.Update();
 
-        if (!_heldItem) CheckTarget();
+        if (_isDashing)
+        {
+            transform.position = Vector2.Lerp(transform.position, _dashPosition, dashInterpolationRatio);
+            if (Vector2.Distance(transform.position, _dashPosition) <= dashEpsilon) EndDash();
+        }
+
+        if (!_canDash && _dashTimer.IsReached()) _canDash = true;
     }
 
     #endregion
 
     #region Input Handlers
 
-    private void HoldOnPerformed(InputAction.CallbackContext context)
+    private void DashOnPerformed(InputAction.CallbackContext context)
     {
         InputTypeController.Instance?.CheckInputType(context);
         if (GameController.Instance.State != GameState.InProgress) return;
 
-        Hold(_targetItem);
+        Dash();
     }
 
-    private void HoldOnCanceled(InputAction.CallbackContext context)
-    {
-        InputTypeController.Instance?.CheckInputType(context);
-
-        ReleaseHeldItem();
-    }
-
-    private void PushOnPerformed(InputAction.CallbackContext context)
-    {
-        InputTypeController.Instance?.CheckInputType(context);
-        if (GameController.Instance.State != GameState.InProgress) return;
-
-        Push(_heldItem ?? _targetItem);
-    }
-
-    private void PushOnCanceled(InputAction.CallbackContext context)
+    private void DashOnCanceled(InputAction.CallbackContext context)
     {
         InputTypeController.Instance?.CheckInputType(context);
     }
 
     #endregion
 
-    private void CheckTarget()
+    private void Dash()
     {
-        // Raycast forward to acquire item target
-        var hit = Physics2D.Raycast(transform.position, transform.up, range, LayerMask.GetMask("Items"));
-        if (!hit)
-        {
-            if (_targetItem)
-            {
-                _targetItem.SetHighlight(false);
-                _targetItem.SetPusher();
-                _targetItem = null;
-            }
-            crosshair.gameObject.SetActive(true);
-            return;
-        }
+        if (!_canDash) return;
 
-        if (!_targetItem) _targetItem = hit.transform.GetComponent<Item>();
+        _dashPosition = transform.position + transform.up * dashRange;
+        _isDashing = true;
 
-        _targetItem.SetHighlight(true);
-        _targetItem.SetPusher(transform);
-        crosshair.gameObject.SetActive(false);
-    }
+        Animator.SetBool(DashAnimationBool, true);
+        Rigidbody.constraints = RigidbodyConstraints2D.FreezeAll;
 
-    #region Hold Methods
+        Instantiate(dashMuzzlePrefab, transform.position, Quaternion.identity).transform.up = -transform.up;
+        var dashLine = Instantiate(dashLinePrefab, transform.position, Quaternion.identity);
+        dashLine.transform.right = transform.up;
+        Destroy(dashLine, 1f);
 
-    private void Hold(Item item)
-    {
-        if (!item) return;
-
-        _heldItem = item;
-        _heldItem.SetHolder(itemHolder);
-
-        Animator.runtimeAnimatorController = holdingAnimator;
-        EffectsController.Instance.SpawnPopText(crosshair.position, holdTextColor, _heldItem.name);
-    }
-
-    private void ReleaseHeldItem()
-    {
-        if (!_heldItem) return;
-
-        _heldItem.SetHolder();
-        _heldItem = null;
-
-        Animator.runtimeAnimatorController = regularAnimator;
-    }
-
-    #endregion
-
-    #region Push Methods
-
-    private void Push(Item item)
-    {
-        // Release currently held item first (if applicable)
-        ReleaseHeldItem();
-
-        // Add force (and effects) to item
-        if (item)
-        {
-            item.AddForce(transform.up, pushForce);
-
-            EffectsController.Instance.SpawnPopText(crosshair.position, pushTextColor, _pushTexts[Random.Range(0, _pushTexts.Length)]);
-            muzzle.Play();
-        }
-
-        Animator.SetTrigger(PushAnimationTrigger);
         CameraShaker.Instance.Shake(CameraShakeMode.Light);
+
+        _canDash = false;
+        _dashTimer = new Timer(1f / dashRate);
     }
 
-    #endregion
+    private void EndDash()
+    {
+        _isDashing = false;
+
+        Animator.SetBool(DashAnimationBool, false);
+        Rigidbody.constraints = RigidbodyConstraints2D.FreezeRotation;
+    }
 }
