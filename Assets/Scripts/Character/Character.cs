@@ -22,6 +22,7 @@ public class Character : MonoBehaviour, IDamageable, IKnockbackable
 
     protected Animator Animator;
     protected Rigidbody2D Rigidbody;
+    protected Collider2D Collider;
 
     private CharacterMovement _characterMovement;
 
@@ -31,6 +32,7 @@ public class Character : MonoBehaviour, IDamageable, IKnockbackable
     {
         Animator = GetComponent<Animator>();
         Rigidbody = GetComponent<Rigidbody2D>();
+        Collider = GetComponent<Collider2D>();
 
         _characterMovement = GetComponent<CharacterMovement>();
     }

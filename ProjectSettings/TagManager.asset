@@ -8,6 +8,7 @@ TagManager:
   - Zombie
   - Interactable
   - Collectible
+  - Map
   layers:
   - Default
   - TransparentFX

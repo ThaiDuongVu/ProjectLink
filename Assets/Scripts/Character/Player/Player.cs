@@ -36,7 +36,8 @@ public class Player : Character
 
     public override void Die()
     {
-        GameController.Instance.StartCoroutine(GameController.Instance.GameOver("You died"));
+        GameController.Instance.PlaySlowMotionEffect();
+        GameController.Instance.StartCoroutine(GameController.Instance.GameOver("You died", 1f));
 
         base.Die();
     }

@@ -30,14 +30,17 @@ public class ZombieCombat : CharacterCombat
             var direction = Rigidbody.velocity.normalized;
             var contactPoint = other.GetContact(0).point;
 
+            // Stop zombie
             _zombieMovement.Stop();
 
+            // Deal damage & knockback to player
             player.TakeDamage(damage, direction, contactPoint);
             player.Knockback(direction, knockForce);
 
-            CameraShaker.Instance.Shake(CameraShakeMode.Light);
+            // Play some effects & shake the camera
             EffectsController.Instance.SpawnPopText(contactPoint, damageTextColor, damage.ToString());
             Animator.SetTrigger(AttackAnimationTrigger);
+            CameraShaker.Instance.Shake(CameraShakeMode.Light);
         }
     }
 }
