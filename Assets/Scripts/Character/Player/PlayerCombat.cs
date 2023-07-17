@@ -11,15 +11,17 @@ public class PlayerCombat : CharacterCombat
 
     [Header("Dash References")]
     [SerializeField] private ParticleSystem dashMuzzlePrefab;
-    [SerializeField] private PlayerDashLine dashLinePrefab;
+    [SerializeField] private DashLine dashLinePrefab;
 
     [Header("Combat Stats")]
     [SerializeField] private float damagePerDash;
 
     [Header("Arrow & Color References")]
-    [SerializeField] private SpriteRenderer arrowSprite;
+    [SerializeField] private Transform arrow;
     [SerializeField] private Color regularColor;
     [SerializeField] private Color aimColor;
+
+    private SpriteRenderer _arrowSprite;
 
     private bool _isDashing;
     private Vector2 _dashPosition;
@@ -51,6 +53,13 @@ public class PlayerCombat : CharacterCombat
         _inputManager.Disable();
     }
 
+    protected override void Awake()
+    {
+        base.Awake();
+
+        _arrowSprite = arrow.GetComponentInChildren<SpriteRenderer>();
+    }
+
     protected override void Update()
     {
         base.Update();
@@ -64,6 +73,7 @@ public class PlayerCombat : CharacterCombat
         }
 
         if (!_canDash && _dashTimer.IsReached()) _canDash = true;
+        arrow.localScale = _canDash ? Vector2.one : Vector2.one * _dashTimer.Progress / _dashTimer.MaxProgress;
     }
 
     #endregion
@@ -90,7 +100,7 @@ public class PlayerCombat : CharacterCombat
         // Set default color & hit point
         _aimHitMap = false;
         _aimTarget = null;
-        arrowSprite.color = regularColor;
+        _arrowSprite.color = regularColor;
 
         var hit = Physics2D.Raycast(transform.position, transform.up, dashRange);
         if (!hit) return;
@@ -99,7 +109,7 @@ public class PlayerCombat : CharacterCombat
         _aimHitMap = hit.transform.CompareTag("Map");
         _aimTarget = hit.transform.GetComponent<IDamageable>();
         _aimHitPoint = hit.point;
-        if (_aimTarget != null) arrowSprite.color = aimColor;
+        if (_aimTarget != null) _arrowSprite.color = aimColor;
     }
 
     #region Dash Methods
@@ -127,11 +137,11 @@ public class PlayerCombat : CharacterCombat
 
         // Play dash effects
         Instantiate(dashMuzzlePrefab, transform.position, Quaternion.identity).transform.up = -transform.up;
-        var dashLine = Instantiate(dashLinePrefab, transform.position, Quaternion.identity);
+        var dashLine = Instantiate(dashLinePrefab, _dashPosition, Quaternion.identity);
         dashLine.SetDirection(transform.up);
         dashLine.SetLength((_dashPosition - (Vector2)transform.position).magnitude);
         dashLine.SetColor(_aimTarget == null ? regularColor : aimColor);
-        Destroy(dashLine.gameObject, 0.4f);
+        Destroy(dashLine.gameObject, 0.5f);
 
         // Lightly shake the camera
         CameraShaker.Instance.Shake(CameraShakeMode.Light);

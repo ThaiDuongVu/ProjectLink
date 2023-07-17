@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class PlayerDashLine : MonoBehaviour
+public class DashLine : MonoBehaviour
 {
     private LineRenderer _line0;
     private LineRenderer _line1;

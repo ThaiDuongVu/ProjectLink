@@ -157,7 +157,7 @@ Transform:
   - {fileID: 7826863577253814862}
   - {fileID: 3643233218891181356}
   m_Father: {fileID: 0}
-  m_RootOrder: -1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!50 &5891257663385233704
 Rigidbody2D:
@@ -268,7 +268,7 @@ MonoBehaviour:
   - {x: 0.5, y: -0.25, z: 0}
   m_ShapePathHash: 0
   m_Mesh: {fileID: 0}
-  m_InstanceId: 30184
+  m_InstanceId: 30386
   m_LocalBounds:
     m_Center: {x: 0, y: 0, z: 0}
     m_Extent: {x: 0.5, y: 0.25, z: 0}
@@ -318,13 +318,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dashRange: 2.5
-  dashRate: 5
+  dashRate: 4
   dashInterpolationRatio: 0.25
   dashEpsilon: 0.1
   dashMuzzlePrefab: {fileID: 2487755348245098086, guid: acd9352c4172dfd46869e21fae881f54, type: 3}
   dashLinePrefab: {fileID: 6583916084569660565, guid: 7c3dae34ac53ac646a78ad3cc8e7044d, type: 3}
   damagePerDash: 10
-  arrowSprite: {fileID: 982078154105466710}
+  arrow: {fileID: 3390019286237933386}
   regularColor: {r: 1, g: 1, b: 1, a: 1}
   aimColor: {r: 0.93333334, g: 0.32156864, b: 0.3254902, a: 1}
 --- !u!1 &2036742937305288354

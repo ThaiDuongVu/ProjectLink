@@ -13,27 +13,28 @@ public class Timer
         MaxProgress = max;
 
         if (float.IsPositiveInfinity(MaxProgress)) _isInfTimer = true;
-        else Progress = MaxProgress;
+        else Progress = 0f;
     }
 
     public void Reset()
     {
-        Progress = MaxProgress;
+        Progress = 0f;
     }
 
     public bool IsReachedUnscaled()
     {
         if (_isInfTimer) return false;
 
-        Progress -= Time.fixedUnscaledDeltaTime;
-        return Progress <= 0f;
+        Progress += Time.fixedUnscaledDeltaTime;
+        return Progress >= MaxProgress;
     }
 
     public bool IsReached()
     {
         if (_isInfTimer) return false;
-        Progress -= Time.fixedDeltaTime;
-        return Progress <= 0f;
+
+        Progress += Time.fixedDeltaTime;
+        return Progress >= MaxProgress;
     }
 
     public override string ToString()
