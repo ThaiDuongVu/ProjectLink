@@ -124,7 +124,7 @@ Transform:
   m_Children:
   - {fileID: 4797800079085049824}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!50 &1228614488544620606
 Rigidbody2D:
@@ -186,7 +186,7 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_Size: {x: 1, y: 0.5}
+  m_Size: {x: 0.875, y: 0.375}
   m_Direction: 1
 --- !u!70 &901174177646456508
 CapsuleCollider2D:
@@ -270,7 +270,7 @@ MonoBehaviour:
   - {x: 0.5, y: -0.25, z: 0}
   m_ShapePathHash: 0
   m_Mesh: {fileID: 0}
-  m_InstanceId: 30186
+  m_InstanceId: 77460
   m_LocalBounds:
     m_Center: {x: 0, y: 0, z: 0}
     m_Extent: {x: 0.5, y: 0.25, z: 0}
@@ -318,7 +318,7 @@ MonoBehaviour:
   rig: {fileID: 4797800079085049824}
   bloodSplashPrefab: {fileID: 2487755348245098086, guid: 877935ed88bbca44a9e56b5cac8f4802, type: 3}
   deathExplosionPrefab: {fileID: 2487755348245098086, guid: 0011eec8a994890449bf760779ec4541, type: 3}
-  trackRate: 1
+  trackRate: 2
 --- !u!114 &9146916055361009169
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -30,6 +30,17 @@ public class Zombie : Character
 
     #region Interface Implementations
 
+    public override void TakeDamage(float damage, Vector2 direction, Vector2 contactPoint)
+    {
+        base.TakeDamage(damage, direction, contactPoint);
+
+        _zombiePathfinder.StopImmediate();
+        Knockback(direction, damage / 2f);
+
+        CancelInvoke();
+        InvokeRepeating(nameof(TrackPlayer), trackRate, trackRate);
+    }
+
     public override void Die()
     {
         CameraShaker.Instance.Shake(CameraShakeMode.Micro);

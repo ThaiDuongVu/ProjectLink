@@ -219,7 +219,7 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_Size: {x: 1, y: 0.5}
+  m_Size: {x: 0.875, y: 0.375}
   m_Direction: 1
 --- !u!95 &1160231283095407173
 Animator:
@@ -318,7 +318,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dashRange: 2.5
-  dashRate: 4
+  dashRate: 2
   dashInterpolationRatio: 0.25
   dashEpsilon: 0.1
   dashMuzzlePrefab: {fileID: 2487755348245098086, guid: acd9352c4172dfd46869e21fae881f54, type: 3}

@@ -132,7 +132,9 @@ public class PlayerCombat : CharacterCombat
         // Deal damage to target (if applicable)
         if (_aimTarget != null)
         {
+            var damageMessage = _aimTarget.CurrentHealth < damagePerDash ? _aimTarget.CurrentHealth.ToString() : damagePerDash.ToString();
             _aimTarget.TakeDamage(damagePerDash, transform.up, _aimHitPoint);
+            EffectsController.Instance.SpawnPopText(_aimHitPoint, aimColor, damageMessage);
         }
 
         // Play dash effects

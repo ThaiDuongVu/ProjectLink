@@ -93,5 +93,11 @@ public class CharacterPathfinder : MonoBehaviour
         _currentWaypoint = 0;
     }
 
+    public virtual void StopImmediate()
+    {
+        _characterMovement.StopImmediate();
+        Stop();
+    }
+
     #endregion
 }
