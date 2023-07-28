@@ -1,11 +1,13 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
 public class Player : Character
 {
-    [Header("UI References")]
+    public bool IsInvulnerable { get; set; }
 
+    [Header("UI References")]
     [SerializeField] private Image healthBar;
     public override float Health
     {
@@ -31,6 +33,8 @@ public class Player : Character
 
     public override void TakeDamage(float damage, Vector2 direction, Vector2 contactPoint)
     {
+        if (IsInvulnerable) return;
+
         base.TakeDamage(damage, direction, contactPoint);
     }
 
@@ -41,4 +45,20 @@ public class Player : Character
 
         base.Die();
     }
+
+    #region Invulnerability Methods
+
+    public IEnumerator StartInvulnerability(float delay = 0f)
+    {
+        yield return new WaitForSeconds(delay);
+        IsInvulnerable = true;
+    }
+
+    public IEnumerator EndInvulnerability(float delay = 0f)
+    {
+        yield return new WaitForSeconds(delay);
+        IsInvulnerable = false;
+    }
+
+    #endregion
 }

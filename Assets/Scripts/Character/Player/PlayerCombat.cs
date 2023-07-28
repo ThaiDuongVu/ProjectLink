@@ -33,6 +33,8 @@ public class PlayerCombat : CharacterCombat
     private bool _aimHitMap;
     private IDamageable _aimTarget;
 
+    private Player _player;
+
     private InputManager _inputManager;
 
     #region Unity Events
@@ -58,6 +60,7 @@ public class PlayerCombat : CharacterCombat
         base.Awake();
 
         _arrowSprite = arrow.GetComponentInChildren<SpriteRenderer>();
+        _player = GetComponent<Player>();
     }
 
     protected override void Update()
@@ -128,6 +131,7 @@ public class PlayerCombat : CharacterCombat
         Animator.SetBool(DashAnimationBool, true);
         Rigidbody.constraints = RigidbodyConstraints2D.FreezeAll;
         Collider.enabled = false;
+        StartCoroutine(_player.StartInvulnerability());
 
         // Deal damage to target (if applicable)
         if (_aimTarget != null)
@@ -162,6 +166,7 @@ public class PlayerCombat : CharacterCombat
         Animator.SetBool(DashAnimationBool, false);
         Rigidbody.constraints = RigidbodyConstraints2D.FreezeRotation;
         Collider.enabled = true;
+        StartCoroutine(_player.EndInvulnerability(0.5f));
     }
 
     #endregion
