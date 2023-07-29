@@ -34,7 +34,6 @@ public class Player : Character
     public override void TakeDamage(float damage, Vector2 direction, Vector2 contactPoint)
     {
         if (IsInvulnerable) return;
-
         base.TakeDamage(damage, direction, contactPoint);
     }
 
@@ -44,6 +43,12 @@ public class Player : Character
         GameController.Instance.StartCoroutine(GameController.Instance.GameOver("You died", 1f));
 
         base.Die();
+    }
+
+    public override void Knockback(Vector2 direction, float force)
+    {
+        if (IsInvulnerable) return;
+        base.Knockback(direction, force);
     }
 
     #region Invulnerability Methods

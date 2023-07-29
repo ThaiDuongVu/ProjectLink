@@ -32,6 +32,7 @@ public class ZombieCombat : CharacterCombat
 
             // Stop zombie
             _zombieMovement.Stop();
+            if (player.IsInvulnerable) return;
 
             // Deal damage & knockback to player
             player.TakeDamage(damage, direction, contactPoint);

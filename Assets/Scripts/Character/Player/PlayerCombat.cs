@@ -166,7 +166,7 @@ public class PlayerCombat : CharacterCombat
         Animator.SetBool(DashAnimationBool, false);
         Rigidbody.constraints = RigidbodyConstraints2D.FreezeRotation;
         Collider.enabled = true;
-        StartCoroutine(_player.EndInvulnerability(0.5f));
+        StartCoroutine(_player.EndInvulnerability(0.2f));
     }
 
     #endregion

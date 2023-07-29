@@ -270,7 +270,7 @@ MonoBehaviour:
   - {x: 0.5, y: -0.25, z: 0}
   m_ShapePathHash: 0
   m_Mesh: {fileID: 0}
-  m_InstanceId: 31560
+  m_InstanceId: 30964
   m_LocalBounds:
     m_Center: {x: 0, y: 0, z: 0}
     m_Extent: {x: 0.5, y: 0.25, z: 0}
@@ -314,11 +314,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a142a43ac2eeff34a9d7e14e0713eb54, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseHealth: 15
+  baseHealth: 10
   rig: {fileID: 2334423114125141355}
   bloodSplashPrefab: {fileID: 2487755348245098086, guid: 877935ed88bbca44a9e56b5cac8f4802, type: 3}
   deathExplosionPrefab: {fileID: 2487755348245098086, guid: 0011eec8a994890449bf760779ec4541, type: 3}
-  trackRate: 1
+  trackRate: 2
 --- !u!114 &6827585307706852880
 MonoBehaviour:
   m_ObjectHideFlags: 0

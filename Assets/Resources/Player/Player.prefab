@@ -157,7 +157,7 @@ Transform:
   - {fileID: 7826863577253814862}
   - {fileID: 3643233218891181356}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!50 &5891257663385233704
 Rigidbody2D:
@@ -268,7 +268,7 @@ MonoBehaviour:
   - {x: 0.5, y: -0.25, z: 0}
   m_ShapePathHash: 0
   m_Mesh: {fileID: 0}
-  m_InstanceId: 30386
+  m_InstanceId: 57718
   m_LocalBounds:
     m_Center: {x: 0, y: 0, z: 0}
     m_Extent: {x: 0.5, y: 0.25, z: 0}
@@ -318,7 +318,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dashRange: 2.5
-  dashRate: 2
+  dashRate: 4
   dashInterpolationRatio: 0.25
   dashEpsilon: 0.1
   dashMuzzlePrefab: {fileID: 2487755348245098086, guid: acd9352c4172dfd46869e21fae881f54, type: 3}
