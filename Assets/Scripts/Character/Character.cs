@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Character : MonoBehaviour, IDamageable, IKnockbackable
+public class Character : MonoBehaviour, IDamageable
 {
     [Header("Health Stats")]
     public float baseHealth;
@@ -64,12 +64,6 @@ public class Character : MonoBehaviour, IDamageable, IKnockbackable
     {
         Destroy(gameObject);
         Instantiate(deathExplosionPrefab, transform.position, Quaternion.identity);
-    }
-
-    public virtual void Knockback(Vector2 direction, float force)
-    {
-        _characterMovement?.StopImmediate();
-        Rigidbody?.AddForce(direction * force, ForceMode2D.Impulse);
     }
 
     #endregion

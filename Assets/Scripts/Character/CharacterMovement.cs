@@ -9,11 +9,7 @@ public class CharacterMovement : MonoBehaviour
 
     protected bool IsRunning;
     protected float CurrentSpeed;
-    public Vector2 CurrentDirection { get; protected set; } = Vector2.up;
-
-    private bool _lookDirectionSet;
-    public Vector2 LookDirection { get; protected set; } = Vector2.up;
-    private const float LookInterpolationRatio = 0.4f;
+    public Vector2 CurrentDirection { get; protected set; } = Vector2.zero;
 
     protected Rigidbody2D Rigidbody;
     protected Animator Animator;
@@ -42,12 +38,11 @@ public class CharacterMovement : MonoBehaviour
         if (IsRunning) Accelerate();
         else Decelerate();
 
-        if (CurrentSpeed > 0f) Rigidbody.velocity = CurrentDirection * CurrentSpeed;
+        if (CurrentSpeed > 0f) Rigidbody.velocity = new Vector2(CurrentDirection.x * CurrentSpeed, Rigidbody.velocity.y);
     }
 
     protected virtual void Update()
     {
-        if (_lookDirectionSet && LookDirection != Vector2.zero) transform.up = Vector2.Lerp(transform.up, LookDirection, LookInterpolationRatio);
         ScaleAnimationSpeed();
     }
 
@@ -92,20 +87,4 @@ public class CharacterMovement : MonoBehaviour
     {
         Animator.speed = IsRunning ? CurrentSpeed / speed : 1f;
     }
-
-    #region Look Direction Methods
-
-    public virtual void SetLookDirection(Vector2 direction)
-    {
-        _lookDirectionSet = true;
-        LookDirection = direction;
-    }
-
-    public virtual void UnsetLookDirection()
-    {
-        _lookDirectionSet = false;
-        LookDirection = Vector2.up;
-    }
-
-    #endregion
 }

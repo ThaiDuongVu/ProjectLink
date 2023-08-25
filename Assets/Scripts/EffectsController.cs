@@ -16,15 +16,4 @@ public class EffectsController : MonoBehaviour
     }
 
     #endregion
-
-    [Header("Pop Text Reference")]
-    [SerializeField] private PopText popTextPrefab;
-
-    public void SpawnPopText(Vector2 position, Color color, string message = "")
-    {
-        var popText = Instantiate(popTextPrefab, position, Quaternion.identity);
-
-        popText.SetText(message);
-        popText.SetColor(color);
-    }
 }
