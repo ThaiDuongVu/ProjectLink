@@ -5,10 +5,6 @@ TagManager:
   serializedVersion: 2
   tags:
   - Title
-  - Zombie
-  - Interactable
-  - Collectible
-  - Map
   layers:
   - Default
   - TransparentFX
@@ -19,9 +15,9 @@ TagManager:
   - Map
   - Player
   - 
-  - Zombies
-  - Interactables
-  - Collectibles
+  - 
+  - 
+  - 
   - 
   - 
   - 

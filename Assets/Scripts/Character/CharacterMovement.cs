@@ -15,8 +15,6 @@ public class CharacterMovement : MonoBehaviour
     protected Animator Animator;
     protected Collider2D Collider;
 
-    private Character _character;
-
     #region Unity Events
 
     protected virtual void Awake()
@@ -24,8 +22,6 @@ public class CharacterMovement : MonoBehaviour
         Rigidbody = GetComponent<Rigidbody2D>();
         Animator = GetComponent<Animator>();
         Collider = GetComponent<Collider2D>();
-
-        _character = GetComponent<Character>();
     }
 
     protected virtual void Start()
