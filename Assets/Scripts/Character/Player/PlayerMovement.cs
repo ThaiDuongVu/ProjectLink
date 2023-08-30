@@ -3,6 +3,10 @@ using UnityEngine.InputSystem;
 
 public class PlayerMovement : CharacterMovement
 {
+    private static readonly int RunAnimationBool = Animator.StringToHash("isRunning");
+
+    private Player _player;
+
     private InputManager _inputManager;
 
     #region Unity Event
@@ -21,6 +25,13 @@ public class PlayerMovement : CharacterMovement
     private void OnDisable()
     {
         _inputManager?.Disable();
+    }
+
+    protected override void Awake()
+    {
+        base.Awake();
+
+        _player = GetComponent<Player>();
     }
 
     #endregion
@@ -45,4 +56,21 @@ public class PlayerMovement : CharacterMovement
     }
 
     #endregion
+
+    public override void Run(Vector2 direction)
+    {
+        base.Run(direction);
+
+        if (direction.x == 0f) return;
+        _player.SetFlip(direction.x < 0f);
+
+        Animator.SetBool(RunAnimationBool, true);
+    }
+
+    public override void Stop()
+    {
+        base.Stop();
+
+        Animator.SetBool(RunAnimationBool, false);
+    }
 }

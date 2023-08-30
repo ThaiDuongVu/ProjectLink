@@ -16,8 +16,11 @@ public class Character : MonoBehaviour, IDamageable
     }
 
     [Header("References")]
+    [SerializeField] private SpriteRenderer mainSprite;
     [SerializeField] private ParticleSystem bloodSplashPrefab;
     [SerializeField] private ParticleSystem deathExplosionPrefab;
+
+    public bool IsFalling => Rigidbody?.velocity.y < -0.2f;
 
     protected Animator Animator;
     protected Rigidbody2D Rigidbody;
@@ -62,4 +65,9 @@ public class Character : MonoBehaviour, IDamageable
     }
 
     #endregion
+
+    public virtual void SetFlip(bool isFlipped)
+    {
+        mainSprite.flipX = isFlipped;
+    }
 }
