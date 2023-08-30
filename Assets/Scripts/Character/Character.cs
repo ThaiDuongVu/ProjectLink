@@ -16,15 +16,12 @@ public class Character : MonoBehaviour, IDamageable
     }
 
     [Header("References")]
-    [SerializeField] private Transform rig;
     [SerializeField] private ParticleSystem bloodSplashPrefab;
     [SerializeField] private ParticleSystem deathExplosionPrefab;
 
     protected Animator Animator;
     protected Rigidbody2D Rigidbody;
     protected Collider2D Collider;
-
-    private CharacterMovement _characterMovement;
 
     #region Unity Events
 
@@ -33,8 +30,6 @@ public class Character : MonoBehaviour, IDamageable
         Animator = GetComponent<Animator>();
         Rigidbody = GetComponent<Rigidbody2D>();
         Collider = GetComponent<Collider2D>();
-
-        _characterMovement = GetComponent<CharacterMovement>();
     }
 
     protected virtual void Start()

@@ -60,6 +60,15 @@ public class CharacterMovement : MonoBehaviour
 
     public virtual void Run(Vector2 direction)
     {
+        if (direction.x == 0f) return;
+
+        IsRunning = true;
+        // Convert direction to either left or right
+        CurrentDirection = direction.x > 0f ? Vector2.right : Vector2.left;
+    }
+
+    public virtual void Move(Vector2 direction)
+    {
         IsRunning = true;
         CurrentDirection = direction;
     }
