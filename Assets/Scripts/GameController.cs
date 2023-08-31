@@ -54,8 +54,8 @@ public class GameController : MonoBehaviour
 
     private void Start()
     {
-        QualitySettings.vSyncCount = 0;
-        Application.targetFrameRate = ((int)TargetFrameRate);
+        QualitySettings.vSyncCount = 1;
+        Application.targetFrameRate = (int)TargetFrameRate;
 
         PostProcessingController.Instance.SetDepthOfField(false);
         PostProcessingController.Instance.SetChromaticAberration(false);
