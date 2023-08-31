@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class PlayerMovement : CharacterMovement
 {
@@ -8,6 +9,7 @@ public class PlayerMovement : CharacterMovement
     [Header("Jump References")]
     [SerializeField] private Transform jumpPoint;
     [SerializeField] private ParticleSystem jumpMuzzlePrefab;
+    [SerializeField] private SpriteRenderer jumpBar;
 
     private static readonly int JumpAnimationTrigger = Animator.StringToHash("jump");
 
@@ -41,6 +43,13 @@ public class PlayerMovement : CharacterMovement
         base.Awake();
 
         _player = GetComponent<Player>();
+    }
+
+    protected override void Update()
+    {
+        base.Update();
+
+        jumpBar.transform.localScale = JumpTimer == null ? Vector2.one : new Vector2(JumpTimer.Progress / JumpTimer.MaxProgress, 1f);
     }
 
     #endregion
@@ -91,11 +100,13 @@ public class PlayerMovement : CharacterMovement
         Animator.SetBool(RunAnimationBool, false);
     }
 
-    public override void Jump()
+    public override bool Jump()
     {
-        base.Jump();
+        if (!base.Jump()) return false;
 
         Animator.SetTrigger(JumpAnimationTrigger);
         Instantiate(jumpMuzzlePrefab, jumpPoint.position, Quaternion.identity);
+
+        return true;
     }
 }
