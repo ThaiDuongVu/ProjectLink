@@ -21,6 +21,7 @@ public class Character : MonoBehaviour, IDamageable
     [SerializeField] private ParticleSystem deathExplosionPrefab;
 
     public bool IsFalling => Rigidbody?.velocity.y < -0.2f;
+    public bool IsGrounded => Physics2D.Raycast(transform.position, Vector2.down, 0.6f);
 
     protected Animator Animator;
     protected Rigidbody2D Rigidbody;
