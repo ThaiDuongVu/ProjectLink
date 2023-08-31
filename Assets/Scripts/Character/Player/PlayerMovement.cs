@@ -5,6 +5,12 @@ public class PlayerMovement : CharacterMovement
 {
     private static readonly int RunAnimationBool = Animator.StringToHash("isRunning");
 
+    [Header("Jump References")]
+    [SerializeField] private Transform jumpPoint;
+    [SerializeField] private ParticleSystem jumpMuzzlePrefab;
+
+    private static readonly int JumpAnimationTrigger = Animator.StringToHash("jump");
+
     private Player _player;
 
     private InputManager _inputManager;
@@ -18,6 +24,9 @@ public class PlayerMovement : CharacterMovement
         // Handle player movement input
         _inputManager.Player.Move.performed += MoveOnPerformed;
         _inputManager.Player.Move.canceled += MoveOnCanceled;
+
+        // Handle player jump input
+        _inputManager.Player.Jump.performed += JumpOnPerformed;
 
         _inputManager.Enable();
     }
@@ -55,6 +64,14 @@ public class PlayerMovement : CharacterMovement
         Stop();
     }
 
+    private void JumpOnPerformed(InputAction.CallbackContext context)
+    {
+        InputTypeController.Instance.CheckInputType(context);
+        if (GameController.Instance.State != GameState.InProgress) return;
+
+        Jump();
+    }
+
     #endregion
 
     public override void Run(Vector2 direction)
@@ -72,5 +89,13 @@ public class PlayerMovement : CharacterMovement
         base.Stop();
 
         Animator.SetBool(RunAnimationBool, false);
+    }
+
+    public override void Jump()
+    {
+        base.Jump();
+
+        Animator.SetTrigger(JumpAnimationTrigger);
+        Instantiate(jumpMuzzlePrefab, jumpPoint.position, Quaternion.identity);
     }
 }

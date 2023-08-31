@@ -7,6 +7,9 @@ public class CharacterMovement : MonoBehaviour
     [SerializeField] private float acceleration;
     [SerializeField] private float deceleration;
 
+    [Header("Jump Stats")]
+    [SerializeField] private float jumpForce;
+
     protected bool IsRunning;
     protected float CurrentSpeed;
     public Vector2 CurrentDirection { get; protected set; } = Vector2.zero;
@@ -91,5 +94,11 @@ public class CharacterMovement : MonoBehaviour
     protected virtual void ScaleAnimationSpeed()
     {
         Animator.speed = IsRunning ? CurrentSpeed / speed : 1f;
+    }
+
+    public virtual void Jump()
+    {
+        Rigidbody.velocity = new Vector2(Rigidbody.velocity.x, 0f);
+        Rigidbody?.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
     }
 }
