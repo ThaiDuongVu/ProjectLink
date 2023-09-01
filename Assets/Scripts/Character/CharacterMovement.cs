@@ -10,7 +10,7 @@ public class CharacterMovement : MonoBehaviour
     [Header("Jump Stats")]
     [SerializeField] private float jumpForce;
     [SerializeField] private int jumpRate;
-    private bool _canJump = true;
+    protected bool CanJump = true;
     protected Timer JumpTimer;
 
     protected bool IsRunning;
@@ -47,7 +47,7 @@ public class CharacterMovement : MonoBehaviour
     {
         ScaleAnimationSpeed();
 
-        if (!_canJump && JumpTimer.IsReached()) _canJump = true;
+        if (!CanJump && JumpTimer.IsReached()) CanJump = true;
     }
 
     #endregion
@@ -103,12 +103,12 @@ public class CharacterMovement : MonoBehaviour
 
     public virtual bool Jump()
     {
-        if (!_canJump) return false;
+        if (!CanJump) return false;
 
         Rigidbody.velocity = new Vector2(Rigidbody.velocity.x, 0f);
         Rigidbody?.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
 
-        _canJump = false;
+        CanJump = false;
         JumpTimer = new Timer(1f / jumpRate);
 
         return true;

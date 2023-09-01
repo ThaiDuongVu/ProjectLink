@@ -10,6 +10,8 @@ public class PlayerMovement : CharacterMovement
     [SerializeField] private Transform jumpPoint;
     [SerializeField] private ParticleSystem jumpMuzzlePrefab;
     [SerializeField] private SpriteRenderer jumpBar;
+    [SerializeField] private Color jumpEnabledColor;
+    [SerializeField] private Color jumpDisabledColor;
 
     private static readonly int JumpAnimationTrigger = Animator.StringToHash("jump");
 
@@ -49,7 +51,7 @@ public class PlayerMovement : CharacterMovement
     {
         base.Update();
 
-        jumpBar.transform.localScale = JumpTimer == null ? Vector2.one : new Vector2(JumpTimer.Progress / JumpTimer.MaxProgress, 1f);
+        HandleJumpBar();
     }
 
     #endregion
@@ -107,6 +109,16 @@ public class PlayerMovement : CharacterMovement
         Animator.SetTrigger(JumpAnimationTrigger);
         Instantiate(jumpMuzzlePrefab, jumpPoint.position, Quaternion.identity);
 
+        CameraShaker.Instance.Shake(CameraShakeMode.Micro);
+
         return true;
+    }
+
+    private void HandleJumpBar()
+    {
+        jumpBar.transform.localScale = JumpTimer == null 
+                                        ? Vector2.one
+                                        : new Vector2(JumpTimer.Progress / JumpTimer.MaxProgress, 1f);
+        jumpBar.color = CanJump ? jumpEnabledColor : jumpDisabledColor;
     }
 }
