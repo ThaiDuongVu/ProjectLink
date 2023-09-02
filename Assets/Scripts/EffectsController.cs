@@ -16,4 +16,14 @@ public class EffectsController : MonoBehaviour
     }
 
     #endregion
+
+    [SerializeField] private PopText popTextPrefab;
+
+    public void SpawnPopText(Vector2 position, string message, Color color, float duration = 0.5f)
+    {
+        var popText = Instantiate(popTextPrefab, position, Quaternion.identity);
+        popText.SetMessage(message);
+        popText.SetColor(color);
+        Destroy(popText.gameObject, duration);
+    }
 }

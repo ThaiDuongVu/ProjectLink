@@ -111,6 +111,7 @@ public class PlayerMovement : CharacterMovement
         Instantiate(jumpMuzzlePrefab, jumpPoint.position, Quaternion.identity);
 
         CameraShaker.Instance.Shake(CameraShakeMode.Micro);
+        EffectsController.Instance.SpawnPopText(jumpPoint.position, AirJumpsLeft.ToString(), jumpEnabledColor);
 
         return true;
     }
