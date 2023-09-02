@@ -12,6 +12,8 @@ public class CharacterMovement : MonoBehaviour
     [SerializeField] private int jumpRate;
     protected bool CanJump = true;
     protected Timer JumpTimer;
+    [SerializeField] protected int MaxAirJumps;
+    protected int AirJumpsLeft;
 
     protected bool IsRunning;
     protected float CurrentSpeed;
@@ -21,6 +23,8 @@ public class CharacterMovement : MonoBehaviour
     protected Animator Animator;
     protected Collider2D Collider;
 
+    private Character _character;
+
     #region Unity Events
 
     protected virtual void Awake()
@@ -28,6 +32,8 @@ public class CharacterMovement : MonoBehaviour
         Rigidbody = GetComponent<Rigidbody2D>();
         Animator = GetComponent<Animator>();
         Collider = GetComponent<Collider2D>();
+
+        _character = GetComponent<Character>();
     }
 
     protected virtual void Start()
@@ -48,6 +54,8 @@ public class CharacterMovement : MonoBehaviour
         ScaleAnimationSpeed();
 
         if (!CanJump && JumpTimer.IsReached()) CanJump = true;
+
+        if (_character.IsGrounded && AirJumpsLeft < MaxAirJumps) AirJumpsLeft = MaxAirJumps;
     }
 
     #endregion
@@ -104,12 +112,14 @@ public class CharacterMovement : MonoBehaviour
     public virtual bool Jump()
     {
         if (!CanJump) return false;
+        if (AirJumpsLeft <= 0) return false;
 
         Rigidbody.velocity = new Vector2(Rigidbody.velocity.x, 0f);
         Rigidbody?.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
 
         CanJump = false;
         JumpTimer = new Timer(1f / jumpRate);
+        AirJumpsLeft--;
 
         return true;
     }

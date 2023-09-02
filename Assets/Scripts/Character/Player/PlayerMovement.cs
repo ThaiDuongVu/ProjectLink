@@ -9,9 +9,10 @@ public class PlayerMovement : CharacterMovement
     [Header("Jump References")]
     [SerializeField] private Transform jumpPoint;
     [SerializeField] private ParticleSystem jumpMuzzlePrefab;
-    [SerializeField] private SpriteRenderer jumpBar;
+    [SerializeField] private SpriteRenderer jumpIndicator;
     [SerializeField] private Color jumpEnabledColor;
     [SerializeField] private Color jumpDisabledColor;
+    [SerializeField] private Image airJumpBar;
 
     private static readonly int JumpAnimationTrigger = Animator.StringToHash("jump");
 
@@ -116,7 +117,9 @@ public class PlayerMovement : CharacterMovement
 
     private void HandleJumpBar()
     {
-        jumpBar.transform.localScale = Vector2.one * (JumpTimer == null ? 1f : JumpTimer.Progress / JumpTimer.MaxProgress);
-        jumpBar.color = CanJump ? jumpEnabledColor : jumpDisabledColor;
+        jumpIndicator.transform.localScale = Vector2.one * (JumpTimer == null ? 1f : JumpTimer.Progress / JumpTimer.MaxProgress);
+        jumpIndicator.color = CanJump ? jumpEnabledColor : jumpDisabledColor;
+
+        airJumpBar.transform.localScale = new Vector2((float)AirJumpsLeft / MaxAirJumps, 1f);
     }
 }
