@@ -116,9 +116,7 @@ public class PlayerMovement : CharacterMovement
 
     private void HandleJumpBar()
     {
-        jumpBar.transform.localScale = JumpTimer == null 
-                                        ? Vector2.one
-                                        : new Vector2(JumpTimer.Progress / JumpTimer.MaxProgress, 1f);
+        jumpBar.transform.localScale = Vector2.one * (JumpTimer == null ? 1f : JumpTimer.Progress / JumpTimer.MaxProgress);
         jumpBar.color = CanJump ? jumpEnabledColor : jumpDisabledColor;
     }
 }
