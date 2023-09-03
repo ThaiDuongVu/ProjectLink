@@ -1061,7 +1061,7 @@ Transform:
   - {fileID: 948019077378252386}
   - {fileID: 3191843905011412665}
   m_Father: {fileID: 0}
-  m_RootOrder: -1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!50 &4902745551733023215
 Rigidbody2D:
@@ -1172,7 +1172,7 @@ MonoBehaviour:
   - {x: 0.25, y: -0.5, z: 0}
   m_ShapePathHash: 0
   m_Mesh: {fileID: 0}
-  m_InstanceId: 45584
+  m_InstanceId: 79388
   m_LocalBounds:
     m_Center: {x: 0, y: 0, z: 0}
     m_Extent: {x: 0.25, y: 0.5, z: 0}
@@ -1192,6 +1192,8 @@ MonoBehaviour:
   mainSprite: {fileID: 2624366001790449172}
   bloodSplashPrefab: {fileID: 2487755348245098086, guid: 877935ed88bbca44a9e56b5cac8f4802, type: 3}
   deathExplosionPrefab: {fileID: 2487755348245098086, guid: 0011eec8a994890449bf760779ec4541, type: 3}
+  coinText: {fileID: 1001662944629667197}
+  healthBar: {fileID: 5499759665458054068}
   minPosition: {x: -10.5, y: -6.5}
   maxPosition: {x: 10.5, y: 6.5}
   groundTrail: {fileID: 1766388723971987481}

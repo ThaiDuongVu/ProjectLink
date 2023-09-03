@@ -1,8 +1,33 @@
-using System.Diagnostics;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
 public class Player : Character
 {
+    [Header("UI References")]
+    [SerializeField] private TMP_Text coinText;
+    private int _collectedCoins;
+    public int CollectedCoins
+    {
+        get => _collectedCoins;
+        set
+        {
+            _collectedCoins = value;
+            coinText.SetText(value.ToString());
+        }
+    }
+
+    [SerializeField] private Image healthBar;
+    public override float Health
+    {
+        get => base.Health;
+        set
+        {
+            base.Health = value;
+            healthBar.transform.localScale = new Vector2(value / baseHealth, 1f);
+        }
+    }
+
     private static readonly int FallAnimationBool = Animator.StringToHash("isFalling");
 
     [Header("Position References")]
@@ -59,5 +84,13 @@ public class Player : Character
 
         if (position.y < minPosition.y) transform.position = new Vector2(position.x, maxPosition.y);
         else if (position.y > maxPosition.y) transform.position = new Vector2(position.x, minPosition.y);
+    }
+
+    private void OnTriggerStay2D(Collider2D other)
+    {
+        if (other.CompareTag("Collectible"))
+        {
+            other.GetComponent<Collectible>().OnCollected(this);
+        }
     }
 }
