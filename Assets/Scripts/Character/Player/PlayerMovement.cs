@@ -121,6 +121,6 @@ public class PlayerMovement : CharacterMovement
         jumpIndicator.transform.localScale = Vector2.one * (JumpTimer == null ? 1f : JumpTimer.Progress / JumpTimer.MaxProgress);
         jumpIndicator.color = CanJump ? jumpEnabledColor : jumpDisabledColor;
 
-        airJumpBar.transform.localScale = new Vector2((float)AirJumpsLeft / MaxAirJumps, 1f);
+        airJumpBar.transform.localScale = new Vector2((float)AirJumpsLeft / maxAirJumps, 1f);
     }
 }

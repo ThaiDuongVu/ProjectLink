@@ -10,10 +10,10 @@ public class CharacterMovement : MonoBehaviour
     [Header("Jump Stats")]
     [SerializeField] private float jumpForce;
     [SerializeField] private int jumpRate;
+    [SerializeField] public int maxAirJumps;
     protected bool CanJump = true;
     protected Timer JumpTimer;
-    [SerializeField] protected int MaxAirJumps;
-    protected int AirJumpsLeft;
+    public int AirJumpsLeft { get; set; }
 
     protected bool IsRunning;
     protected float CurrentSpeed;
@@ -55,7 +55,7 @@ public class CharacterMovement : MonoBehaviour
 
         if (!CanJump && JumpTimer.IsReached()) CanJump = true;
 
-        if (_character.IsGrounded && AirJumpsLeft < MaxAirJumps) AirJumpsLeft = MaxAirJumps;
+        if (_character.IsGrounded && AirJumpsLeft < maxAirJumps) AirJumpsLeft = maxAirJumps;
     }
 
     #endregion

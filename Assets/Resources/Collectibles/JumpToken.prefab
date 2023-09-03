@@ -73,7 +73,7 @@ SpriteRenderer:
   m_SortingLayerID: 171309089
   m_SortingLayer: 2
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: 792735a9a7893b1479fd074b24fb15d8, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 31414a8afaca6c446906032f6e358bbc, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -97,9 +97,9 @@ GameObject:
   - component: {fileID: 6780616464530584715}
   - component: {fileID: 4629263054271546386}
   - component: {fileID: 6114828469135314684}
-  - component: {fileID: 7262239500675268203}
+  - component: {fileID: 5088701076949119663}
   m_Layer: 0
-  m_Name: Coin
+  m_Name: JumpToken
   m_TagString: Collectible
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -120,7 +120,7 @@ Transform:
   - {fileID: 237795935936345105}
   - {fileID: 1412303999950861286}
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!50 &540933632940985975
 Rigidbody2D:
@@ -240,7 +240,7 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &7262239500675268203
+--- !u!114 &5088701076949119663
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -249,12 +249,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1431714858604064254}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 36a9ed3e1cedc54448a30911bcefcaf0, type: 3}
+  m_Script: {fileID: 11500000, guid: 91aeab48a36ed1f489139bc8dcf91aa2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   amount: 1
-  collectColor: {r: 0.99607843, g: 0.7921569, b: 0.34117648, a: 1}
-  splashPrefab: {fileID: 6411676678536389983, guid: bf816db45d61b4f40bfc5e805f0871f7, type: 3}
+  collectColor: {r: 0.039215688, g: 0.7411765, b: 0.8901961, a: 1}
+  splashPrefab: {fileID: 6411676678536389983, guid: 542e309c2214fee46974ab565b37a563, type: 3}
 --- !u!1 &5618986948505217747
 GameObject:
   m_ObjectHideFlags: 0
@@ -308,7 +308,7 @@ MonoBehaviour:
   m_LightVolumeIntensity: 1
   m_LightVolumeIntensityEnabled: 0
   m_ApplyToSortingLayers: 000000004b688e5921f8350af3dcaecc6159a06f
-  m_LightCookieSprite: {fileID: 21300000, guid: 792735a9a7893b1479fd074b24fb15d8, type: 3}
+  m_LightCookieSprite: {fileID: 21300000, guid: 31414a8afaca6c446906032f6e358bbc, type: 3}
   m_DeprecatedPointLightCookieSprite: {fileID: 0}
   m_LightOrder: 0
   m_AlphaBlendOnOverlap: 0
