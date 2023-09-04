@@ -39,7 +39,7 @@ public class CharacterMovement : MonoBehaviour
 
     protected virtual void Start()
     {
-
+        RefillAirJumps();
     }
 
     protected virtual void FixedUpdate()
@@ -48,8 +48,8 @@ public class CharacterMovement : MonoBehaviour
         else Decelerate();
 
         if (CurrentSpeed > 0f) Rigidbody.velocity = new Vector2(
-                                                        CurrentDirection.x * CurrentSpeed,
-                                                        Mathf.Abs(CurrentDirection.y) > 0f ? CurrentDirection.y * CurrentSpeed : Rigidbody.velocity.y);
+                                                    CurrentDirection.x * CurrentSpeed,
+                                                    Mathf.Abs(CurrentDirection.y) > 0f ? CurrentDirection.y * CurrentSpeed : Rigidbody.velocity.y);
     }
 
     protected virtual void Update()
@@ -126,5 +126,10 @@ public class CharacterMovement : MonoBehaviour
         AirJumpsLeft--;
 
         return true;
+    }
+
+    public virtual void RefillAirJumps()
+    {
+        AirJumpsLeft = maxAirJumps;
     }
 }

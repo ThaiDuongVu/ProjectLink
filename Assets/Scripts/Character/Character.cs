@@ -28,6 +28,8 @@ public class Character : MonoBehaviour, IDamageable
     public bool IsFalling => Rigidbody?.velocity.y < -0.2f;
     public bool IsGrounded => Physics2D.Raycast(transform.position, Vector2.down, 0.6f);
 
+    public bool IsDead { get; set; }
+
     protected Animator Animator;
     protected Rigidbody2D Rigidbody;
     protected Collider2D Collider;
@@ -68,6 +70,8 @@ public class Character : MonoBehaviour, IDamageable
     {
         Destroy(gameObject);
         Instantiate(deathExplosionPrefab, transform.position, Quaternion.identity);
+
+        IsDead = true;
     }
 
     #endregion
