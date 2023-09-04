@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 237795935936345105}
   - component: {fileID: 3487366132915664638}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -98,7 +98,7 @@ GameObject:
   - component: {fileID: 4629263054271546386}
   - component: {fileID: 6114828469135314684}
   - component: {fileID: -2311274543340001985}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Heart
   m_TagString: Collectible
   m_Icon: {fileID: 0}
@@ -252,6 +252,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 653fe03f1919d7441a38251ace3e52d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  collectInterpolationRatio: 0.25
+  collectDelay: 0.5
   amount: 10
   collectColor: {r: 0.78431374, g: 0.8392157, b: 0.8980392, a: 1}
   splashPrefab: {fileID: 6411676678536389983, guid: 961cb6bd294c15f42a1ec0270441ee67, type: 3}
@@ -265,7 +267,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1412303999950861286}
   - component: {fileID: 4759882296038975804}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -3,6 +3,8 @@ using UnityEngine;
 public class Coin : Collectible
 {
     [SerializeField] private int amount;
+
+    [Header("Collect References")]
     [SerializeField] private Color collectColor;
     [SerializeField] private ParticleSystem splashPrefab;
 

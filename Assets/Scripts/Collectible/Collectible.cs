@@ -2,10 +2,12 @@ using UnityEngine;
 
 public class Collectible : MonoBehaviour
 {
-    public bool IsCollected { get; set; }
-
     private Transform _collectTarget;
-    private const float CollectInterpolationRatio = 0.25f;
+    [Header("Collect Stats")]
+    public float collectInterpolationRatio;
+    public float collectDelay;
+
+    public bool IsCollected { get; set; }
 
     private Animator _animator;
     private static readonly int CollectAnimationTrigger = Animator.StringToHash("collect");
@@ -22,7 +24,7 @@ public class Collectible : MonoBehaviour
 
     protected virtual void Update()
     {
-        if (_collectTarget) transform.position = Vector2.Lerp(transform.position, _collectTarget.position, CollectInterpolationRatio);
+        if (_collectTarget) transform.position = Vector2.Lerp(transform.position, _collectTarget.position, collectInterpolationRatio);
     }
 
     #endregion

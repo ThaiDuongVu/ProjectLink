@@ -437,9 +437,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '[Project]
-
-    {Zombie}'
+  m_text: '{Project}'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 90eb17b48f6661447bf98aa56afe5594, type: 2}
   m_sharedMaterial: {fileID: -3703089464149706873, guid: 90eb17b48f6661447bf98aa56afe5594, type: 2}

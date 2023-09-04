@@ -17,17 +17,6 @@ public class Player : Character
         }
     }
 
-    [SerializeField] private Image healthBar;
-    public override float Health
-    {
-        get => base.Health;
-        set
-        {
-            base.Health = value;
-            healthBar.transform.localScale = new Vector2(value / baseHealth, 1f);
-        }
-    }
-
     private static readonly int FallAnimationBool = Animator.StringToHash("isFalling");
 
     [Header("Position References")]
@@ -72,6 +61,14 @@ public class Player : Character
 
         HandlePlayerBorder();
     }
+
+    #endregion
+
+    #region Interface Implementations
+
+    public override void TakeDamage(float damage, Vector2 direction, Vector2 contactPoint) { }
+
+    public override void Die() { }
 
     #endregion
 

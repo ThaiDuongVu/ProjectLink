@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 237795935936345105}
   - component: {fileID: 3487366132915664638}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -98,7 +98,7 @@ GameObject:
   - component: {fileID: 4629263054271546386}
   - component: {fileID: 6114828469135314684}
   - component: {fileID: 7262239500675268203}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Coin
   m_TagString: Collectible
   m_Icon: {fileID: 0}
@@ -252,6 +252,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36a9ed3e1cedc54448a30911bcefcaf0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  collectInterpolationRatio: 0.25
+  collectDelay: 0.5
   amount: 1
   collectColor: {r: 0.99607843, g: 0.7921569, b: 0.34117648, a: 1}
   splashPrefab: {fileID: 6411676678536389983, guid: bf816db45d61b4f40bfc5e805f0871f7, type: 3}
@@ -265,7 +267,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1412303999950861286}
   - component: {fileID: 4759882296038975804}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}

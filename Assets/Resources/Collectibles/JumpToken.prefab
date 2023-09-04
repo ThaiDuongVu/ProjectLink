@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 237795935936345105}
   - component: {fileID: 3487366132915664638}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -98,7 +98,7 @@ GameObject:
   - component: {fileID: 4629263054271546386}
   - component: {fileID: 6114828469135314684}
   - component: {fileID: 5088701076949119663}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: JumpToken
   m_TagString: Collectible
   m_Icon: {fileID: 0}
@@ -252,6 +252,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91aeab48a36ed1f489139bc8dcf91aa2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  collectInterpolationRatio: 0.25
+  collectDelay: 0.5
   amount: 1
   collectColor: {r: 0.039215688, g: 0.7411765, b: 0.8901961, a: 1}
   splashPrefab: {fileID: 6411676678536389983, guid: 542e309c2214fee46974ab565b37a563, type: 3}
@@ -265,7 +267,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1412303999950861286}
   - component: {fileID: 4759882296038975804}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}

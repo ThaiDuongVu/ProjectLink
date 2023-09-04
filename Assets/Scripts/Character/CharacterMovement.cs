@@ -8,10 +8,11 @@ public class CharacterMovement : MonoBehaviour
     [SerializeField] private float deceleration;
 
     [Header("Jump Stats")]
+    [SerializeField] private bool canJump;
     [SerializeField] private float jumpForce;
     [SerializeField] private int jumpRate;
     [SerializeField] public int maxAirJumps;
-    protected bool CanJump = true;
+    protected bool JumpEnabled = true;
     protected Timer JumpTimer;
     public int AirJumpsLeft { get; set; }
 
@@ -46,14 +47,16 @@ public class CharacterMovement : MonoBehaviour
         if (IsRunning) Accelerate();
         else Decelerate();
 
-        if (CurrentSpeed > 0f) Rigidbody.velocity = new Vector2(CurrentDirection.x * CurrentSpeed, Rigidbody.velocity.y);
+        if (CurrentSpeed > 0f) Rigidbody.velocity = new Vector2(
+                                                        CurrentDirection.x * CurrentSpeed,
+                                                        CurrentDirection.y > 0f ? CurrentDirection.y * CurrentSpeed : Rigidbody.velocity.y);
     }
 
     protected virtual void Update()
     {
         ScaleAnimationSpeed();
 
-        if (!CanJump && JumpTimer.IsReached()) CanJump = true;
+        if (!JumpEnabled && JumpTimer.IsReached()) JumpEnabled = true;
 
         if (_character.IsGrounded && AirJumpsLeft < maxAirJumps) AirJumpsLeft = maxAirJumps;
     }
@@ -111,13 +114,14 @@ public class CharacterMovement : MonoBehaviour
 
     public virtual bool Jump()
     {
-        if (!CanJump) return false;
+        if (!canJump) return false;
+        if (!JumpEnabled) return false;
         if (AirJumpsLeft <= 0) return false;
 
         Rigidbody.velocity = new Vector2(Rigidbody.velocity.x, 0f);
         Rigidbody?.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
 
-        CanJump = false;
+        JumpEnabled = false;
         JumpTimer = new Timer(1f / jumpRate);
         AirJumpsLeft--;
 

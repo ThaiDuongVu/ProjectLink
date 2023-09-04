@@ -13,9 +13,11 @@ GameObject:
   - component: {fileID: 8788597960613889502}
   - component: {fileID: 2547526494191837388}
   - component: {fileID: 4908305047955140828}
-  m_Layer: 0
+  - component: {fileID: 4864481940885903753}
+  - component: {fileID: 2551775489430039424}
+  m_Layer: 9
   m_Name: Cat
-  m_TagString: Untagged
+  m_TagString: Cat
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -35,7 +37,7 @@ Transform:
   - {fileID: 5606416216826629706}
   - {fileID: 6561173686631396596}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!50 &6649892136905478112
 Rigidbody2D:
@@ -146,10 +148,45 @@ MonoBehaviour:
   - {x: 0.4375, y: -0.5, z: 0}
   m_ShapePathHash: 0
   m_Mesh: {fileID: 0}
-  m_InstanceId: 46604
+  m_InstanceId: 34942
   m_LocalBounds:
     m_Center: {x: 0, y: -0.25, z: 0}
     m_Extent: {x: 0.4375, y: 0.25, z: 0}
+--- !u!114 &4864481940885903753
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2657191421353569549}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 87898db05ce60c845a7011de4d343c6b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  baseHealth: 100
+  mainSprite: {fileID: 7334607903370481335}
+  bloodSplashPrefab: {fileID: 2487755348245098086, guid: 877935ed88bbca44a9e56b5cac8f4802, type: 3}
+  deathExplosionPrefab: {fileID: 2487755348245098086, guid: 0011eec8a994890449bf760779ec4541, type: 3}
+--- !u!114 &2551775489430039424
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2657191421353569549}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3189c8b65df1302488a3968df00b789c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 2
+  acceleration: 8
+  deceleration: 8
+  canJump: 0
+  jumpForce: 0
+  jumpRate: 0
+  maxAirJumps: 0
 --- !u!1 &6905968862198501113
 GameObject:
   m_ObjectHideFlags: 0
@@ -160,7 +197,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6561173686631396596}
   - component: {fileID: 1847570457879185683}
-  m_Layer: 7
+  m_Layer: 9
   m_Name: Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -242,7 +279,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5606416216826629706}
   - component: {fileID: 7334607903370481335}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
