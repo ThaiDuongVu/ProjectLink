@@ -20,6 +20,11 @@ public class Character : MonoBehaviour, IDamageable
     [SerializeField] private ParticleSystem bloodSplashPrefab;
     [SerializeField] private ParticleSystem deathExplosionPrefab;
 
+    [Header("Boundaries Stats")]
+    [SerializeField] private bool isBounded;
+    [SerializeField] private Vector2 minPosition;
+    [SerializeField] private Vector2 maxPosition;
+
     public bool IsFalling => Rigidbody?.velocity.y < -0.2f;
     public bool IsGrounded => Physics2D.Raycast(transform.position, Vector2.down, 0.6f);
 
@@ -43,7 +48,7 @@ public class Character : MonoBehaviour, IDamageable
 
     protected virtual void Update()
     {
-
+        HandleBoundaries();
     }
 
     #endregion
@@ -70,5 +75,17 @@ public class Character : MonoBehaviour, IDamageable
     public virtual void SetFlip(bool isFlipped)
     {
         mainSprite.flipX = isFlipped;
+    }
+
+    private void HandleBoundaries()
+    {
+        if (!isBounded) return;
+        var position = transform.position;
+
+        if (position.x < minPosition.x) transform.position = new Vector2(maxPosition.x, position.y);
+        else if (position.x > maxPosition.x) transform.position = new Vector2(minPosition.x, position.y);
+
+        if (position.y < minPosition.y) transform.position = new Vector2(position.x, maxPosition.y);
+        else if (position.y > maxPosition.y) transform.position = new Vector2(position.x, minPosition.y);
     }
 }

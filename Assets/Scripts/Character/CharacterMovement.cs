@@ -10,7 +10,7 @@ public class CharacterMovement : MonoBehaviour
     [Header("Jump Stats")]
     [SerializeField] private bool canJump;
     [SerializeField] private float jumpForce;
-    [SerializeField] private int jumpRate;
+    [SerializeField] private float jumpRecovery;
     [SerializeField] public int maxAirJumps;
     protected bool JumpEnabled = true;
     protected Timer JumpTimer;
@@ -49,7 +49,7 @@ public class CharacterMovement : MonoBehaviour
 
         if (CurrentSpeed > 0f) Rigidbody.velocity = new Vector2(
                                                         CurrentDirection.x * CurrentSpeed,
-                                                        CurrentDirection.y > 0f ? CurrentDirection.y * CurrentSpeed : Rigidbody.velocity.y);
+                                                        Mathf.Abs(CurrentDirection.y) > 0f ? CurrentDirection.y * CurrentSpeed : Rigidbody.velocity.y);
     }
 
     protected virtual void Update()
@@ -122,7 +122,7 @@ public class CharacterMovement : MonoBehaviour
         Rigidbody?.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
 
         JumpEnabled = false;
-        JumpTimer = new Timer(1f / jumpRate);
+        JumpTimer = new Timer(jumpRecovery);
         AirJumpsLeft--;
 
         return true;
