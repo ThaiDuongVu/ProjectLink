@@ -7,15 +7,6 @@ public class CharacterMovement : MonoBehaviour
     [SerializeField] private float acceleration;
     [SerializeField] private float deceleration;
 
-    [Header("Jump Stats")]
-    [SerializeField] private bool canJump;
-    [SerializeField] private float jumpForce;
-    [SerializeField] private float jumpRecovery;
-    [SerializeField] public int maxAirJumps;
-    protected bool JumpEnabled = true;
-    protected Timer JumpTimer;
-    public int AirJumpsLeft { get; set; }
-
     protected bool IsRunning;
     protected float CurrentSpeed;
     public Vector2 CurrentDirection { get; protected set; } = Vector2.zero;
@@ -39,7 +30,7 @@ public class CharacterMovement : MonoBehaviour
 
     protected virtual void Start()
     {
-        RefillAirJumps();
+        
     }
 
     protected virtual void FixedUpdate()
@@ -47,18 +38,12 @@ public class CharacterMovement : MonoBehaviour
         if (IsRunning) Accelerate();
         else Decelerate();
 
-        if (CurrentSpeed > 0f) Rigidbody.velocity = new Vector2(
-                                                    CurrentDirection.x * CurrentSpeed,
-                                                    Mathf.Abs(CurrentDirection.y) > 0f ? CurrentDirection.y * CurrentSpeed : Rigidbody.velocity.y);
+        if (CurrentSpeed > 0f) Rigidbody.velocity = CurrentDirection * CurrentSpeed;
     }
 
     protected virtual void Update()
     {
         ScaleAnimationSpeed();
-
-        if (!JumpEnabled && JumpTimer.IsReached()) JumpEnabled = true;
-
-        if (_character.IsGrounded && AirJumpsLeft < maxAirJumps) AirJumpsLeft = maxAirJumps;
     }
 
     #endregion
@@ -82,8 +67,7 @@ public class CharacterMovement : MonoBehaviour
         if (direction.x == 0f) return;
 
         IsRunning = true;
-        // Convert direction to either left or right
-        CurrentDirection = direction.x > 0f ? Vector2.right : Vector2.left;
+        CurrentDirection = direction;
     }
 
     public virtual void Move(Vector2 direction)
@@ -110,26 +94,5 @@ public class CharacterMovement : MonoBehaviour
     protected virtual void ScaleAnimationSpeed()
     {
         Animator.speed = IsRunning ? CurrentSpeed / speed : 1f;
-    }
-
-    public virtual bool Jump()
-    {
-        if (!canJump) return false;
-        if (!JumpEnabled) return false;
-        if (AirJumpsLeft <= 0) return false;
-
-        Rigidbody.velocity = new Vector2(Rigidbody.velocity.x, 0f);
-        Rigidbody?.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
-
-        JumpEnabled = false;
-        JumpTimer = new Timer(jumpRecovery);
-        AirJumpsLeft--;
-
-        return true;
-    }
-
-    public virtual void RefillAirJumps()
-    {
-        AirJumpsLeft = maxAirJumps;
     }
 }
