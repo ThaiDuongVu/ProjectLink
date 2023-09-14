@@ -54,7 +54,7 @@
                     "initialStateCheck": true
                 },
                 {
-                    "name": "Jump",
+                    "name": "Fire",
                     "type": "Button",
                     "id": "be886e7a-70f5-492d-80ff-128feddd215c",
                     "expectedControlType": "Button",
@@ -291,7 +291,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "MouseKeyboard",
-                    "action": "Jump",
+                    "action": "Fire",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -302,7 +302,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Gamepad",
-                    "action": "Jump",
+                    "action": "Fire",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -313,7 +313,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Gamepad",
-                    "action": "Jump",
+                    "action": "Fire",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -324,7 +324,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "MouseKeyboard",
-                    "action": "Jump",
+                    "action": "Fire",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

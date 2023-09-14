@@ -56,12 +56,6 @@ public class PlayerMovement : CharacterMovement
         Stop();
     }
 
-    private void JumpOnPerformed(InputAction.CallbackContext context)
-    {
-        InputTypeController.Instance.CheckInputType(context);
-        if (GameController.Instance.State != GameState.InProgress) return;
-    }
-
     #endregion
 
     public override void Run(Vector2 direction)
