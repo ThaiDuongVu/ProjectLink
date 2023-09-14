@@ -9,7 +9,7 @@ public class CharacterMovement : MonoBehaviour
 
     protected bool IsRunning;
     protected float CurrentSpeed;
-    public Vector2 CurrentDirection { get; protected set; } = Vector2.zero;
+    public Vector2 CurrentDirection { get; protected set; } = Vector2.up;
 
     protected Rigidbody2D Rigidbody;
     protected Animator Animator;
@@ -64,8 +64,6 @@ public class CharacterMovement : MonoBehaviour
 
     public virtual void Run(Vector2 direction)
     {
-        if (direction.x == 0f) return;
-
         IsRunning = true;
         CurrentDirection = direction;
     }

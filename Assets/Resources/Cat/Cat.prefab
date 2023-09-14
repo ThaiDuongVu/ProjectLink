@@ -60,7 +60,7 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
-  m_SortingOrder: -1
+  m_SortingOrder: 0
   m_TargetDisplay: 0
 --- !u!114 &699197959486564878
 MonoBehaviour:
@@ -364,7 +364,7 @@ MonoBehaviour:
   - {x: 0.4375, y: -0.5, z: 0}
   m_ShapePathHash: 0
   m_Mesh: {fileID: 0}
-  m_InstanceId: 36998
+  m_InstanceId: 57216
   m_LocalBounds:
     m_Center: {x: 0, y: -0.25, z: 0}
     m_Extent: {x: 0.4375, y: 0.25, z: 0}

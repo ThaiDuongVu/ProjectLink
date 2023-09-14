@@ -3,10 +3,17 @@ using UnityEngine.InputSystem;
 
 public class PlayerCombat : CharacterCombat
 {
+    [Header("Stats")]
+    [SerializeField] private float throwForce;
+
     [Header("References")]
     [SerializeField] private Transform arrow;
     [SerializeField] private Transform firePoint;
     [SerializeField] private ParticleSystem muzzle;
+
+    [SerializeField] private Shuriken shurikenPrefab;
+
+    private static readonly int ThrowAnimationTrigger = Animator.StringToHash("throw");
 
     private const float ArrowInterpolatoinRatio = 0.6f;
 
@@ -56,13 +63,16 @@ public class PlayerCombat : CharacterCombat
         InputTypeController.Instance.CheckInputType(context);
         if (GameController.Instance.State != GameState.InProgress) return;
 
-        Fire();
+        Throw();
     }
 
     #endregion
 
-    private void Fire()
+    private void Throw()
     {
+        Instantiate(shurikenPrefab, firePoint.position, Quaternion.identity).Fly(arrow.up, throwForce);
+
+        Animator.SetTrigger(ThrowAnimationTrigger);
         muzzle.Play();
     }
 }
