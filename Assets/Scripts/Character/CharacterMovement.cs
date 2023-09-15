@@ -66,12 +66,8 @@ public class CharacterMovement : MonoBehaviour
     {
         IsRunning = true;
         CurrentDirection = direction;
-    }
 
-    public virtual void Move(Vector2 direction)
-    {
-        IsRunning = true;
-        CurrentDirection = direction;
+        _character.SetFlip(direction.x < 0f);
     }
 
     public virtual void Stop()

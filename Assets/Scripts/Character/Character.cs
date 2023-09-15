@@ -25,11 +25,6 @@ public class Character : MonoBehaviour, IDamageable
     [SerializeField] private Vector2 minPosition;
     [SerializeField] private Vector2 maxPosition;
 
-    public bool IsFalling => Rigidbody?.velocity.y < -0.2f;
-    public bool IsGrounded => Physics2D.Raycast(transform.position, Vector2.down, 0.6f);
-
-    public bool IsDead { get; set; }
-
     protected Animator Animator;
     protected Rigidbody2D Rigidbody;
     protected Collider2D Collider;
@@ -68,10 +63,8 @@ public class Character : MonoBehaviour, IDamageable
 
     public virtual void Die()
     {
-        Destroy(gameObject);
         Instantiate(deathExplosionPrefab, transform.position, Quaternion.identity);
-
-        IsDead = true;
+        Destroy(gameObject);
     }
 
     #endregion

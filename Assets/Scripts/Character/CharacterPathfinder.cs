@@ -45,7 +45,7 @@ public class CharacterPathfinder : MonoBehaviour
 
         // Travel to current waypoint
         Direction = (_path.vectorPath[_currentWaypoint] - transform.position).normalized;
-        _characterMovement.Move(Direction);
+        _characterMovement.Run(Direction);
 
         // If waypoint reached then proceed to the next waypoint
         if (Vector2.Distance(transform.position, _path.vectorPath[_currentWaypoint]) < NextWaypointDistance) _currentWaypoint++;

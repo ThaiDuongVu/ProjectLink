@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -5,6 +6,7 @@ public class PlayerCombat : CharacterCombat
 {
     [Header("Stats")]
     [SerializeField] private float throwForce;
+    [SerializeField] private float throwRecoveryTime;
 
     [Header("References")]
     [SerializeField] private Transform arrow;
@@ -13,6 +15,7 @@ public class PlayerCombat : CharacterCombat
 
     [SerializeField] private Shuriken shurikenPrefab;
 
+    private bool _canThrow = true;
     private static readonly int ThrowAnimationTrigger = Animator.StringToHash("throw");
 
     private const float ArrowInterpolatoinRatio = 0.6f;
@@ -70,9 +73,20 @@ public class PlayerCombat : CharacterCombat
 
     private void Throw()
     {
+        if (!_canThrow) return;
+
         Instantiate(shurikenPrefab, firePoint.position, Quaternion.identity).Fly(arrow.up, throwForce);
 
         Animator.SetTrigger(ThrowAnimationTrigger);
         muzzle.Play();
+
+        _canThrow = false;
+        StartCoroutine(EnableThrow(throwRecoveryTime));
+    }
+
+    private IEnumerator EnableThrow(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        _canThrow = true;
     }
 }

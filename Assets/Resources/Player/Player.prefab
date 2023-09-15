@@ -861,7 +861,7 @@ MonoBehaviour:
   - {x: 0.25, y: -0.5, z: 0}
   m_ShapePathHash: 0
   m_Mesh: {fileID: 0}
-  m_InstanceId: 51174
+  m_InstanceId: 55012
   m_LocalBounds:
     m_Center: {x: 0, y: 0, z: 0}
     m_Extent: {x: 0.25, y: 0.5, z: 0}
@@ -913,6 +913,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   throwForce: 20
+  throwRecoveryTime: 0.2
   arrow: {fileID: 251251928350511938}
   firePoint: {fileID: 8375621133551016784}
   muzzle: {fileID: 7730569090173369830}

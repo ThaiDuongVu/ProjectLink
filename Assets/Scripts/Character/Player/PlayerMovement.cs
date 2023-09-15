@@ -61,17 +61,12 @@ public class PlayerMovement : CharacterMovement
     public override void Run(Vector2 direction)
     {
         base.Run(direction);
-
-        if (direction.x == 0f) return;
-        _player.SetFlip(direction.x < 0f);
-
         Animator.SetBool(RunAnimationBool, true);
     }
 
     public override void Stop()
     {
         base.Stop();
-
         Animator.SetBool(RunAnimationBool, false);
     }
 }

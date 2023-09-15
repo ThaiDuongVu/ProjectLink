@@ -14,4 +14,20 @@ public class Cat : Character
             healthBar.transform.localScale = new Vector2(value / baseHealth, 1f);
         }
     }
+
+    #region Interface Implementations
+
+    public override void TakeDamage(float damage, Vector2 direction, Vector2 contactPoint)
+    {
+        base.TakeDamage(damage, direction, contactPoint);
+
+        CameraShaker.Instance.Shake(CameraShakeMode.Light);
+    }
+
+    public override void Die()
+    {
+        base.Die();
+    }
+
+    #endregion
 }

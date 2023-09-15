@@ -3,9 +3,10 @@ using UnityEngine;
 public class Shuriken : MonoBehaviour
 {
     [Header("Stats")]
-    [SerializeField] private float damage;
+    [SerializeField] private float baseDamage;
 
     [Header("References")]
+    [SerializeField] private Color damageColor;
     [SerializeField] private ParticleSystem explosionPrefab;
 
     private Rigidbody2D _rigidbody;
@@ -29,6 +30,15 @@ public class Shuriken : MonoBehaviour
     {
         CameraShaker.Instance.Shake(CameraShakeMode.Light);
         Instantiate(explosionPrefab, transform.position, Quaternion.identity);
+
+        if (other.transform.TryGetComponent<IDamageable>(out var damageable))
+        {
+            var contactPoint = other.GetContact(0).point;
+            var direction = _rigidbody.velocity.normalized;
+
+            damageable.TakeDamage(baseDamage, direction, contactPoint);
+            EffectsController.Instance.SpawnPopText(contactPoint, baseDamage.ToString(), damageColor);
+        }
 
         Destroy(gameObject);
     }

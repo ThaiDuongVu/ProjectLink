@@ -224,5 +224,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03f5ec99525d8e3459a493250b113685, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 10
+  baseDamage: 10
+  damageColor: {r: 0.039215688, g: 0.7411765, b: 0.8901961, a: 1}
   explosionPrefab: {fileID: 2487755348245098086, guid: e5d9b63cbb991624a8be09185fc62cdd, type: 3}
