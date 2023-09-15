@@ -4,6 +4,7 @@ public class Shuriken : MonoBehaviour
 {
     [Header("Stats")]
     [SerializeField] private float baseDamage;
+    [SerializeField] private float baseKnockbackForce;
 
     [Header("References")]
     [SerializeField] private Color damageColor;
@@ -31,15 +32,25 @@ public class Shuriken : MonoBehaviour
         CameraShaker.Instance.Shake(CameraShakeMode.Light);
         Instantiate(explosionPrefab, transform.position, Quaternion.identity);
 
+        var contactPoint = other.GetContact(0).point;
+        var direction = _rigidbody.velocity.normalized;
+
         if (other.transform.TryGetComponent<IDamageable>(out var damageable))
         {
-            var contactPoint = other.GetContact(0).point;
-            var direction = _rigidbody.velocity.normalized;
-
             damageable.TakeDamage(baseDamage, direction, contactPoint);
             EffectsController.Instance.SpawnPopText(contactPoint, baseDamage.ToString(), damageColor);
         }
 
+        if (other.transform.TryGetComponent<IKnockbackable>(out var knockbackable))
+        {
+            knockbackable.Knockback(direction, baseKnockbackForce);
+        }
+
         Destroy(gameObject);
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("Border")) Destroy(gameObject);
     }
 }

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Character : MonoBehaviour, IDamageable
+public class Character : MonoBehaviour, IDamageable, IKnockbackable
 {
     [Header("Health Stats")]
     public float baseHealth;
@@ -29,6 +29,8 @@ public class Character : MonoBehaviour, IDamageable
     protected Rigidbody2D Rigidbody;
     protected Collider2D Collider;
 
+    private CharacterMovement _characterMovement;
+
     #region Unity Events
 
     protected virtual void Awake()
@@ -36,6 +38,8 @@ public class Character : MonoBehaviour, IDamageable
         Animator = GetComponent<Animator>();
         Rigidbody = GetComponent<Rigidbody2D>();
         Collider = GetComponent<Collider2D>();
+
+        _characterMovement = GetComponent<CharacterMovement>();
     }
 
     protected virtual void Start()
@@ -65,6 +69,15 @@ public class Character : MonoBehaviour, IDamageable
     {
         Instantiate(deathExplosionPrefab, transform.position, Quaternion.identity);
         Destroy(gameObject);
+    }
+
+    public virtual void Knockback(Vector2 direction, float force)
+    {
+        _characterMovement.StopImmediate();
+        StartCoroutine(_characterMovement.SetMovementEnabled(false, 0f));
+
+        Rigidbody.AddForce(direction * force, ForceMode2D.Impulse);
+        StartCoroutine(_characterMovement.SetMovementEnabled(true, force / 60f));
     }
 
     #endregion

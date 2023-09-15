@@ -26,6 +26,9 @@ public class Cat : Character
 
     public override void Die()
     {
+        CameraShaker.Instance.Shake(CameraShakeMode.Normal);
+        GameController.Instance.PlaySlowMotionEffect();
+
         base.Die();
     }
 

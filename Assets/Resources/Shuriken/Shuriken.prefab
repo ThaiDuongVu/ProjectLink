@@ -225,5 +225,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   baseDamage: 10
+  baseKnockbackForce: 8
   damageColor: {r: 0.039215688, g: 0.7411765, b: 0.8901961, a: 1}
   explosionPrefab: {fileID: 2487755348245098086, guid: e5d9b63cbb991624a8be09185fc62cdd, type: 3}

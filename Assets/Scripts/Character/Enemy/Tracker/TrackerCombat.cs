@@ -4,6 +4,7 @@ public class TrackerCombat : EnemyCombat
 {
     [Header("Tracker Stats")]
     [SerializeField] private float baseDamage;
+    [SerializeField] private float baseKnockbackForce;
 
     [Header("References")]
     [SerializeField] private Color damageColor;
@@ -23,15 +24,19 @@ public class TrackerCombat : EnemyCombat
 
     private void OnCollisionEnter2D(Collision2D other)
     {
+        var contactPoint = other.GetContact(0).point;
+        var direction = (other.transform.position - transform.position).normalized;
+
         if (other.transform.TryGetComponent<IDamageable>(out var damageable))
         {
-            var contactPoint = other.GetContact(0).point;
-            var direction = Rigidbody.velocity.normalized;
-
             damageable.TakeDamage(baseDamage, direction, contactPoint);
             EffectsController.Instance.SpawnPopText(contactPoint, baseDamage.ToString(), damageColor);
-
             _tracker.TempStop();
+        }
+
+        if (other.transform.TryGetComponent<IKnockbackable>(out var knockbackable))
+        {
+            knockbackable.Knockback(direction, baseKnockbackForce);
         }
     }
 }

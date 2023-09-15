@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class CharacterMovement : MonoBehaviour
@@ -10,6 +11,8 @@ public class CharacterMovement : MonoBehaviour
     protected bool IsRunning;
     protected float CurrentSpeed;
     public Vector2 CurrentDirection { get; protected set; } = Vector2.up;
+
+    public bool MovementEnabled { get; set; } = true;
 
     protected Rigidbody2D Rigidbody;
     protected Animator Animator;
@@ -30,7 +33,7 @@ public class CharacterMovement : MonoBehaviour
 
     protected virtual void Start()
     {
-        
+
     }
 
     protected virtual void FixedUpdate()
@@ -64,6 +67,8 @@ public class CharacterMovement : MonoBehaviour
 
     public virtual void Run(Vector2 direction)
     {
+        if (!MovementEnabled) return;
+
         IsRunning = true;
         CurrentDirection = direction;
 
@@ -77,9 +82,8 @@ public class CharacterMovement : MonoBehaviour
 
     public virtual void StopImmediate()
     {
-        IsRunning = false;
+        Stop();
         CurrentSpeed = 0f;
-
         Rigidbody.velocity = Vector2.zero;
     }
 
@@ -88,5 +92,11 @@ public class CharacterMovement : MonoBehaviour
     protected virtual void ScaleAnimationSpeed()
     {
         Animator.speed = IsRunning ? CurrentSpeed / speed : 1f;
+    }
+
+    public IEnumerator SetMovementEnabled(bool value, float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        MovementEnabled = value;
     }
 }
