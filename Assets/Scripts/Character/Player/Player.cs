@@ -19,9 +19,11 @@ public class Player : Character
 
     #region Interface Implementations
 
-    public override void TakeDamage(float damage, Vector2 direction, Vector2 contactPoint) { }
+    public override void TakeDamage(float damage, Vector2 direction, Vector2 contactPoint, Color color) { }
 
     public override void Die() { }
+
+    public override void Knockback(Vector2 direction, float force) { }
 
     #endregion
 

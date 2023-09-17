@@ -24,16 +24,20 @@ public class TrackerCombat : EnemyCombat
 
     private void OnCollisionEnter2D(Collision2D other)
     {
+        // Do not damage or knockback player or other zombies
+        if (other.transform.CompareTag("Player") || other.transform.CompareTag("Enemy")) return;
+
         var contactPoint = other.GetContact(0).point;
         var direction = (other.transform.position - transform.position).normalized;
 
+        // Deal damage
         if (other.transform.TryGetComponent<IDamageable>(out var damageable))
         {
-            damageable.TakeDamage(baseDamage, direction, contactPoint);
-            EffectsController.Instance.SpawnPopText(contactPoint, baseDamage.ToString(), damageColor);
+            damageable.TakeDamage(baseDamage, direction, contactPoint, damageColor);
             _tracker.TempStop();
         }
 
+        // Deal knockback
         if (other.transform.TryGetComponent<IKnockbackable>(out var knockbackable))
         {
             knockbackable.Knockback(direction, baseKnockbackForce);

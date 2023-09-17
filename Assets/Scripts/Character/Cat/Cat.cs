@@ -17,9 +17,9 @@ public class Cat : Character
 
     #region Interface Implementations
 
-    public override void TakeDamage(float damage, Vector2 direction, Vector2 contactPoint)
+    public override void TakeDamage(float damage, Vector2 direction, Vector2 contactPoint, Color color)
     {
-        base.TakeDamage(damage, direction, contactPoint);
+        base.TakeDamage(damage, direction, contactPoint, color);
 
         CameraShaker.Instance.Shake(CameraShakeMode.Light);
     }

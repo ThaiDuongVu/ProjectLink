@@ -59,10 +59,12 @@ public class Character : MonoBehaviour, IDamageable, IKnockbackable
     public virtual float BaseHealth => baseHealth;
     public virtual float CurrentHealth => Health;
 
-    public virtual void TakeDamage(float damage, Vector2 direction, Vector2 contactPoint)
+    public virtual void TakeDamage(float damage, Vector2 direction, Vector2 contactPoint, Color color)
     {
         Health -= damage;
+
         Instantiate(bloodSplashPrefab, contactPoint, Quaternion.identity).transform.up = direction;
+        EffectsController.Instance.SpawnPopText(contactPoint, damage.ToString(), color);
     }
 
     public virtual void Die()

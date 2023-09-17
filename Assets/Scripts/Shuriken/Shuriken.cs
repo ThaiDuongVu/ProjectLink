@@ -27,26 +27,38 @@ public class Shuriken : MonoBehaviour
         _rigidbody.AddTorque(force);
     }
 
-    private void OnCollisionEnter2D(Collision2D other)
+    private void Explode()
     {
         CameraShaker.Instance.Shake(CameraShakeMode.Light);
         Instantiate(explosionPrefab, transform.position, Quaternion.identity);
+        Destroy(gameObject);
+    }
+
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        // Do not damage or knockback player or cat aka no friendly fire
+        if (other.transform.CompareTag("Player") || other.transform.CompareTag("Cat"))
+        {
+            Explode();
+            return;
+        }
 
         var contactPoint = other.GetContact(0).point;
         var direction = _rigidbody.velocity.normalized;
 
+        // Deal damage
         if (other.transform.TryGetComponent<IDamageable>(out var damageable))
         {
-            damageable.TakeDamage(baseDamage, direction, contactPoint);
-            EffectsController.Instance.SpawnPopText(contactPoint, baseDamage.ToString(), damageColor);
+            damageable.TakeDamage(baseDamage, direction, contactPoint, damageColor);
         }
 
+        // Deal knockback
         if (other.transform.TryGetComponent<IKnockbackable>(out var knockbackable))
         {
             knockbackable.Knockback(direction, baseKnockbackForce);
         }
 
-        Destroy(gameObject);
+        Explode();
     }
 
     private void OnTriggerEnter2D(Collider2D other)
