@@ -4,15 +4,11 @@ using UnityEngine;
 public class CharacterMovement : MonoBehaviour
 {
     [Header("Movement Stats")]
-    [SerializeField] private float speed;
-    [SerializeField] private float acceleration;
-    [SerializeField] private float deceleration;
+    [SerializeField] private float moveForce;
 
     protected bool IsRunning;
     protected float CurrentSpeed;
     public Vector2 CurrentDirection { get; protected set; } = Vector2.up;
-
-    public bool MovementEnabled { get; set; } = true;
 
     protected Rigidbody2D Rigidbody;
     protected Animator Animator;
@@ -38,41 +34,25 @@ public class CharacterMovement : MonoBehaviour
 
     protected virtual void FixedUpdate()
     {
-        if (IsRunning) Accelerate();
-        else Decelerate();
-
-        if (CurrentSpeed > 0f) Rigidbody.velocity = CurrentDirection * CurrentSpeed;
+        if (IsRunning) Rigidbody.AddForce(CurrentDirection * moveForce, ForceMode2D.Force);
     }
 
     protected virtual void Update()
     {
-        ScaleAnimationSpeed();
+
     }
 
     #endregion
 
     #region Movement Methods
 
-    private void Accelerate()
-    {
-        if (CurrentSpeed < speed) CurrentSpeed += acceleration * Time.fixedDeltaTime;
-        else if (CurrentSpeed > speed) CurrentSpeed = speed;
-    }
-
-    private void Decelerate()
-    {
-        if (CurrentSpeed > 0f) CurrentSpeed -= deceleration * Time.fixedDeltaTime;
-        else if (CurrentSpeed < 0f) CurrentSpeed = 0f;
-    }
-
     public virtual void Run(Vector2 direction)
     {
-        if (!MovementEnabled) return;
-
         IsRunning = true;
         CurrentDirection = direction;
 
-        _character.SetFlip(direction.x < 0f);
+        if (direction.x < 0f) _character.SetFlip(true);
+        else if (direction.x > 0f) _character.SetFlip(false);
     }
 
     public virtual void Stop()
@@ -83,20 +63,10 @@ public class CharacterMovement : MonoBehaviour
     public virtual void StopImmediate()
     {
         Stop();
+
         CurrentSpeed = 0f;
         Rigidbody.velocity = Vector2.zero;
     }
 
     #endregion
-
-    protected virtual void ScaleAnimationSpeed()
-    {
-        Animator.speed = IsRunning ? CurrentSpeed / speed : 1f;
-    }
-
-    public IEnumerator SetMovementEnabled(bool value, float delay)
-    {
-        yield return new WaitForSeconds(delay);
-        MovementEnabled = value;
-    }
 }

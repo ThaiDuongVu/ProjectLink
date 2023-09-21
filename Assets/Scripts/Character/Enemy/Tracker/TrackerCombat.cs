@@ -9,6 +9,8 @@ public class TrackerCombat : EnemyCombat
     [Header("References")]
     [SerializeField] private Color damageColor;
 
+    private static readonly int AttackAnimationTrigger = Animator.StringToHash("attack");
+
     private Tracker _tracker;
 
     #region Unity Events
@@ -41,6 +43,7 @@ public class TrackerCombat : EnemyCombat
         if (other.transform.TryGetComponent<IKnockbackable>(out var knockbackable))
         {
             knockbackable.Knockback(direction, baseKnockbackForce);
+            Animator.SetTrigger(AttackAnimationTrigger);
         }
     }
 }

@@ -6,8 +6,6 @@ public class TrackerMovement : EnemyMovement
 
     public override void Run(Vector2 direction)
     {
-        if (!MovementEnabled) return;
-
         base.Run(direction);
         Animator.SetBool(RunAnimationBool, true);
     }

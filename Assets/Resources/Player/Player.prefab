@@ -861,7 +861,7 @@ MonoBehaviour:
   - {x: 0.25, y: -0.5, z: 0}
   m_ShapePathHash: 0
   m_Mesh: {fileID: 0}
-  m_InstanceId: 55012
+  m_InstanceId: 31132
   m_LocalBounds:
     m_Center: {x: 0, y: 0, z: 0}
     m_Extent: {x: 0.25, y: 0.5, z: 0}
@@ -897,9 +897,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 505b893cb77c9a54994a87609c0a206b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 5
-  acceleration: 20
-  deceleration: 20
+  moveForce: 16
 --- !u!114 &5410641898116141102
 MonoBehaviour:
   m_ObjectHideFlags: 0

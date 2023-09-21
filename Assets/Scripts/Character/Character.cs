@@ -76,10 +76,7 @@ public class Character : MonoBehaviour, IDamageable, IKnockbackable
     public virtual void Knockback(Vector2 direction, float force)
     {
         _characterMovement.StopImmediate();
-        StartCoroutine(_characterMovement.SetMovementEnabled(false, 0f));
-
         Rigidbody.AddForce(direction * force, ForceMode2D.Impulse);
-        StartCoroutine(_characterMovement.SetMovementEnabled(true, force / 60f));
     }
 
     #endregion
