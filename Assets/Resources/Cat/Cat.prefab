@@ -268,7 +268,7 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDrag: 3
+  m_LinearDrag: 5
   m_AngularDrag: 0
   m_GravityScale: 0
   m_Material: {fileID: 0}
@@ -364,7 +364,7 @@ MonoBehaviour:
   - {x: 0.4375, y: -0.5, z: 0}
   m_ShapePathHash: 0
   m_Mesh: {fileID: 0}
-  m_InstanceId: 30758
+  m_InstanceId: -92210
   m_LocalBounds:
     m_Center: {x: 0, y: -0.25, z: 0}
     m_Extent: {x: 0.4375, y: 0.25, z: 0}
@@ -400,7 +400,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3189c8b65df1302488a3968df00b789c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveForce: 8
+  moveForce: 12
 --- !u!1 &4176066288808239232
 GameObject:
   m_ObjectHideFlags: 0
