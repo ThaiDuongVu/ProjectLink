@@ -3,13 +3,7 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags:
-  - Title
-  - Collectible
-  - Cat
-  - Enemy
-  - Shuriken
-  - Border
+  tags: []
   layers:
   - Default
   - TransparentFX
@@ -17,12 +11,12 @@ TagManager:
   - PostProcessing
   - Water
   - UI
-  - Map
-  - Player
-  - Collectibles
-  - Cat
-  - Enemies
-  - Shurikens
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
   - 
   - 
   - 
