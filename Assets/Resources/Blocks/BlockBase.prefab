@@ -11,7 +11,9 @@ GameObject:
   - component: {fileID: 3101076613028221447}
   - component: {fileID: 2794026496459014212}
   - component: {fileID: 7851526706357587907}
+  - component: {fileID: 7708348131309578372}
   - component: {fileID: 2395392931021876078}
+  - component: {fileID: 6518715169711566159}
   m_Layer: 7
   m_Name: BlockBase
   m_TagString: Block
@@ -108,6 +110,26 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!232 &7708348131309578372
+DistanceJoint2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3191879900495829669}
+  m_Enabled: 1
+  serializedVersion: 4
+  m_EnableCollision: 1
+  m_ConnectedRigidBody: {fileID: 0}
+  m_BreakForce: Infinity
+  m_BreakTorque: Infinity
+  m_BreakAction: 3
+  m_AutoConfigureConnectedAnchor: 0
+  m_Anchor: {x: 0, y: 0}
+  m_ConnectedAnchor: {x: 0, y: 0}
+  m_AutoConfigureDistance: 0
+  m_Distance: 2
+  m_MaxDistanceOnly: 0
 --- !u!95 &2395392931021876078
 Animator:
   serializedVersion: 5
@@ -129,6 +151,19 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &6518715169711566159
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3191879900495829669}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d1bb2b6b25c3f9439a1b7db73126160, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  swingForce: 30
 --- !u!1 &3634113281615308447
 GameObject:
   m_ObjectHideFlags: 0
@@ -279,8 +314,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: 0.0009999871, y: 0.0021499991, z: 0}
-    m_Extent: {x: 1.0069001, y: 1.0067501, z: 0}
+    m_Center: {x: 0.0037499666, y: -0.0015999973, z: 0}
+    m_Extent: {x: 1.00455, y: 0.9973, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
