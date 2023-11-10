@@ -8,6 +8,8 @@ public class Block : MonoBehaviour
     private bool _isSwinging;
     private Vector2 _swingDirection;
 
+    private static readonly int SleepAnimationBool = Animator.StringToHash("isSleeping");
+
     private bool _isActive;
     public bool IsActive
     {
@@ -18,6 +20,7 @@ public class Block : MonoBehaviour
             if (!value) _rigidbody.velocity = Vector2.zero;
             _rigidbody.isKinematic = !value;
             _light.enabled = value;
+            _animator.SetBool(SleepAnimationBool, !value);
         }
     }
 

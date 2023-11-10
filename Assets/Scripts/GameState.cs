@@ -1,6 +1,6 @@
 public enum GameState
 {
     InProgress,
-    NotInProgress,
+    Paused,
     Over
 }

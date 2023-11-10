@@ -1,3 +1,4 @@
+using System.Net.NetworkInformation;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -5,13 +6,16 @@ public class Player : MonoBehaviour
 {
     [Header("References")]
     [SerializeField] private LineRenderer chain;
-    [SerializeField] private Transform pin;
+    [SerializeField] private GameObject pin;
+    [SerializeField] private GameObject arrow;
 
     private Block[] _blocks;
     private int _activeBlockIndex = 1;
     private int _inactiveBlockIndex => _activeBlockIndex == 0 ? 1 : 0;
     public Block ActiveBlock => _blocks[_activeBlockIndex];
     public Block InactiveBlock => _blocks[_inactiveBlockIndex];
+
+    private Vector2 _arrowTargetDirection;
 
     private InputManager _inputManager;
 
@@ -51,8 +55,13 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
+        // Set chain positions
         chain.SetPosition(0, _blocks[0].transform.position);
         chain.SetPosition(1, _blocks[1].transform.position);
+
+        // Update arrow position & direction
+        arrow.transform.position = ActiveBlock.transform.position;
+        arrow.transform.up = Vector2.Lerp(arrow.transform.up, _arrowTargetDirection, 0.5f);
     }
 
     #endregion
@@ -62,9 +71,11 @@ public class Player : MonoBehaviour
     private void MoveOnPerformed(InputAction.CallbackContext context)
     {
         InputTypeController.Instance.CheckInputType(context);
-
         var direction = context.ReadValue<Vector2>().normalized;
+
         ActiveBlock.Swing(direction);
+        arrow.SetActive(true);
+        _arrowTargetDirection = direction;
     }
 
     private void MoveOnCanceled(InputAction.CallbackContext context)
@@ -72,6 +83,7 @@ public class Player : MonoBehaviour
         InputTypeController.Instance.CheckInputType(context);
 
         ActiveBlock.StopSwing();
+        arrow.SetActive(false);
     }
 
     private void FireOnPerformed(InputAction.CallbackContext context)
@@ -85,15 +97,20 @@ public class Player : MonoBehaviour
 
     private void SetActiveBlock(int index)
     {
+        // Set index and block states
         _activeBlockIndex = index;
         _blocks[_activeBlockIndex].IsActive = true;
         _blocks[_inactiveBlockIndex].IsActive = false;
 
-        pin.position = InactiveBlock.transform.position;
+        // Update pin position
+        pin.SetActive(false);
+        pin.transform.position = InactiveBlock.transform.position;
+        pin.SetActive(true);
     }
 
     private void SwapActiveBlock()
     {
         SetActiveBlock(_activeBlockIndex == 0 ? 1 : 0);
+        CameraShaker.Instance.Shake(CameraShakeMode.Light);
     }
 }
