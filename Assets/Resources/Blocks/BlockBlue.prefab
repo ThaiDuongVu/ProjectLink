@@ -56,21 +56,33 @@ PrefabInstance:
       propertyPath: m_Name
       value: BlockBlue
       objectReference: {fileID: 0}
+    - target: {fileID: 3933995060111992891, guid: 570894f883a519f42a3e77b37bc375a1, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.b
+      value: 0.8901961
+      objectReference: {fileID: 0}
+    - target: {fileID: 3933995060111992891, guid: 570894f883a519f42a3e77b37bc375a1, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.g
+      value: 0.7411765
+      objectReference: {fileID: 0}
+    - target: {fileID: 3933995060111992891, guid: 570894f883a519f42a3e77b37bc375a1, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.r
+      value: 0.039215688
+      objectReference: {fileID: 0}
     - target: {fileID: 4546703965767954156, guid: 570894f883a519f42a3e77b37bc375a1, type: 3}
       propertyPath: m_LocalBounds.m_Center.x
-      value: 0.00045001507
+      value: 0.00049996376
       objectReference: {fileID: 0}
     - target: {fileID: 4546703965767954156, guid: 570894f883a519f42a3e77b37bc375a1, type: 3}
       propertyPath: m_LocalBounds.m_Center.y
-      value: 0.0022999942
+      value: -0.0017000437
       objectReference: {fileID: 0}
     - target: {fileID: 4546703965767954156, guid: 570894f883a519f42a3e77b37bc375a1, type: 3}
       propertyPath: m_LocalBounds.m_Extent.x
-      value: 1.00685
+      value: 1.0021
       objectReference: {fileID: 0}
     - target: {fileID: 4546703965767954156, guid: 570894f883a519f42a3e77b37bc375a1, type: 3}
       propertyPath: m_LocalBounds.m_Extent.y
-      value: 1.0011
+      value: 1.0064
       objectReference: {fileID: 0}
     - target: {fileID: 5873450453325768160, guid: 570894f883a519f42a3e77b37bc375a1, type: 3}
       propertyPath: m_Sprite
@@ -78,7 +90,7 @@ PrefabInstance:
       objectReference: {fileID: 1554611474, guid: dc8e76daaf3d45a4ebef005b9b8e3221, type: 3}
     - target: {fileID: 7204922948666570437, guid: 570894f883a519f42a3e77b37bc375a1, type: 3}
       propertyPath: m_InstanceId
-      value: -54114
+      value: -16696
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

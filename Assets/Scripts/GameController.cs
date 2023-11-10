@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -19,6 +20,8 @@ public class GameController : MonoBehaviour
     #endregion
 
     public GameState State { get; set; }
+
+    [SerializeField] private SimpleMenu pauseMenu;
 
     private InputManager _inputManager;
 
@@ -42,9 +45,7 @@ public class GameController : MonoBehaviour
     private void Start()
     {
         Application.targetFrameRate = 60;
-
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
+        SetCursorEnabled(false);
     }
 
     #endregion
@@ -54,7 +55,7 @@ public class GameController : MonoBehaviour
     private void EscapeOnPerformed(InputAction.CallbackContext context)
     {
         if (State == GameState.InProgress) Pause();
-        else if (State == GameState.Paused) Resume();
+        // else if (State == GameState.Paused) Resume();
     }
 
     #endregion
@@ -63,20 +64,62 @@ public class GameController : MonoBehaviour
 
     public void Pause()
     {
-        Time.timeScale = 0f;
-        PostProcessingController.Instance.SetDepthOfField(true);
+        SetTimeScale(0f);
+        pauseMenu.SetActive(true);
 
-        // pauseMenu.SetActive(true);
-        State = GameState.Paused;
+        SetGameState(GameState.Paused);
+        PostProcessingController.Instance.SetDepthOfField(true);
     }
 
     public void Resume()
     {
-        Time.timeScale = 1f;
-        PostProcessingController.Instance.SetDepthOfField(false);
+        SetTimeScale(1f);
+        pauseMenu.SetActive(false);
 
-        // pauseMenu.SetActive(false);
-        State = GameState.InProgress;
+        SetGameState(GameState.InProgress);
+        PostProcessingController.Instance.SetDepthOfField(false);
+    }
+
+    #endregion
+
+    public void SetGameState(GameState state)
+    {
+        State = state;
+    }
+
+    private static void SetCursorEnabled(bool value)
+    {
+        Cursor.lockState = value ? CursorLockMode.None : CursorLockMode.Locked;
+        Cursor.visible = value;
+    }
+
+    public static void SetTimeScale(float scale = 1f)
+    {
+        Time.timeScale = scale;
+        Time.fixedDeltaTime = 0.01666667f * Time.timeScale;
+    }
+
+
+    #region Slow Motion Methods
+
+    private static IEnumerator SlowMotionEffect(float scale, float duration)
+    {
+        // Slow down
+        SetTimeScale(scale);
+        PostProcessingController.Instance.SetChromaticAberration(true);
+        PostProcessingController.Instance.SetVignetteIntensity(PostProcessingController.DefaultVignetteIntensity + 0.1f);
+
+        yield return new WaitForSeconds(duration);
+
+        // Back to normal
+        SetTimeScale();
+        PostProcessingController.Instance.SetChromaticAberration(false);
+        PostProcessingController.Instance.SetVignetteIntensity(PostProcessingController.DefaultVignetteIntensity);
+    }
+
+    public void PlaySlowMotionEffect(float scale = 0.5f, float duration = 0.25f)
+    {
+        StartCoroutine(SlowMotionEffect(scale, duration));
     }
 
     #endregion
