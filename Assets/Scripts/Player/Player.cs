@@ -71,6 +71,7 @@ public class Player : MonoBehaviour
     private void MoveOnPerformed(InputAction.CallbackContext context)
     {
         InputTypeController.Instance.CheckInputType(context);
+        if (GameController.Instance.State != GameState.InProgress) return;
         var direction = context.ReadValue<Vector2>().normalized;
 
         ActiveBlock.Swing(direction);
@@ -89,6 +90,7 @@ public class Player : MonoBehaviour
     private void FireOnPerformed(InputAction.CallbackContext context)
     {
         InputTypeController.Instance.CheckInputType(context);
+        if (GameController.Instance.State != GameState.InProgress) return;
 
         SwapActiveBlock();
     }

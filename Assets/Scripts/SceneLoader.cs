@@ -44,7 +44,7 @@ public class SceneLoader : MonoBehaviour
         _cameraAnimator.SetTrigger(OutroTrigger);
 
         // Wait for camera animation to complete
-        yield return new WaitForSeconds(cameraOutroAnimationClip.averageDuration);
+        yield return new WaitForSecondsRealtime(cameraOutroAnimationClip.averageDuration);
 
         // Allow transition to new scene
         asyncOperation.allowSceneActivation = true;

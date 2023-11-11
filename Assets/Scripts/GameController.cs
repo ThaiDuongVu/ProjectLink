@@ -46,6 +46,7 @@ public class GameController : MonoBehaviour
     {
         Application.targetFrameRate = 60;
         SetCursorEnabled(false);
+        SetTimeScale(1f);
     }
 
     #endregion

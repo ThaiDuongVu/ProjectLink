@@ -56,7 +56,7 @@ Rigidbody2D:
   m_LinearDrag: 1
   m_AngularDrag: 0
   m_GravityScale: 3
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 0b15cc2cda10e8f4b933f17c2af441fc, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -179,7 +179,7 @@ MonoBehaviour:
   - {x: 0.5, y: -0.5, z: 0}
   m_ShapePathHash: 0
   m_Mesh: {fileID: 0}
-  m_InstanceId: 27418
+  m_InstanceId: 39450
   m_LocalBounds:
     m_Center: {x: 0, y: 0, z: 0}
     m_Extent: {x: 0.5, y: 0.5, z: 0}
@@ -196,6 +196,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   swingForce: 30
+  sprite: {fileID: 5873450453325768160}
 --- !u!1 &3634113281615308447
 GameObject:
   m_ObjectHideFlags: 0
@@ -346,8 +347,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: 0.00019997358, y: 0.004499972, z: 0}
-    m_Extent: {x: 1.0083001, y: 0.9966, z: 0}
+    m_Center: {x: -0.005850017, y: -0.0016499758, z: 0}
+    m_Extent: {x: 0.99805003, y: 1.00475, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0

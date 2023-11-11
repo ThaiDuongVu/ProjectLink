@@ -1,3 +1,4 @@
+using System.Diagnostics;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
 
@@ -5,10 +6,15 @@ public class Block : MonoBehaviour
 {
     [Header("Stats")]
     [SerializeField] private float swingForce;
+
+    [Header("References")]
+    [SerializeField] private SpriteRenderer sprite;
+
     private bool _isSwinging;
     private Vector2 _swingDirection;
 
     private static readonly int SleepAnimationBool = Animator.StringToHash("isSleeping");
+    private static readonly int SwingAnimationBool = Animator.StringToHash("isSwinging");
 
     private bool _isActive;
     public bool IsActive
@@ -17,6 +23,7 @@ public class Block : MonoBehaviour
         set
         {
             _isActive = value;
+
             if (!value) _rigidbody.velocity = Vector2.zero;
             _rigidbody.isKinematic = !value;
             _light.enabled = value;
@@ -61,12 +68,22 @@ public class Block : MonoBehaviour
     {
         _isSwinging = true;
         _swingDirection = direction;
+
+        _animator.SetBool(SwingAnimationBool, true);
+        if (direction.x < 0f) SetFlip(true);
+        else if (direction.x > 0f) SetFlip(false);
     }
 
     public void StopSwing()
     {
         _isSwinging = false;
+        _animator.SetBool(SwingAnimationBool, false);
     }
 
     #endregion
+
+    public void SetFlip(bool value)
+    {
+        sprite.flipX = value;
+    }
 }
