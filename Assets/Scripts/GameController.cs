@@ -22,6 +22,7 @@ public class GameController : MonoBehaviour
     public GameState State { get; set; }
 
     [SerializeField] private SimpleMenu pauseMenu;
+    [SerializeField] private SimpleMenu levelCompletedMenu;
 
     private InputManager _inputManager;
 
@@ -82,6 +83,17 @@ public class GameController : MonoBehaviour
     }
 
     #endregion
+
+    public IEnumerator CompleteLevel()
+    {
+        yield return new WaitForSeconds(1f);
+
+        SetTimeScale(0f);
+        levelCompletedMenu.SetActive(true);
+
+        SetGameState(GameState.Over);
+        PostProcessingController.Instance.SetDepthOfField(true);
+    }
 
     public void SetGameState(GameState state)
     {

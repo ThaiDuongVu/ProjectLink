@@ -70,7 +70,7 @@ public class CameraShaker : MonoBehaviour
 
     private IEnumerator ShakeCoroutine(CameraShakeMode cameraShakeMode, float delay)
     {
-        yield return new WaitForSeconds(delay);
+        yield return new WaitForSecondsRealtime(delay);
 
         // If screen shake disabled in menu then do nothing
         if (PlayerPrefs.GetInt("ScreenShake", 0) == 1) yield break;
@@ -113,7 +113,7 @@ public class CameraShaker : MonoBehaviour
 
     private IEnumerator ShakeCoroutine(float duration, float intensity, float decreaseFactor, float delay)
     {
-        yield return new WaitForSeconds(delay);
+        yield return new WaitForSecondsRealtime(delay);
 
         // If screen shake disabled in menu then do nothing
         if (PlayerPrefs.GetInt("ScreenShake", 0) == 1) yield break;

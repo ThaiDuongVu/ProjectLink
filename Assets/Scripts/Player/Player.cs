@@ -59,9 +59,8 @@ public class Player : MonoBehaviour
         chain.SetPosition(0, _blocks[0].transform.position);
         chain.SetPosition(1, _blocks[1].transform.position);
 
-        // Update arrow position & direction
-        arrow.transform.position = ActiveBlock.transform.position;
-        arrow.transform.up = Vector2.Lerp(arrow.transform.up, _arrowTargetDirection, 0.5f);
+        SetArrowPosition(ActiveBlock.transform.position);
+        SetArrowDirection(Vector2.Lerp(arrow.transform.up, _arrowTargetDirection, 0.5f));
     }
 
     #endregion
@@ -93,9 +92,27 @@ public class Player : MonoBehaviour
         if (GameController.Instance.State != GameState.InProgress) return;
 
         SwapActiveBlock();
+        CameraShaker.Instance.Shake(CameraShakeMode.Light);
     }
 
     #endregion
+
+    private void SetArrowPosition(Vector2 position)
+    {
+        arrow.transform.position = position;
+    }
+
+    private void SetArrowDirection(Vector2 direction)
+    {
+        arrow.transform.up = direction;
+    }
+
+    private void SetPinPosition(Vector2 position)
+    {
+        pin.SetActive(false);
+        pin.transform.position = position;
+        pin.SetActive(true);
+    }
 
     private void SetActiveBlock(int index)
     {
@@ -104,15 +121,25 @@ public class Player : MonoBehaviour
         _blocks[_activeBlockIndex].IsActive = true;
         _blocks[_inactiveBlockIndex].IsActive = false;
 
-        // Update pin position
-        pin.SetActive(false);
-        pin.transform.position = InactiveBlock.transform.position;
-        pin.SetActive(true);
+        SetPinPosition(InactiveBlock.transform.position);
     }
 
-    private void SwapActiveBlock()
+    public void SwapActiveBlock()
     {
         SetActiveBlock(_activeBlockIndex == 0 ? 1 : 0);
-        CameraShaker.Instance.Shake(CameraShakeMode.Light);
+    }
+
+    public void HandleBlockEnterPortal(Block block)
+    {
+        // var blockIndex = (block == ActiveBlock) ? _activeBlockIndex : _inactiveBlockIndex;
+        if (_blocks[0].IsPortalEntered && _blocks[1].IsPortalEntered)
+        {
+            StartCoroutine(GameController.Instance.CompleteLevel());
+        }
+        else
+        {
+            SwapActiveBlock();
+            pin.SetActive(false);
+        }
     }
 }

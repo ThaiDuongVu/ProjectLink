@@ -1,4 +1,3 @@
-using System.Diagnostics;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
 
@@ -6,6 +5,7 @@ public class Block : MonoBehaviour
 {
     [Header("Stats")]
     [SerializeField] private float swingForce;
+    public BlockType type;
 
     [Header("References")]
     [SerializeField] private SpriteRenderer sprite;
@@ -31,6 +31,18 @@ public class Block : MonoBehaviour
         }
     }
 
+    private bool _isPortalEntered;
+    public bool IsPortalEntered
+    {
+        get => _isPortalEntered;
+        set
+        {
+            _isPortalEntered = value;
+        }
+    }
+    private Portal _targetPortal;
+    private const float EnterPortalInterpolationRatio = 0.4f;
+
     private Rigidbody2D _rigidbody;
     private Animator _animator;
     private DistanceJoint2D _distanceJoint;
@@ -46,6 +58,12 @@ public class Block : MonoBehaviour
         _distanceJoint = GetComponent<DistanceJoint2D>();
 
         _light = GetComponentInChildren<Light2D>();
+    }
+
+    private void Update()
+    {
+        if (IsPortalEntered)
+            transform.position = Vector2.Lerp(transform.position, _targetPortal.transform.position, EnterPortalInterpolationRatio);
     }
 
     private void FixedUpdate()
@@ -85,5 +103,27 @@ public class Block : MonoBehaviour
     public void SetFlip(bool value)
     {
         sprite.flipX = value;
+    }
+
+    public void EnterPortal(Portal portal)
+    {
+        if (!portal) return;
+        if (portal.type != type) return;
+
+        _targetPortal = portal;
+        IsPortalEntered = true;
+        IsActive = false;
+        GetComponentInParent<Player>()?.HandleBlockEnterPortal(this);
+
+        CameraShaker.Instance.Shake(CameraShakeMode.Light);
+        GameController.Instance.PlaySlowMotionEffect();
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("Portal"))
+        {
+            EnterPortal(other.GetComponent<Portal>());
+        }
     }
 }
