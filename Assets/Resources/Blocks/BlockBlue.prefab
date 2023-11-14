@@ -56,6 +56,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: BlockBlue
       objectReference: {fileID: 0}
+    - target: {fileID: 3933995060111992889, guid: 570894f883a519f42a3e77b37bc375a1, type: 3}
+      propertyPath: m_Name
+      value: TrailBlue
+      objectReference: {fileID: 0}
     - target: {fileID: 3933995060111992891, guid: 570894f883a519f42a3e77b37bc375a1, type: 3}
       propertyPath: InitialModule.startColor.maxColor.b
       value: 0.8901961
@@ -70,19 +74,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4546703965767954156, guid: 570894f883a519f42a3e77b37bc375a1, type: 3}
       propertyPath: m_LocalBounds.m_Center.x
-      value: 0.00049996376
+      value: 0.0036000013
       objectReference: {fileID: 0}
     - target: {fileID: 4546703965767954156, guid: 570894f883a519f42a3e77b37bc375a1, type: 3}
       propertyPath: m_LocalBounds.m_Center.y
-      value: -0.0017000437
+      value: -0.0010999441
       objectReference: {fileID: 0}
     - target: {fileID: 4546703965767954156, guid: 570894f883a519f42a3e77b37bc375a1, type: 3}
       propertyPath: m_LocalBounds.m_Extent.x
-      value: 1.0021
+      value: 1.0013
       objectReference: {fileID: 0}
     - target: {fileID: 4546703965767954156, guid: 570894f883a519f42a3e77b37bc375a1, type: 3}
       propertyPath: m_LocalBounds.m_Extent.y
-      value: 1.0064
+      value: 1.0079
       objectReference: {fileID: 0}
     - target: {fileID: 5873450453325768160, guid: 570894f883a519f42a3e77b37bc375a1, type: 3}
       propertyPath: m_Sprite
@@ -92,12 +96,87 @@ PrefabInstance:
       propertyPath: type
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6518715169711566159, guid: 570894f883a519f42a3e77b37bc375a1, type: 3}
+      propertyPath: sparkPrefab
+      value: 
+      objectReference: {fileID: 5102230056371415919, guid: 9d26b07b1b4182a4a8ac99db89ccd920, type: 3}
     - target: {fileID: 7204922948666570437, guid: 570894f883a519f42a3e77b37bc375a1, type: 3}
       propertyPath: m_InstanceId
-      value: -16696
+      value: -12746
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects:
+    - {fileID: 3933995060111992889, guid: 570894f883a519f42a3e77b37bc375a1, type: 3}
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 3101076613028221447, guid: 570894f883a519f42a3e77b37bc375a1, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8490880436593862371}
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 570894f883a519f42a3e77b37bc375a1, type: 3}
+--- !u!4 &4548800214130939969 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3101076613028221447, guid: 570894f883a519f42a3e77b37bc375a1, type: 3}
+  m_PrefabInstance: {fileID: 1452878234037209670}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &2784054731072105797
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 4548800214130939969}
+    m_Modifications:
+    - target: {fileID: 6014374518170176411, guid: 8797d50910875c4458f06d23c3610e49, type: 3}
+      propertyPath: m_Name
+      value: TrailBlue
+      objectReference: {fileID: 0}
+    - target: {fileID: 6014374518170176422, guid: 8797d50910875c4458f06d23c3610e49, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6014374518170176422, guid: 8797d50910875c4458f06d23c3610e49, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6014374518170176422, guid: 8797d50910875c4458f06d23c3610e49, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6014374518170176422, guid: 8797d50910875c4458f06d23c3610e49, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6014374518170176422, guid: 8797d50910875c4458f06d23c3610e49, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6014374518170176422, guid: 8797d50910875c4458f06d23c3610e49, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6014374518170176422, guid: 8797d50910875c4458f06d23c3610e49, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6014374518170176422, guid: 8797d50910875c4458f06d23c3610e49, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6014374518170176422, guid: 8797d50910875c4458f06d23c3610e49, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6014374518170176422, guid: 8797d50910875c4458f06d23c3610e49, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 570894f883a519f42a3e77b37bc375a1, type: 3}
+  m_SourcePrefab: {fileID: 100100000, guid: 8797d50910875c4458f06d23c3610e49, type: 3}
+--- !u!4 &8490880436593862371 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6014374518170176422, guid: 8797d50910875c4458f06d23c3610e49, type: 3}
+  m_PrefabInstance: {fileID: 2784054731072105797}
+  m_PrefabAsset: {fileID: 0}

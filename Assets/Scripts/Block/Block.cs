@@ -9,6 +9,7 @@ public class Block : MonoBehaviour
 
     [Header("References")]
     [SerializeField] private SpriteRenderer sprite;
+    [SerializeField] private ParticleSystem sparkPrefab;
 
     private bool _isSwinging;
     private Vector2 _swingDirection;
@@ -24,7 +25,12 @@ public class Block : MonoBehaviour
         {
             _isActive = value;
 
-            if (!value) _rigidbody.velocity = Vector2.zero;
+            if (!value)
+            {
+                _rigidbody.velocity = Vector2.zero;
+                Instantiate(sparkPrefab, transform.position, Quaternion.identity);
+            }
+
             _rigidbody.isKinematic = !value;
             _light.enabled = value;
             _animator.SetBool(SleepAnimationBool, !value);
