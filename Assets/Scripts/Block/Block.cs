@@ -50,6 +50,8 @@ public class Block : MonoBehaviour
     private Portal _targetPortal;
     private const float EnterPortalInterpolationRatio = 0.4f;
 
+    private Player _player;
+
     private Rigidbody2D _rigidbody;
     private Animator _animator;
     private DistanceJoint2D _distanceJoint;
@@ -60,6 +62,8 @@ public class Block : MonoBehaviour
 
     private void Awake()
     {
+        _player = GetComponentInParent<Player>();
+
         _rigidbody = GetComponent<Rigidbody2D>();
         _animator = GetComponent<Animator>();
         _distanceJoint = GetComponent<DistanceJoint2D>();
@@ -124,7 +128,7 @@ public class Block : MonoBehaviour
         CameraShaker.Instance.Shake(CameraShakeMode.Light);
         GameController.Instance.PlaySlowMotionEffect();
 
-        GetComponentInParent<Player>().CheckWinCondition();
+        _player.CheckWinCondition();
     }
 
     public void Exit()
@@ -137,6 +141,10 @@ public class Block : MonoBehaviour
         if (other.CompareTag("Portal"))
         {
             EnterPortal(other.GetComponent<Portal>());
+        }
+        else if (other.CompareTag("Collectible"))
+        {
+            other.GetComponent<Collectible>().OnCollected(_player);
         }
     }
 }

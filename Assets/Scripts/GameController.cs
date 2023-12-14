@@ -130,14 +130,14 @@ public class GameController : MonoBehaviour
         // Slow down
         SetTimeScale(scale);
         PostProcessingController.Instance.SetChromaticAberration(true);
-        PostProcessingController.Instance.SetVignetteIntensity(PostProcessingController.DefaultVignetteIntensity + 0.1f);
+        // PostProcessingController.Instance.SetVignetteIntensity(PostProcessingController.DefaultVignetteIntensity + 0.1f);
 
         yield return new WaitForSeconds(duration);
 
         // Back to normal
         SetTimeScale();
         PostProcessingController.Instance.SetChromaticAberration(false);
-        PostProcessingController.Instance.SetVignetteIntensity(PostProcessingController.DefaultVignetteIntensity);
+        // PostProcessingController.Instance.SetVignetteIntensity(PostProcessingController.DefaultVignetteIntensity);
     }
 
     public void PlaySlowMotionEffect(float scale = 0.5f, float duration = 0.2f)

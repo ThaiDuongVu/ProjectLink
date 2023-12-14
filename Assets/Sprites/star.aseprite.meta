@@ -121,15 +121,15 @@ ScriptedImporter:
   animatedSpriteImportData:
   - name: star
     originalName: 
-    pivot: {x: 0.5, y: -1.5}
+    pivot: {x: 0.5, y: -0.5}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
       x: 4
       y: 4
-      width: 4
-      height: 4
+      width: 8
+      height: 8
     spriteID: 5ca259466a620994abafd091fbce676f
     spriteBone: []
     spriteOutline: []
@@ -151,10 +151,10 @@ ScriptedImporter:
     - name: star
       frameIndex: 0
       cellRect:
-        x: 6
-        y: 6
-        width: 4
-        height: 4
+        x: 4
+        y: 4
+        width: 8
+        height: 8
       spriteId: 5ca259466a620994abafd091fbce676f
     linkedCells: []
     parentIndex: -1
