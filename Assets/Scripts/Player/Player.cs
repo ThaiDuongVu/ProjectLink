@@ -1,4 +1,3 @@
-using System.Net.NetworkInformation;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -16,6 +15,8 @@ public class Player : MonoBehaviour
     public Block InactiveBlock => _blocks[_inactiveBlockIndex];
 
     private Vector2 _arrowTargetDirection;
+
+    public int CollectedStars { get; set; }
 
     private InputManager _inputManager;
 
@@ -138,7 +139,7 @@ public class Player : MonoBehaviour
             _blocks[0].Exit();
             _blocks[1].Exit();
             chain.gameObject.SetActive(false);
-            StartCoroutine(GameController.Instance.CompleteLevel());
+            StartCoroutine(GameController.Instance.CompleteLevel(CollectedStars));
         }
         // Else swap to the other block
         else

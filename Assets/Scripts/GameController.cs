@@ -21,9 +21,13 @@ public class GameController : MonoBehaviour
 
     public GameState State { get; set; }
 
+    [Header("Menu References")]
     [SerializeField] private SimpleMenu pauseMenu;
     [SerializeField] private SimpleMenu levelCompletedMenu;
     [SerializeField] private SimpleMenu gameOverMenu;
+
+    [Header("UI References")]
+    [SerializeField] private RatingDisplay starRatingDisplay;
 
     private InputManager _inputManager;
 
@@ -85,11 +89,13 @@ public class GameController : MonoBehaviour
 
     #endregion
 
-    public IEnumerator CompleteLevel()
+    public IEnumerator CompleteLevel(int rating)
     {
         yield return new WaitForSeconds(0.5f);
 
         levelCompletedMenu.SetActive(true);
+        starRatingDisplay.UpdateRating(rating);
+        starRatingDisplay.gameObject.SetActive(true);
 
         SetGameState(GameState.Over);
         PostProcessingController.Instance.SetDepthOfField(true);
