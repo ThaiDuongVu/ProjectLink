@@ -16,6 +16,7 @@ public class Block : MonoBehaviour
 
     private static readonly int SleepAnimationBool = Animator.StringToHash("isSleeping");
     private static readonly int SwingAnimationBool = Animator.StringToHash("isSwinging");
+    private static readonly int ExitAnimationTrigger = Animator.StringToHash("exit");
 
     private bool _isActive;
     public bool IsActive
@@ -37,13 +38,13 @@ public class Block : MonoBehaviour
         }
     }
 
-    private bool _isPortalEntered;
-    public bool IsPortalEntered
+    private bool _isInPortal;
+    public bool IsInPortal
     {
-        get => _isPortalEntered;
+        get => _isInPortal;
         set
         {
-            _isPortalEntered = value;
+            _isInPortal = value;
         }
     }
     private Portal _targetPortal;
@@ -68,7 +69,7 @@ public class Block : MonoBehaviour
 
     private void Update()
     {
-        if (IsPortalEntered)
+        if (IsInPortal)
             transform.position = Vector2.Lerp(transform.position, _targetPortal.transform.position, EnterPortalInterpolationRatio);
     }
 
@@ -117,12 +118,18 @@ public class Block : MonoBehaviour
         if (portal.type != type) return;
 
         _targetPortal = portal;
-        IsPortalEntered = true;
+        IsInPortal = true;
         IsActive = false;
-        GetComponentInParent<Player>()?.HandleBlockEnterPortal(this);
 
         CameraShaker.Instance.Shake(CameraShakeMode.Light);
         GameController.Instance.PlaySlowMotionEffect();
+
+        GetComponentInParent<Player>().CheckWinCondition();
+    }
+
+    public void Exit()
+    {
+        _animator.SetTrigger(ExitAnimationTrigger);
     }
 
     private void OnTriggerEnter2D(Collider2D other)

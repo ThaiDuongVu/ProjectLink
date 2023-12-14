@@ -58,7 +58,7 @@ public class GameController : MonoBehaviour
     private void EscapeOnPerformed(InputAction.CallbackContext context)
     {
         if (State == GameState.InProgress) Pause();
-        // else if (State == GameState.Paused) Resume();
+        else if (State == GameState.Paused) Resume();
     }
 
     #endregion
@@ -110,7 +110,7 @@ public class GameController : MonoBehaviour
         State = state;
     }
 
-    private static void SetCursorEnabled(bool value)
+    public static void SetCursorEnabled(bool value)
     {
         Cursor.lockState = value ? CursorLockMode.None : CursorLockMode.Locked;
         Cursor.visible = value;
@@ -140,7 +140,7 @@ public class GameController : MonoBehaviour
         PostProcessingController.Instance.SetVignetteIntensity(PostProcessingController.DefaultVignetteIntensity);
     }
 
-    public void PlaySlowMotionEffect(float scale = 0.5f, float duration = 0.25f)
+    public void PlaySlowMotionEffect(float scale = 0.5f, float duration = 0.2f)
     {
         StartCoroutine(SlowMotionEffect(scale, duration));
     }

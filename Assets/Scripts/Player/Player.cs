@@ -126,16 +126,21 @@ public class Player : MonoBehaviour
 
     public void SwapActiveBlock()
     {
+        if (InactiveBlock.IsInPortal) return;
         SetActiveBlock(_activeBlockIndex == 0 ? 1 : 0);
     }
 
-    public void HandleBlockEnterPortal(Block block)
+    public void CheckWinCondition()
     {
-        // var blockIndex = (block == ActiveBlock) ? _activeBlockIndex : _inactiveBlockIndex;
-        if (_blocks[0].IsPortalEntered && _blocks[1].IsPortalEntered)
+        // If both blocks entered portal then complete level
+        if (_blocks[0].IsInPortal && _blocks[1].IsInPortal)
         {
+            _blocks[0].Exit();
+            _blocks[1].Exit();
+            chain.gameObject.SetActive(false);
             StartCoroutine(GameController.Instance.CompleteLevel());
         }
+        // Else swap to the other block
         else
         {
             SwapActiveBlock();
