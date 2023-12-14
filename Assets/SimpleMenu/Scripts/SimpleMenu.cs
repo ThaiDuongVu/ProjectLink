@@ -1,8 +1,8 @@
 using System.Collections;
-using System.Security.Cryptography;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class SimpleMenu : MonoBehaviour
 {
@@ -47,7 +47,7 @@ public class SimpleMenu : MonoBehaviour
 
     private void EnterOnPerformed(InputAction.CallbackContext context)
     {
-        _eventSystem.currentSelectedGameObject.GetComponent<UnityEngine.UI.Button>().onClick.Invoke();
+        _eventSystem.currentSelectedGameObject.GetComponent<Button>().onClick.Invoke();
     }
 
     #endregion

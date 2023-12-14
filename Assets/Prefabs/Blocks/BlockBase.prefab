@@ -194,7 +194,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d1bb2b6b25c3f9439a1b7db73126160, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  swingForce: 25
+  swingForce: 30
   type: 0
   sprite: {fileID: 5873450453325768160}
   sparkPrefab: {fileID: 6411676678536389983, guid: bf816db45d61b4f40bfc5e805f0871f7, type: 3}
