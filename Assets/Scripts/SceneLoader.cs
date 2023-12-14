@@ -37,8 +37,8 @@ public class SceneLoader : MonoBehaviour
     private IEnumerator Load()
     {
         // Load scene in background but don't allow transition
-        var asyncOperation = SceneManager.LoadSceneAsync(_sceneToLoad, LoadSceneMode.Single);
-        asyncOperation.allowSceneActivation = false;
+        // var asyncOperation = SceneManager.LoadSceneAsync(_sceneToLoad, LoadSceneMode.Single);
+        // asyncOperation.allowSceneActivation = false;
 
         // Play camera animation
         _cameraAnimator.SetTrigger(OutroTrigger);
@@ -47,7 +47,8 @@ public class SceneLoader : MonoBehaviour
         yield return new WaitForSecondsRealtime(cameraOutroAnimationClip.averageDuration);
 
         // Allow transition to new scene
-        asyncOperation.allowSceneActivation = true;
+        // asyncOperation.allowSceneActivation = true;
+        SceneManager.LoadScene(_sceneToLoad, LoadSceneMode.Single);
     }
 
     public void Load(string scene)

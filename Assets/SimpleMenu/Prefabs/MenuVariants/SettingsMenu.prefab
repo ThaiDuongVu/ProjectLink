@@ -128,6 +128,10 @@ PrefabInstance:
       propertyPath: m_text
       value: Resolution
       objectReference: {fileID: 0}
+    - target: {fileID: 4153097370178797660, guid: 298e23938cb8977428d76a43bbff0bc4, type: 3}
+      propertyPath: m_Navigation.m_SelectOnDown
+      value: 
+      objectReference: {fileID: 2454620460282317274}
     - target: {fileID: 4289860598213630266, guid: 298e23938cb8977428d76a43bbff0bc4, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
       value: 1
@@ -164,6 +168,10 @@ PrefabInstance:
       propertyPath: m_text
       value: Settings
       objectReference: {fileID: 0}
+    - target: {fileID: 7864070680735495048, guid: 298e23938cb8977428d76a43bbff0bc4, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8491458926250153568, guid: 298e23938cb8977428d76a43bbff0bc4, type: 3}
       propertyPath: activeOnStart
       value: 0
@@ -176,6 +184,17 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 6893592152842944205}
   m_SourcePrefab: {fileID: 100100000, guid: 298e23938cb8977428d76a43bbff0bc4, type: 3}
+--- !u!114 &2454620460282317274 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4289860598213630266, guid: 298e23938cb8977428d76a43bbff0bc4, type: 3}
+  m_PrefabInstance: {fileID: 1844282536105038048}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &2774811083467727778 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4546998224826037058, guid: 298e23938cb8977428d76a43bbff0bc4, type: 3}

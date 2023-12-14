@@ -132,7 +132,7 @@ public class GameController : MonoBehaviour
         PostProcessingController.Instance.SetChromaticAberration(true);
         // PostProcessingController.Instance.SetVignetteIntensity(PostProcessingController.DefaultVignetteIntensity + 0.1f);
 
-        yield return new WaitForSeconds(duration);
+        yield return new WaitForSecondsRealtime(duration);
 
         // Back to normal
         SetTimeScale();
