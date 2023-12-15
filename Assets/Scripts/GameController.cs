@@ -98,12 +98,14 @@ public class GameController : MonoBehaviour
         levelCompletedMenu.SetActive(true);
         starRatingDisplay.UpdateRating(rating);
 
+        // Save highest level rating
         var levelName = SceneManager.GetActiveScene().name;
-        // Save level rating
-        PlayerPrefs.SetInt(levelName, rating);
-        // Unlock next level
+        if (PlayerPrefs.GetInt(levelName) < rating) PlayerPrefs.SetInt(levelName, rating);
+
+        // Unlock next level (if not already unlocked)
         var nextLevelIndex = Convert.ToInt32(levelName[5..]) + 1;
-        PlayerPrefs.SetInt($"Level{(nextLevelIndex < 10 ? "0" : "")}{nextLevelIndex}", 0);
+        var nextLevelName = $"Level{(nextLevelIndex < 10 ? "0" : "")}{nextLevelIndex}";
+        if (PlayerPrefs.GetInt(nextLevelName, -1) < 0) PlayerPrefs.SetInt(nextLevelName, 0);
 
         SetGameState(GameState.Over);
         PostProcessingController.Instance.SetDepthOfField(true);
