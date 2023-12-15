@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -59,8 +60,13 @@ public class SceneLoader : MonoBehaviour
 
     public void Restart()
     {
-        // Reload current active scene
         Load(SceneManager.GetActiveScene().name);
+    }
+
+    public void LoadNextLevel()
+    {
+        var nextLevelIndex = Convert.ToInt32(SceneManager.GetActiveScene().name[5..]) + 1;
+        Load($"Level{(nextLevelIndex < 10 ? "0" : "")}{nextLevelIndex}");
     }
 
     public void Quit()

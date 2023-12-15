@@ -1,6 +1,8 @@
+using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class GameController : MonoBehaviour
 {
@@ -95,7 +97,13 @@ public class GameController : MonoBehaviour
 
         levelCompletedMenu.SetActive(true);
         starRatingDisplay.UpdateRating(rating);
-        starRatingDisplay.gameObject.SetActive(true);
+
+        var levelName = SceneManager.GetActiveScene().name;
+        // Save level rating
+        PlayerPrefs.SetInt(levelName, rating);
+        // Unlock next level
+        var nextLevelIndex = Convert.ToInt32(levelName[5..]) + 1;
+        PlayerPrefs.SetInt($"Level{(nextLevelIndex < 10 ? "0" : "")}{nextLevelIndex}", 0);
 
         SetGameState(GameState.Over);
         PostProcessingController.Instance.SetDepthOfField(true);

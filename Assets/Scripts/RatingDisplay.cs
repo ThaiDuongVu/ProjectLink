@@ -21,7 +21,9 @@ public class RatingDisplay : MonoBehaviour
 
     public void UpdateRating(int rating)
     {
+        gameObject.SetActive(false);
         for (int i = 0; i < rating; i++) _icons[i].gameObject.SetActive(true);
         for (int i = rating; i < 3; i++) _icons[i].gameObject.SetActive(false);
+        gameObject.SetActive(true);
     }
 }
