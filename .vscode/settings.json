@@ -51,5 +51,5 @@
         "temp/": true,
         "Temp/": true
     },
-    "dotnet.defaultSolution": "ProjectZombie.sln"
+    "dotnet.defaultSolution": "ProjectLink.sln"
 }
