@@ -9,7 +9,7 @@ public class SettingsController : MonoBehaviour
     [SerializeField] private SimpleButton resolutionButton;
     private const string ResolutionKey = "Resolution";
 
-    private const float BufferDuration = 0.2f;
+    private const float BufferDuration = 0.1f;
     private bool _isBuffering;
 
     #region Unity Events

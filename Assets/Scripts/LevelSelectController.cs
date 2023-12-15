@@ -1,14 +1,17 @@
 using System.Collections;
+using TMPro;
 using UnityEngine;
 
 public class LevelSelectController : MonoBehaviour
 {
+    [SerializeField] private TMP_Text levelNameText;
+
     private Level[] _allLevels;
     private int _selectedLevelIndex;
 
     private Level SelelctedLevel => _allLevels[_selectedLevelIndex];
 
-    private const float BufferDuration = 0.2f;
+    private const float BufferDuration = 0.1f;
     private bool _isBuffering;
 
     #region Unity Events
@@ -33,6 +36,7 @@ public class LevelSelectController : MonoBehaviour
     private void UpdateLevelPreview()
     {
         for (var i = 0; i < _allLevels.Length; i++) _allLevels[i].gameObject.SetActive(i == _selectedLevelIndex);
+        levelNameText.SetText($"< Level {_selectedLevelIndex + 1} >");
     }
 
     public void SelectNextLevel()
@@ -43,6 +47,7 @@ public class LevelSelectController : MonoBehaviour
         else _selectedLevelIndex = 0;
 
         UpdateLevelPreview();
+
         _isBuffering = true;
         StartCoroutine(ProcessBuffer());
     }
@@ -55,6 +60,7 @@ public class LevelSelectController : MonoBehaviour
         else _selectedLevelIndex = _allLevels.Length - 1;
 
         UpdateLevelPreview();
+
         _isBuffering = true;
         StartCoroutine(ProcessBuffer());
     }
