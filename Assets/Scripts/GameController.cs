@@ -96,16 +96,25 @@ public class GameController : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
 
         levelCompletedMenu.SetActive(true);
-        starRatingDisplay.UpdateRating(rating);
 
-        // Save highest level rating
-        var levelName = SceneManager.GetActiveScene().name;
-        if (PlayerPrefs.GetInt(levelName) < rating) PlayerPrefs.SetInt(levelName, rating);
+        if (SceneManager.GetActiveScene().name.Equals("Tutorial"))
+        {
+            starRatingDisplay.UpdateRating(3);
+            TutorialController.Instance.gameObject.SetActive(false);
+        }
+        else
+        {
+            starRatingDisplay.UpdateRating(rating);
 
-        // Unlock next level (if not already unlocked)
-        var nextLevelIndex = Convert.ToInt32(levelName[5..]) + 1;
-        var nextLevelName = $"Level{(nextLevelIndex < 10 ? "0" : "")}{nextLevelIndex}";
-        if (PlayerPrefs.GetInt(nextLevelName, -1) < 0) PlayerPrefs.SetInt(nextLevelName, 0);
+            // Save highest level rating
+            var levelName = SceneManager.GetActiveScene().name;
+            if (PlayerPrefs.GetInt(levelName) < rating) PlayerPrefs.SetInt(levelName, rating);
+
+            // Unlock next level (if not already unlocked)
+            var nextLevelIndex = Convert.ToInt32(levelName[5..]) + 1;
+            var nextLevelName = $"Level{(nextLevelIndex < 10 ? "0" : "")}{nextLevelIndex}";
+            if (PlayerPrefs.GetInt(nextLevelName, -1) < 0) PlayerPrefs.SetInt(nextLevelName, 0);
+        }
 
         SetGameState(GameState.Over);
         PostProcessingController.Instance.SetDepthOfField(true);
@@ -146,14 +155,14 @@ public class GameController : MonoBehaviour
         // Slow down
         SetTimeScale(scale);
         PostProcessingController.Instance.SetChromaticAberration(true);
-        // PostProcessingController.Instance.SetVignetteIntensity(PostProcessingController.DefaultVignetteIntensity + 0.1f);
+        PostProcessingController.Instance.SetVignetteIntensity(PostProcessingController.DefaultVignetteIntensity + 0.05f);
 
         yield return new WaitForSecondsRealtime(duration);
 
         // Back to normal
         SetTimeScale();
         PostProcessingController.Instance.SetChromaticAberration(false);
-        // PostProcessingController.Instance.SetVignetteIntensity(PostProcessingController.DefaultVignetteIntensity);
+        PostProcessingController.Instance.SetVignetteIntensity(PostProcessingController.DefaultVignetteIntensity);
     }
 
     public void PlaySlowMotionEffect(float scale = 0.5f, float duration = 0.2f)
