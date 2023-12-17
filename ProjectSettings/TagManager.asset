@@ -8,6 +8,7 @@ TagManager:
   - Portal
   - Map
   - Collectible
+  - Interactable
   layers:
   - Default
   - TransparentFX
