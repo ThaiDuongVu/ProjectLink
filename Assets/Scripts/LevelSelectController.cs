@@ -37,7 +37,7 @@ public class LevelSelectController : MonoBehaviour
     private void UpdateLevelPreview()
     {
         for (var i = 0; i < _allLevels.Length; i++) _allLevels[i].gameObject.SetActive(i == _selectedLevelIndex);
-        levelNameText.SetText($"< Level {_selectedLevelIndex + 1} > - {(IsLevelUnlocked(SelectedLevel.name) ? "Unlocked" : "Locked")}");
+        levelNameText.SetText($"Level {_selectedLevelIndex + 1}{(IsLevelUnlocked(SelectedLevel.name) ? "" : " - Locked")}");
         ratingDisplay.UpdateRating(PlayerPrefs.GetInt(SelectedLevel.name, 0));
     }
 
