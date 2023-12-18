@@ -198,6 +198,12 @@ MonoBehaviour:
   type: 0
   sprite: {fileID: 5873450453325768160}
   sparkPrefab: {fileID: 6411676678536389983, guid: bf816db45d61b4f40bfc5e805f0871f7, type: 3}
+  collisionReactionTexts:
+  - Ouch
+  - Oof
+  - Bruh
+  - Stop
+  - Cmon
 --- !u!1 &3634113281615308447
 GameObject:
   m_ObjectHideFlags: 0

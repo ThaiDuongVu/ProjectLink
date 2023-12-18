@@ -45,3 +45,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   popTextPrefab: {fileID: 6971576628653508877, guid: 77a4b652b1cf99d478c92a3fac573eb3, type: 3}
+  speechBubblePrefab: {fileID: 3340722321163637290, guid: fb00099a2d2f5a348bf54f2978e476a7, type: 3}

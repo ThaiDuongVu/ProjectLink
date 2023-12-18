@@ -11,6 +11,8 @@ public class Block : MonoBehaviour
     [SerializeField] private SpriteRenderer sprite;
     [SerializeField] private ParticleSystem sparkPrefab;
 
+    [SerializeField] private string[] collisionReactionTexts;
+
     private bool _isSwinging;
     private Vector2 _swingDirection;
 
@@ -134,6 +136,18 @@ public class Block : MonoBehaviour
     public void Exit()
     {
         _animator.SetTrigger(ExitAnimationTrigger);
+    }
+
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        if (_rigidbody.velocity.magnitude >= 4f)
+        {
+            EffectsController.Instance.SpawnSpeechBubble(
+                transform,
+                Vector2.zero,
+                collisionReactionTexts[Random.Range(0, collisionReactionTexts.Length)]
+            );
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D other)
