@@ -140,13 +140,14 @@ public class Block : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D other)
     {
-        if (_rigidbody.velocity.magnitude >= 4f)
+        if (_rigidbody.velocity.magnitude >= 5f)
         {
             EffectsController.Instance.SpawnSpeechBubble(
                 transform,
                 Vector2.zero,
                 collisionReactionTexts[Random.Range(0, collisionReactionTexts.Length)]
             );
+            CameraShaker.Instance.Shake(CameraShakeMode.Micro);
         }
     }
 

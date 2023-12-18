@@ -1,14 +1,18 @@
+using System.Collections;
 using UnityEngine;
 
 public class MovingPlatform : Interactable
 {
     [SerializeField] private float speed;
+    [SerializeField] private float stopDelay;
     [SerializeField] private Vector2[] positions = new Vector2[2];
 
     private int _fromIndex;
     private int _toIndex;
     private Vector2 FromPosition => positions[_fromIndex];
     private Vector2 ToPosition => positions[_toIndex];
+
+    private bool _isMoving = true;
 
     private Rigidbody2D _rigidbody;
     private BoxCollider2D _boxCollider;
@@ -45,6 +49,8 @@ public class MovingPlatform : Interactable
             else _fromIndex = 0;
             if (_toIndex < positions.Length - 1) _toIndex++;
             else _toIndex = 0;
+
+            StartCoroutine(TemporarilyStop(stopDelay));
         }
     }
 
@@ -52,8 +58,16 @@ public class MovingPlatform : Interactable
     {
         base.FixedUpdate();
 
-        _rigidbody.MovePosition(_rigidbody.position + speed * Time.fixedDeltaTime * (ToPosition - FromPosition).normalized);
+        if (_isMoving)
+            _rigidbody.MovePosition(_rigidbody.position + speed * Time.fixedDeltaTime * (ToPosition - FromPosition).normalized);
     }
 
     #endregion
+
+    private IEnumerator TemporarilyStop(float duration)
+    {
+        _isMoving = false;
+        yield return new WaitForSeconds(duration);
+        _isMoving = true;
+    }
 }
