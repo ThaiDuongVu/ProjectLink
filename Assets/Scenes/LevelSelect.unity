@@ -624,6 +624,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 155c1e89d1640c34cb025a91c99b286d, type: 3}
+--- !u!1 &4748939801282539312 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 932109427725703252, guid: 155c1e89d1640c34cb025a91c99b286d, type: 3}
+  m_PrefabInstance: {fileID: 4748939801282539311}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &4802701999589263226
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -729,6 +734,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3082219504871481986, guid: 2a03143fb3a4eec4f806e1338287fe28, type: 3}
+      propertyPath: m_FirstSelected
+      value: 
+      objectReference: {fileID: 4748939801282539312}
     - target: {fileID: 3239154128330539878, guid: 2a03143fb3a4eec4f806e1338287fe28, type: 3}
       propertyPath: m_Name
       value: EventSystem

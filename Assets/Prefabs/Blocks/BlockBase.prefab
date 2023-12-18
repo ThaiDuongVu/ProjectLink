@@ -204,6 +204,10 @@ MonoBehaviour:
   - Bruh
   - Stop
   - Cmon
+  portalReactionTexts:
+  - Yea
+  - Nice
+  - Cool
 --- !u!1 &3634113281615308447
 GameObject:
   m_ObjectHideFlags: 0

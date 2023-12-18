@@ -22,7 +22,7 @@ public class SimpleMenu : MonoBehaviour
         _inputManager.UI.Enter.performed += EnterOnPerformed;
         _inputManager.Enable();
 
-        StartCoroutine(SelectFirstButton());
+        if (!_eventSystem.firstSelectedGameObject) StartCoroutine(SelectFirstButton());
     }
 
     private void OnDisable()

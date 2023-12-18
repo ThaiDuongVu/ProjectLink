@@ -64,7 +64,7 @@ public class GameController : MonoBehaviour
     private void EscapeOnPerformed(InputAction.CallbackContext context)
     {
         if (State == GameState.InProgress) Pause();
-        else if (State == GameState.Paused) Resume();
+        // else if (State == GameState.Paused) Resume();
     }
 
     #endregion

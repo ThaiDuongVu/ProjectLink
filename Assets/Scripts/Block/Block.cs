@@ -12,6 +12,7 @@ public class Block : MonoBehaviour
     [SerializeField] private ParticleSystem sparkPrefab;
 
     [SerializeField] private string[] collisionReactionTexts;
+    [SerializeField] private string[] portalReactionTexts;
 
     private bool _isSwinging;
     private Vector2 _swingDirection;
@@ -129,6 +130,7 @@ public class Block : MonoBehaviour
 
         CameraShaker.Instance.Shake(CameraShakeMode.Light);
         GameController.Instance.PlaySlowMotionEffect();
+        EffectsController.Instance.SpawnSpeechBubble(transform, Vector2.zero, portalReactionTexts[Random.Range(0, portalReactionTexts.Length)]);
 
         _player.CheckWinCondition();
     }
@@ -140,7 +142,7 @@ public class Block : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D other)
     {
-        if (_rigidbody.velocity.magnitude >= 5f)
+        if (_rigidbody.velocity.magnitude >= 6f)
         {
             EffectsController.Instance.SpawnSpeechBubble(
                 transform,
