@@ -32,7 +32,7 @@ public class Switch : Interactable
     public UnityEvent offEvent;
 
     [SerializeField] private LineRenderer connectLine;
-    [SerializeField] private Transform connectedObject;
+    [SerializeField] private Transform[] connectedObjects;
 
     #region Unity Event
 
@@ -54,7 +54,14 @@ public class Switch : Interactable
     {
         base.Update();
 
-        if (connectedObject) connectLine.SetPositions(new Vector3[] { transform.position, connectedObject.position });
+        connectLine.positionCount = connectedObjects.Length * 2;
+        var j = 0;
+        for (int i = 0; i < connectLine.positionCount; i += 2)
+        {
+            connectLine.SetPosition(i, transform.position);
+            connectLine.SetPosition(i + 1, connectedObjects[j].position);
+            j++;
+        }
     }
 
     #endregion

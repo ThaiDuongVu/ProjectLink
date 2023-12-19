@@ -57,8 +57,8 @@ public class Player : MonoBehaviour
     private void Update()
     {
         // Set chain positions
-        chain.SetPosition(0, _blocks[0].transform.position);
-        chain.SetPosition(1, _blocks[1].transform.position);
+        chain.positionCount = 2;
+        chain.SetPositions(new Vector3[] { _blocks[0].transform.position, _blocks[1].transform.position });
 
         SetArrowPosition(ActiveBlock.transform.position);
         SetArrowDirection(Vector2.Lerp(arrow.transform.up, _arrowTargetDirection, 0.5f));
