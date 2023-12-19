@@ -96,6 +96,7 @@ GameObject:
   - component: {fileID: 3099818507582799159}
   - component: {fileID: 7326916597557256988}
   - component: {fileID: 7349199768936779021}
+  - component: {fileID: 3853285974439225678}
   m_Layer: 0
   m_Name: MovingPlatform
   m_TagString: Interactable
@@ -208,3 +209,24 @@ MonoBehaviour:
   positions:
   - {x: 0, y: 0}
   - {x: 0, y: 0}
+--- !u!95 &3853285974439225678
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3862357570104449061}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 50c3224f40c517f42b2e805c24fcbc49, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
