@@ -13,6 +13,7 @@ public class MovingPlatform : Interactable
     private Vector2 ToPosition => positions[_toIndex];
 
     public bool IsMoving { get; set; } = true;
+    public bool IsActive { get; set; } = true;
 
     private Rigidbody2D _rigidbody;
     private BoxCollider2D _boxCollider;
@@ -50,13 +51,15 @@ public class MovingPlatform : Interactable
             if (_toIndex < positions.Length - 1) _toIndex++;
             else _toIndex = 0;
 
-            StartCoroutine(TemporarilyStop(stopDelay));
+            StopMoving();
+            Invoke(nameof(StartMoving), stopDelay);
         }
     }
 
     protected override void FixedUpdate()
     {
         base.FixedUpdate();
+        if (!IsActive) return;
 
         if (IsMoving)
             _rigidbody.MovePosition(_rigidbody.position + speed * Time.fixedDeltaTime * (ToPosition - FromPosition).normalized);
@@ -64,10 +67,18 @@ public class MovingPlatform : Interactable
 
     #endregion
 
-    private IEnumerator TemporarilyStop(float duration)
+    public void StartMoving()
+    {
+        IsMoving = true;
+    }
+
+    public void StopMoving()
     {
         IsMoving = false;
-        yield return new WaitForSeconds(duration);
-        IsMoving = true;
+    }
+
+    public void SetActive(bool value)
+    {
+        IsActive = value;
     }
 }

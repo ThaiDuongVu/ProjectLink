@@ -95,8 +95,8 @@ GameObject:
   - component: {fileID: 4665202345220221721}
   - component: {fileID: 3099818507582799159}
   - component: {fileID: 7326916597557256988}
-  - component: {fileID: 7349199768936779021}
   - component: {fileID: 3853285974439225678}
+  - component: {fileID: 7349199768936779021}
   m_Layer: 0
   m_Name: MovingPlatform
   m_TagString: Interactable
@@ -192,23 +192,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &7349199768936779021
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3862357570104449061}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 04d541db38a47d6448d96888ed9e97b8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 1
-  stopDelay: 0.5
-  positions:
-  - {x: 0, y: 0}
-  - {x: 0, y: 0}
 --- !u!95 &3853285974439225678
 Animator:
   serializedVersion: 5
@@ -230,3 +213,20 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &7349199768936779021
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3862357570104449061}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 04d541db38a47d6448d96888ed9e97b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 1
+  stopDelay: 0.5
+  positions:
+  - {x: 0, y: 0}
+  - {x: 0, y: 0}
