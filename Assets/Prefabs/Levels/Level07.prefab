@@ -1784,6 +1784,10 @@ PrefabInstance:
       value: Switch
       objectReference: {fileID: 0}
     - target: {fileID: 1529399178499048733, guid: e73d4585f033d6546a655fbfda00181b, type: 3}
+      propertyPath: onByDefault
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1529399178499048733, guid: e73d4585f033d6546a655fbfda00181b, type: 3}
       propertyPath: connectedObject
       value: 
       objectReference: {fileID: 5546731561810670812}
@@ -1844,8 +1848,12 @@ PrefabInstance:
       value: MovingPlatform, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 1529399178499048733, guid: e73d4585f033d6546a655fbfda00181b, type: 3}
-      propertyPath: offEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_BoolArgument
+      propertyPath: onEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_BoolArgument
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1529399178499048733, guid: e73d4585f033d6546a655fbfda00181b, type: 3}
+      propertyPath: offEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_BoolArgument
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1529399178499048733, guid: e73d4585f033d6546a655fbfda00181b, type: 3}
       propertyPath: onEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
@@ -1915,19 +1923,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3555103657538417569, guid: ec008d62edae40342ad184b34aabf42c, type: 3}
       propertyPath: m_LocalBounds.m_Center.x
-      value: 0.00015002489
+      value: 0.00064998865
       objectReference: {fileID: 0}
     - target: {fileID: 3555103657538417569, guid: ec008d62edae40342ad184b34aabf42c, type: 3}
       propertyPath: m_LocalBounds.m_Center.y
-      value: 0.00015002489
+      value: -0.00014996529
       objectReference: {fileID: 0}
     - target: {fileID: 3555103657538417569, guid: ec008d62edae40342ad184b34aabf42c, type: 3}
       propertyPath: m_LocalBounds.m_Extent.x
-      value: 1.50055
+      value: 1.4999499
       objectReference: {fileID: 0}
     - target: {fileID: 3555103657538417569, guid: ec008d62edae40342ad184b34aabf42c, type: 3}
       propertyPath: m_LocalBounds.m_Extent.y
-      value: 1.50055
+      value: 1.50035
       objectReference: {fileID: 0}
     - target: {fileID: 5169353886584568496, guid: ec008d62edae40342ad184b34aabf42c, type: 3}
       propertyPath: m_Name
@@ -1993,19 +2001,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3555103657538417569, guid: e1f00e3b537a1a8458e7652f7bc50f29, type: 3}
       propertyPath: m_LocalBounds.m_Center.x
-      value: -0.00020003319
-      objectReference: {fileID: 0}
-    - target: {fileID: 3555103657538417569, guid: e1f00e3b537a1a8458e7652f7bc50f29, type: 3}
-      propertyPath: m_LocalBounds.m_Center.y
       value: -0.000100016594
       objectReference: {fileID: 0}
     - target: {fileID: 3555103657538417569, guid: e1f00e3b537a1a8458e7652f7bc50f29, type: 3}
+      propertyPath: m_LocalBounds.m_Center.y
+      value: -0.00030004978
+      objectReference: {fileID: 0}
+    - target: {fileID: 3555103657538417569, guid: e1f00e3b537a1a8458e7652f7bc50f29, type: 3}
       propertyPath: m_LocalBounds.m_Extent.x
-      value: 1.5006
+      value: 1.4995
       objectReference: {fileID: 0}
     - target: {fileID: 3555103657538417569, guid: e1f00e3b537a1a8458e7652f7bc50f29, type: 3}
       propertyPath: m_LocalBounds.m_Extent.y
-      value: 1.5005
+      value: 1.5007
       objectReference: {fileID: 0}
     - target: {fileID: 5169353886584568496, guid: e1f00e3b537a1a8458e7652f7bc50f29, type: 3}
       propertyPath: m_Name

@@ -41,8 +41,8 @@ public class SettingsController : MonoBehaviour
         if (_isBuffering) return;
 
         // Toggle settings
-        var resolutionValue = PlayerPrefs.GetInt(ResolutionKey, 2);
-        if (resolutionValue < 2) PlayerPrefs.SetInt(ResolutionKey, resolutionValue + 1);
+        var resolutionValue = PlayerPrefs.GetInt(ResolutionKey, 3);
+        if (resolutionValue < 5) PlayerPrefs.SetInt(ResolutionKey, resolutionValue + 1);
         else PlayerPrefs.SetInt(ResolutionKey, 0);
 
         // Apply settings
@@ -71,7 +71,10 @@ public class SettingsController : MonoBehaviour
 
         // 0: 640x360
         // 1: 1280x720
+        // 2: 1600x900
         // 3: 1920x1080
+        // 4: 2560x1440
+        // 5: 3840x2160
         var resolutionValue = PlayerPrefs.GetInt(ResolutionKey, 2);
         switch (resolutionValue)
         {
@@ -86,8 +89,24 @@ public class SettingsController : MonoBehaviour
                 break;
 
             case 2:
+                Screen.SetResolution(1600, 900, fullscreenValue == 0);
+                resolutionButton.SetMainText("1600 x 900");
+                break;
+
+
+            case 3:
                 Screen.SetResolution(1920, 1080, fullscreenValue == 0);
                 resolutionButton.SetMainText("1920 x 1080");
+                break;
+
+            case 4:
+                Screen.SetResolution(2560, 1440, fullscreenValue == 0);
+                resolutionButton.SetMainText("2560 x 1440");
+                break;
+
+            case 5:
+                Screen.SetResolution(3840, 2160, fullscreenValue == 0);
+                resolutionButton.SetMainText("3840 x 2160");
                 break;
 
             default:

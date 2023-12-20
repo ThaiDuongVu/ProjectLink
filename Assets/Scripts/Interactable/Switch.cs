@@ -26,13 +26,17 @@ public class Switch : Interactable
     private Animator _animator;
     private static readonly int SwitchAnimationBool = Animator.StringToHash("isOn");
 
+    [Header("Stats")]
+    [SerializeField] private bool onByDefault;
+
+    [Header("References")]
     [SerializeField] private ParticleSystem sparkPrefab;
-
-    public UnityEvent onEvent;
-    public UnityEvent offEvent;
-
     [SerializeField] private LineRenderer connectLine;
     [SerializeField] private Transform[] connectedObjects;
+
+    [Header("Events")]
+    public UnityEvent onEvent;
+    public UnityEvent offEvent;
 
     #region Unity Event
 
@@ -47,7 +51,7 @@ public class Switch : Interactable
     {
         base.Start();
 
-        IsOn = false;
+        IsOn = onByDefault;
     }
 
     protected override void Update()

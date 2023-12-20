@@ -81,4 +81,9 @@ public class MovingPlatform : Interactable
     {
         IsActive = value;
     }
+
+    public void ToggleActive()
+    {
+        IsActive = !IsActive;
+    }
 }
