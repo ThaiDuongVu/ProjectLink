@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
 
@@ -32,6 +33,7 @@ public class Block : MonoBehaviour
             if (!value)
             {
                 _rigidbody.velocity = Vector2.zero;
+                _positionStack.Push(transform.position);
                 Instantiate(sparkPrefab, transform.position, Quaternion.identity);
             }
 
@@ -53,6 +55,8 @@ public class Block : MonoBehaviour
     private Portal _targetPortal;
     private const float EnterPortalInterpolationRatio = 0.4f;
 
+    private Stack<Vector2> _positionStack = new();
+
     private Player _player;
 
     private Rigidbody2D _rigidbody;
@@ -72,6 +76,11 @@ public class Block : MonoBehaviour
         _distanceJoint = GetComponent<DistanceJoint2D>();
 
         _light = GetComponentInChildren<Light2D>();
+    }
+
+    private void Start()
+    {
+        // _positionStack.Push(transform.position);
     }
 
     private void Update()
@@ -138,6 +147,15 @@ public class Block : MonoBehaviour
     public void Exit()
     {
         _animator.SetTrigger(ExitAnimationTrigger);
+    }
+
+    public bool PopPosition()
+    {
+        if (_positionStack.Count == 0) return false;
+        if (IsInPortal) return false;
+
+        transform.position = _positionStack.Pop();
+        return true;
     }
 
     private void OnCollisionEnter2D(Collision2D other)

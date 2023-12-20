@@ -33,6 +33,9 @@ public class Player : MonoBehaviour
         // Handle fire input
         _inputManager.Player.Fire.performed += FireOnPerformed;
 
+        // Handle undo input
+        _inputManager.Player.Undo.performed += UndoOnPerformed;
+
         _inputManager.Enable();
     }
 
@@ -96,6 +99,14 @@ public class Player : MonoBehaviour
         CameraShaker.Instance.Shake(CameraShakeMode.Light);
     }
 
+    private void UndoOnPerformed(InputAction.CallbackContext context)
+    {
+        InputTypeController.Instance.CheckInputType(context);
+        if (GameController.Instance.State != GameState.InProgress) return;
+
+        Undo();
+    }
+
     #endregion
 
     private void SetArrowPosition(Vector2 position)
@@ -147,5 +158,16 @@ public class Player : MonoBehaviour
             SwapActiveBlock();
             pin.SetActive(false);
         }
+    }
+
+    public void Undo()
+    {
+        if (!InactiveBlock.PopPosition() || !ActiveBlock.PopPosition()) return;
+
+        SwapActiveBlock();
+
+        EffectsController.Instance.SpawnPopText(InactiveBlock.transform.position, "Undo", Color.white);
+        CameraShaker.Instance.Shake(CameraShakeMode.Light);
+        GameController.Instance.PlaySlowMotionEffect();
     }
 }
