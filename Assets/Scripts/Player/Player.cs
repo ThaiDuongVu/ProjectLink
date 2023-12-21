@@ -8,6 +8,9 @@ public class Player : MonoBehaviour
     [SerializeField] private GameObject pin;
     [SerializeField] private GameObject arrow;
 
+    [SerializeField] private ParticleSystem explosionBluePrefab;
+    [SerializeField] private ParticleSystem explosionPinkPrefab;
+
     private Block[] _blocks;
     private int _activeBlockIndex = 1;
     private int _inactiveBlockIndex => _activeBlockIndex == 0 ? 1 : 0;
@@ -169,5 +172,18 @@ public class Player : MonoBehaviour
         EffectsController.Instance.SpawnPopText(InactiveBlock.transform.position, "Undo", Color.white);
         CameraShaker.Instance.Shake(CameraShakeMode.Light);
         GameController.Instance.PlaySlowMotionEffect();
+    }
+
+    public void Die()
+    {
+        Instantiate(explosionBluePrefab, _blocks[0].transform.position, Quaternion.identity);
+        Instantiate(explosionPinkPrefab, _blocks[1].transform.position, Quaternion.identity);
+
+        GameController.Instance.StartCoroutine(GameController.Instance.GameOver());
+
+        CameraShaker.Instance.Shake(CameraShakeMode.Light);
+        GameController.Instance.PlaySlowMotionEffect();
+
+        Destroy(gameObject);
     }
 }

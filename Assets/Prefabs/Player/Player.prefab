@@ -52,6 +52,8 @@ MonoBehaviour:
   chain: {fileID: 68987714384370046}
   pin: {fileID: 8247151681474337659}
   arrow: {fileID: 6440727104679777663}
+  explosionBluePrefab: {fileID: 74783285180910027, guid: 5e8edf251a3032e43a415073bc3cb679, type: 3}
+  explosionPinkPrefab: {fileID: 74783285180910027, guid: 622f42a08ec76ac41a975ba42ca70105, type: 3}
 --- !u!1001 &600017490534795471
 PrefabInstance:
   m_ObjectHideFlags: 0

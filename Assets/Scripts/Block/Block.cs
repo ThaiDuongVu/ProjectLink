@@ -149,6 +149,12 @@ public class Block : MonoBehaviour
         _animator.SetTrigger(ExitAnimationTrigger);
     }
 
+    public void Damage(Enemy enemy)
+    {
+        enemy.Die();
+        EffectsController.Instance.SpawnSpeechBubble(transform, Vector2.zero, portalReactionTexts[Random.Range(0, portalReactionTexts.Length)]);
+    }
+
     public bool PopPosition()
     {
         if (_positionStack.Count == 0) return false;
