@@ -39,6 +39,9 @@ public class TutorialController : MonoBehaviour
         // Handle fire input
         _inputManager.Player.Fire.performed += FireOnPerformed;
 
+        // Handle undo input
+        _inputManager.Player.Undo.performed += UndoOnPerformed;
+
         _inputManager.Enable();
     }
 
@@ -79,6 +82,14 @@ public class TutorialController : MonoBehaviour
         if (GameController.Instance.State != GameState.InProgress) return;
 
         if (_tutorialPhase == 1) AdvanceTutorial();
+    }
+
+    private void UndoOnPerformed(InputAction.CallbackContext context)
+    {
+        InputTypeController.Instance.CheckInputType(context);
+        if (GameController.Instance.State != GameState.InProgress) return;
+
+        if (_tutorialPhase == 2) AdvanceTutorial();
     }
 
     #endregion

@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 104507ed4abea1846b3efbe21b166639
+guid: ba81f01ef3f973e44a5dbd9675d43b8e
 ScriptedImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -119,18 +119,18 @@ ScriptedImporter:
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
   animatedSpriteImportData:
-  - name: joystick_prompt
+  - name: backspace_button_prompt
     originalName: 
-    pivot: {x: 0.5, y: -0.16666667}
+    pivot: {x: 0.5, y: -0.071428575}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
       x: 4
       y: 4
-      width: 16
-      height: 12
-    spriteID: b8015b50ca4c11d45810e92c37236e2c
+      width: 24
+      height: 14
+    spriteID: c3b51fed6eb503f4ea0bc49dd8e5eb2e
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -142,23 +142,23 @@ ScriptedImporter:
   spriteSheetImportData: []
   asepriteLayers:
   - layerIndex: 0
-    guid: -1315269147
-    name: joystick_prompt
+    guid: 81868521
+    name: backspace_button_prompt
     layerFlags: 0
     layerType: 0
     blendMode: 0
     cells:
-    - name: joystick_prompt
+    - name: backspace_button_prompt
       frameIndex: 0
       cellRect:
-        x: 0
-        y: 2
-        width: 16
-        height: 12
-      spriteId: b8015b50ca4c11d45810e92c37236e2c
+        x: 4
+        y: 1
+        width: 24
+        height: 14
+      spriteId: c3b51fed6eb503f4ea0bc49dd8e5eb2e
     linkedCells: []
     parentIndex: -1
   platformSettings: []
   secondarySpriteTextures: []
   spritePackingTag: 
-  canvasSize: {x: 16, y: 16}
+  canvasSize: {x: 32, y: 16}
