@@ -419,17 +419,6 @@
                     "action": "Enter",
                     "isComposite": false,
                     "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "5b5938b4-0c3b-4058-b985-0924a9529b9f",
-                    "path": "<Mouse>/leftButton",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "MouseKeyboard",
-                    "action": "Enter",
-                    "isComposite": false,
-                    "isPartOfComposite": false
                 }
             ]
         }

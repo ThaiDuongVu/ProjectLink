@@ -74,6 +74,7 @@ public class GameController : MonoBehaviour
     public void Pause()
     {
         SetTimeScale(0f);
+        SetCursorEnabled(true);
         pauseMenu.SetActive(true);
 
         SetGameState(GameState.Paused);
@@ -83,6 +84,7 @@ public class GameController : MonoBehaviour
     public void Resume()
     {
         SetTimeScale(1f);
+        SetCursorEnabled(false);
         pauseMenu.SetActive(false);
 
         SetGameState(GameState.InProgress);
@@ -95,6 +97,7 @@ public class GameController : MonoBehaviour
     {
         yield return new WaitForSeconds(0.5f);
 
+        SetCursorEnabled(true);
         levelCompletedMenu.SetActive(true);
 
         if (SceneManager.GetActiveScene().name.Equals("Tutorial"))
@@ -124,6 +127,7 @@ public class GameController : MonoBehaviour
     {
         yield return new WaitForSeconds(0.5f);
 
+        SetCursorEnabled(true);
         gameOverMenu.SetActive(true);
 
         SetGameState(GameState.Over);

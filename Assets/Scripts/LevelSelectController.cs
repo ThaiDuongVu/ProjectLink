@@ -28,7 +28,6 @@ public class LevelSelectController : MonoBehaviour
         UpdateLevelPreview();
 
         Application.targetFrameRate = 60;
-        GameController.SetCursorEnabled(false);
         GameController.SetTimeScale(1f);
     }
 

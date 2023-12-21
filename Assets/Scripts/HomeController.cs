@@ -7,7 +7,6 @@ public class HomeController : MonoBehaviour
     private void Start()
     {
         Application.targetFrameRate = 60;
-        GameController.SetCursorEnabled(false);
         GameController.SetTimeScale(1f);
     }
 
