@@ -166,7 +166,7 @@ public class Block : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D other)
     {
-        if (_rigidbody.velocity.magnitude >= 6f || other.transform.CompareTag("Map"))
+        if (_rigidbody.velocity.magnitude >= 6f && other.transform.CompareTag("Map"))
         {
             EffectsController.Instance.SpawnSpeechBubble(
                 transform,
