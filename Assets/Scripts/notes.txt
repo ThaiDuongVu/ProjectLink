@@ -1,4 +1,8 @@
 enemies
+physics objects -> destroy enemies (with enough force), activate switches, scale
+force field
+teleportation pad
+length manipulation
 lava floor
 
 store assets

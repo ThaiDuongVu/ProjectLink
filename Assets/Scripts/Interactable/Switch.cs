@@ -70,14 +70,19 @@ public class Switch : Interactable
 
     #endregion
 
+    public void Toggle()
+    {
+        IsOn = !IsOn;
+
+        Instantiate(sparkPrefab, transform.position, Quaternion.identity);
+        CameraShaker.Instance.Shake(CameraShakeMode.Micro);
+    }
+
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Block"))
+        if (other.CompareTag("Block") || other.GetComponent<Brick>())
         {
-            IsOn = !IsOn;
-
-            Instantiate(sparkPrefab, transform.position, Quaternion.identity);
-            CameraShaker.Instance.Shake(CameraShakeMode.Micro);
+            Toggle();
         }
     }
 }

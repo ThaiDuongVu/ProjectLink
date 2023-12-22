@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Enemy : Interactable
+public class Enemy : MonoBehaviour
 {
     public EnemyType type;
     [SerializeField] private ParticleSystem explosionPrefab;
@@ -22,25 +22,19 @@ public class Enemy : Interactable
 
     #region Unity Events
 
-    protected override void Awake()
+    private void Awake()
     {
-        base.Awake();
-
         _rigidbody = GetComponent<Rigidbody2D>();
     }
 
-    protected override void Start()
+    private void Start()
     {
-        base.Start();
-
         _fromIndex = 0;
         _toIndex = 1;
     }
 
-    protected override void Update()
+    private void Update()
     {
-        base.Update();
-
         if (Vector2.Distance(transform.localPosition, ToPosition) <= 0.1f)
         {
             if (_fromIndex < positions.Length - 1) _fromIndex++;
@@ -53,9 +47,8 @@ public class Enemy : Interactable
         }
     }
 
-    protected override void FixedUpdate()
+    private void FixedUpdate()
     {
-        base.FixedUpdate();
         if (!IsActive) return;
 
         if (IsMoving)
