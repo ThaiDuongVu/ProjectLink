@@ -46,6 +46,8 @@ public class MovingPlatform : Interactable
 
         if (Vector2.Distance(transform.localPosition, ToPosition) <= 0.1f)
         {
+            transform.localPosition = ToPosition;
+
             if (_fromIndex < positions.Length - 1) _fromIndex++;
             else _fromIndex = 0;
             if (_toIndex < positions.Length - 1) _toIndex++;
