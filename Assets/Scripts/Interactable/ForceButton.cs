@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.Events;
 
-public class Switch : Interactable
+public class ForceButton : Interactable
 {
     private bool _isOn;
     public bool IsOn
@@ -9,25 +9,22 @@ public class Switch : Interactable
         get => _isOn;
         set
         {
+            if (value != _isOn)
+            {
+                if (value)
+                {
+                    onEvent.Invoke();
+                }
+                else
+                {
+                    offEvent.Invoke();
+                }
+            }
             _isOn = value;
-
-            if (value)
-            {
-                onEvent.Invoke();
-            }
-            else
-            {
-                offEvent.Invoke();
-            }
-            _animator.SetBool(SwitchAnimationBool, value);
         }
     }
 
-    private Animator _animator;
-    private static readonly int SwitchAnimationBool = Animator.StringToHash("isOn");
-
-    [Header("Stats")]
-    [SerializeField] private bool onByDefault;
+    [SerializeField] private Transform knob;
 
     [Header("References")]
     [SerializeField] private ParticleSystem sparkPrefab;
@@ -38,26 +35,20 @@ public class Switch : Interactable
     public UnityEvent onEvent;
     public UnityEvent offEvent;
 
-    #region Unity Event
-
-    protected override void Awake()
-    {
-        base.Awake();
-
-        _animator = GetComponent<Animator>();
-    }
+    #region Unity Events
 
     protected override void Start()
     {
         base.Start();
 
-        IsOn = onByDefault;
+        offEvent.Invoke();
     }
 
     protected override void Update()
     {
         base.Update();
 
+        IsOn = knob.localPosition.y <= 0.3f;
         HandleConnectLine();
     }
 
@@ -72,22 +63,6 @@ public class Switch : Interactable
             connectLine.SetPosition(i, transform.position);
             connectLine.SetPosition(i + 1, connectedObjects[j].position);
             j++;
-        }
-    }
-
-    public void Toggle()
-    {
-        IsOn = !IsOn;
-
-        Instantiate(sparkPrefab, transform.position, Quaternion.identity);
-        CameraShaker.Instance.Shake(CameraShakeMode.Micro);
-    }
-
-    private void OnTriggerEnter2D(Collider2D other)
-    {
-        if (other.CompareTag("Block") || other.GetComponent<Brick>())
-        {
-            Toggle();
         }
     }
 }
