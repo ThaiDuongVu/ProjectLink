@@ -88,4 +88,10 @@ public class MovingPlatform : Interactable
     {
         IsActive = !IsActive;
     }
+
+    public void SetCollision(bool value)
+    {
+        _boxCollider.enabled = value;
+        _sprite.color = new Color(_sprite.color.r, _sprite.color.g, _sprite.color.b, value ? 1f : 0.1f);
+    }
 }
