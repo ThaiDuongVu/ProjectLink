@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
@@ -6,8 +7,9 @@ public class LevelSelectController : MonoBehaviour
 {
     [SerializeField] private TMP_Text levelNameText;
     [SerializeField] private RatingDisplay ratingDisplay;
+    [SerializeField] private Transform levelPreview;
 
-    private Level[] _allLevels;
+    private List<Level> _allLevels = new();
     private int _selectedLevelIndex;
 
     private Level SelectedLevel => _allLevels[_selectedLevelIndex];
@@ -19,11 +21,18 @@ public class LevelSelectController : MonoBehaviour
 
     private void Awake()
     {
-        _allLevels = GetComponentsInChildren<Level>(true);
+        // _allLevels = GetComponentsInChildren<Level>(true);
     }
 
     private void Start()
     {
+        foreach (var levelPrefab in Resources.LoadAll<Level>("Levels"))
+        {
+            var newLevel = Instantiate(levelPrefab, levelPreview.position, Quaternion.identity);
+            newLevel.transform.SetParent(levelPreview);
+            _allLevels.Add(newLevel);
+        }
+
         _selectedLevelIndex = 0;
         UpdateLevelPreview();
 
@@ -35,7 +44,7 @@ public class LevelSelectController : MonoBehaviour
 
     private void UpdateLevelPreview()
     {
-        for (var i = 0; i < _allLevels.Length; i++) _allLevels[i].gameObject.SetActive(i == _selectedLevelIndex);
+        for (var i = 0; i < _allLevels.Count; i++) _allLevels[i].gameObject.SetActive(i == _selectedLevelIndex);
         levelNameText.SetText($"Level {_selectedLevelIndex + 1}{(IsLevelUnlocked(SelectedLevel.name) ? "" : " - Locked")}");
         ratingDisplay.UpdateRating(PlayerPrefs.GetInt(SelectedLevel.name, 0));
     }
@@ -45,7 +54,7 @@ public class LevelSelectController : MonoBehaviour
         if (_isBuffering) return;
 
         // Increase level index
-        if (_selectedLevelIndex + 1 <= _allLevels.Length - 1) _selectedLevelIndex++;
+        if (_selectedLevelIndex + 1 <= _allLevels.Count - 1) _selectedLevelIndex++;
         else _selectedLevelIndex = 0;
 
         UpdateLevelPreview();
@@ -60,7 +69,7 @@ public class LevelSelectController : MonoBehaviour
 
         // Decrease level index
         if (_selectedLevelIndex - 1 >= 0) _selectedLevelIndex--;
-        else _selectedLevelIndex = _allLevels.Length - 1;
+        else _selectedLevelIndex = _allLevels.Count - 1;
 
         UpdateLevelPreview();
 
@@ -78,7 +87,7 @@ public class LevelSelectController : MonoBehaviour
     {
         // Level 1 is unlocked by default
         if (name.Equals("Level01")) return true;
-        
+
         return PlayerPrefs.GetInt(name, -1) >= 0;
     }
 
