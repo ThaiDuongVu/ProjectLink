@@ -19,6 +19,9 @@ public class ForceButton : Interactable
                 {
                     offEvent.Invoke();
                 }
+
+                Instantiate(sparkPrefab, transform.position, Quaternion.identity);
+                CameraShaker.Instance.Shake(CameraShakeMode.Micro);
             }
             _isOn = value;
         }
