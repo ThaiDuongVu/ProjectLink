@@ -34,6 +34,9 @@ public class Switch : Interactable
     [SerializeField] private LineRenderer connectLine;
     [SerializeField] private Transform[] connectedObjects;
 
+    [Header("Audio References")]
+    [SerializeField] private AudioSource toggleAudio;
+
     [Header("Events")]
     public UnityEvent onEvent;
     public UnityEvent offEvent;
@@ -81,6 +84,8 @@ public class Switch : Interactable
 
         Instantiate(sparkPrefab, transform.position, Quaternion.identity);
         CameraShaker.Instance.Shake(CameraShakeMode.Micro);
+
+        toggleAudio.Play();
     }
 
     private void OnTriggerEnter2D(Collider2D other)

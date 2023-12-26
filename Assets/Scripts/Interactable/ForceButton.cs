@@ -14,10 +14,12 @@ public class ForceButton : Interactable
                 if (value)
                 {
                     onEvent.Invoke();
+                    pressedAudio.Play();
                 }
                 else
                 {
                     offEvent.Invoke();
+                    releasedAudio.Play();
                 }
 
                 Instantiate(sparkPrefab, transform.position, Quaternion.identity);
@@ -33,6 +35,10 @@ public class ForceButton : Interactable
     [SerializeField] private ParticleSystem sparkPrefab;
     [SerializeField] private LineRenderer connectLine;
     [SerializeField] private Transform[] connectedObjects;
+
+    [Header("Audio References")]
+    [SerializeField] private AudioSource pressedAudio;
+    [SerializeField] private AudioSource releasedAudio;
 
     [Header("Events")]
     public UnityEvent onEvent;

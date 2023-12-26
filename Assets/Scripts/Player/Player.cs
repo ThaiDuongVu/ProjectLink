@@ -3,13 +3,20 @@ using UnityEngine.InputSystem;
 
 public class Player : MonoBehaviour
 {
-    [Header("References")]
+    [Header("General References")]
     [SerializeField] private LineRenderer chain;
     [SerializeField] private GameObject pin;
     [SerializeField] private GameObject arrow;
 
+    [Header("Particle References")]
     [SerializeField] private ParticleSystem explosionBluePrefab;
     [SerializeField] private ParticleSystem explosionPinkPrefab;
+
+    [Header("Audio References")]
+    public AudioSource playerSwapAudio;
+    public AudioSource playerPortalAudio;
+    public AudioSource playerCollisionAudio;
+    public AudioSource playerStarAudio;
 
     private Block[] _blocks;
     private int _activeBlockIndex = 1;
@@ -143,6 +150,7 @@ public class Player : MonoBehaviour
     {
         if (InactiveBlock.IsInPortal) return;
         SetActiveBlock(_activeBlockIndex == 0 ? 1 : 0);
+        playerSwapAudio.Play();
     }
 
     public void CheckWinCondition()

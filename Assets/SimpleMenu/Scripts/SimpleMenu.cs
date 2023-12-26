@@ -8,9 +8,14 @@ public class SimpleMenu : MonoBehaviour
 {
     [SerializeField] private bool disableOnStart;
 
+    [Header("Audio References")]
+    [SerializeField] private AudioSource navigationAudio;
+    [SerializeField] private AudioSource confirmAudio;
+
     private SimpleButton[] _buttons;
 
     private EventSystem _eventSystem;
+    private GameObject _currentSelectedButton;
 
     private InputManager _inputManager;
 
@@ -23,6 +28,7 @@ public class SimpleMenu : MonoBehaviour
         _inputManager.Enable();
 
         if (!_eventSystem.firstSelectedGameObject) StartCoroutine(SelectFirstButton());
+        _currentSelectedButton = _eventSystem.currentSelectedGameObject;
     }
 
     private void OnDisable()
@@ -41,12 +47,22 @@ public class SimpleMenu : MonoBehaviour
         SetActive(!disableOnStart);
     }
 
+    private void Update()
+    {
+        if (_eventSystem.currentSelectedGameObject != _currentSelectedButton)
+        {
+            _currentSelectedButton = _eventSystem.currentSelectedGameObject;
+            navigationAudio.Play();
+        }
+    }
+
     #endregion
 
     #region Input Handlers
 
     private void EnterOnPerformed(InputAction.CallbackContext context)
     {
+        confirmAudio.Play();
         _eventSystem.currentSelectedGameObject.GetComponent<Button>().onClick.Invoke();
     }
 

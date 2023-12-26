@@ -142,6 +142,7 @@ public class Block : MonoBehaviour
         EffectsController.Instance.SpawnSpeechBubble(transform, Vector2.zero, portalReactionTexts[Random.Range(0, portalReactionTexts.Length)]);
 
         _player.CheckWinCondition();
+        _player.playerPortalAudio.Play();
     }
 
     public void Exit()
@@ -174,6 +175,7 @@ public class Block : MonoBehaviour
                 collisionReactionTexts[Random.Range(0, collisionReactionTexts.Length)]
             );
             CameraShaker.Instance.Shake(CameraShakeMode.Micro);
+            _player.playerCollisionAudio.Play();
         }
     }
 
@@ -186,6 +188,7 @@ public class Block : MonoBehaviour
         else if (other.CompareTag("Collectible"))
         {
             other.GetComponent<Collectible>().OnCollected(_player);
+            _player.playerStarAudio.Play();
         }
     }
 }

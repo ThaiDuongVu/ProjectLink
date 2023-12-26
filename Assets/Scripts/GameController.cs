@@ -31,6 +31,12 @@ public class GameController : MonoBehaviour
     [Header("UI References")]
     [SerializeField] private RatingDisplay starRatingDisplay;
 
+    [Header("Audio References")]
+    [SerializeField] private AudioSource pauseAudio;
+    [SerializeField] private AudioSource resumeAudio;
+    [SerializeField] private AudioSource levelCompleteAudio;
+    [SerializeField] private AudioSource gameOverAudio;
+
     private InputManager _inputManager;
 
     #region Unity Events
@@ -79,6 +85,8 @@ public class GameController : MonoBehaviour
 
         SetGameState(GameState.Paused);
         PostProcessingController.Instance.SetDepthOfField(true);
+
+        pauseAudio.Play();
     }
 
     public void Resume()
@@ -89,6 +97,8 @@ public class GameController : MonoBehaviour
 
         SetGameState(GameState.InProgress);
         PostProcessingController.Instance.SetDepthOfField(false);
+
+        resumeAudio.Play();
     }
 
     #endregion
@@ -121,6 +131,8 @@ public class GameController : MonoBehaviour
 
         SetGameState(GameState.Over);
         PostProcessingController.Instance.SetDepthOfField(true);
+
+        levelCompleteAudio.Play();
     }
 
     public IEnumerator GameOver()
@@ -132,6 +144,8 @@ public class GameController : MonoBehaviour
 
         SetGameState(GameState.Over);
         PostProcessingController.Instance.SetDepthOfField(true);
+
+        gameOverAudio.Play();
     }
 
     public void SetGameState(GameState state)

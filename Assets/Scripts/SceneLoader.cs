@@ -23,6 +23,7 @@ public class SceneLoader : MonoBehaviour
     private Animator _cameraAnimator;
     private static readonly int OutroTrigger = Animator.StringToHash("outro");
     [SerializeField] private AnimationClip cameraOutroAnimationClip;
+    [SerializeField] private AudioSource loadLevelAudio;
 
     private string _sceneToLoad = "";
 
@@ -55,6 +56,7 @@ public class SceneLoader : MonoBehaviour
     public void Load(string scene)
     {
         _sceneToLoad = scene;
+        loadLevelAudio.Play();
         StartCoroutine(Load());
     }
 

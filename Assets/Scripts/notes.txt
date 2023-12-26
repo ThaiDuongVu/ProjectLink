@@ -7,19 +7,22 @@ length manipulation
 lava floor
 
 audio checklist:
-player swap
-player undo
+//player swap
 player move?
-player collision
-player enter portal
-player die
-game over
-level complete
-switch toggle
-button push
-button release
-ui navigation
-ui click
+//player collision
+//player enter portal
+//player collect star
+//explosion
+//game over
+//level complete
+pause
+resume
+//switch toggle
+//button push
+//button release
+//ui navigation
+//ui confirm
+//load level
 
 music checklist:
 main menu music
