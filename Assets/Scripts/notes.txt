@@ -1,10 +1,29 @@
-enemies
-physics objects -> destroy enemies (with enough force), activate switches
-scale
+//enemies
+//physics objects -> destroy enemies (with enough force), activate switches
+//scale
 force field
 teleportation pad
 length manipulation
 lava floor
+
+audio checklist:
+player swap
+player undo
+player move?
+player collision
+player enter portal
+player die
+game over
+level complete
+switch toggle
+button push
+button release
+ui navigation
+ui click
+
+music checklist:
+main menu music
+level music
 
 store assets
 //header capsule: 460 x 215
