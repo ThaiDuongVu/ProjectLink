@@ -82,6 +82,7 @@ public class Enemy : MonoBehaviour
         Instantiate(explosionPrefab, transform.position, Quaternion.identity);
 
         CameraShaker.Instance.Shake(CameraShakeMode.Light);
+        GameController.Instance.explosionAudio.Play();
         GameController.Instance.PlaySlowMotionEffect();
 
         Destroy(gameObject);

@@ -190,6 +190,7 @@ public class Player : MonoBehaviour
         GameController.Instance.StartCoroutine(GameController.Instance.GameOver());
 
         CameraShaker.Instance.Shake(CameraShakeMode.Light);
+        GameController.Instance.explosionAudio.Play();
         GameController.Instance.PlaySlowMotionEffect();
 
         Destroy(gameObject);

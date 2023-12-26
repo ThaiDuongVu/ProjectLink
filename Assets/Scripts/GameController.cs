@@ -37,6 +37,8 @@ public class GameController : MonoBehaviour
     [SerializeField] private AudioSource levelCompleteAudio;
     [SerializeField] private AudioSource gameOverAudio;
 
+    public AudioSource explosionAudio; 
+
     private InputManager _inputManager;
 
     #region Unity Events
