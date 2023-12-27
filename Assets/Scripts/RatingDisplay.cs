@@ -3,14 +3,9 @@ using UnityEngine.UI;
 
 public class RatingDisplay : MonoBehaviour
 {
-    private Image[] _icons;
+    [SerializeField] private Image[] _icons;
 
     #region Unity Events
-
-    private void Awake()
-    {
-        _icons = GetComponentsInChildren<Image>();
-    }
 
     private void Start()
     {

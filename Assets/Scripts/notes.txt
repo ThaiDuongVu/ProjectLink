@@ -6,6 +6,10 @@ teleportation pad
 length manipulation
 lava floor
 
+star outline
+level text splash
+end cutscene
+
 audio checklist:
 //player swap
 player move?
@@ -15,8 +19,8 @@ player move?
 //explosion
 //game over
 //level complete
-pause
-resume
+//pause
+//resume
 //switch toggle
 //button push
 //button release
@@ -44,7 +48,28 @@ library assets
 //library logo: 1280 x 720
 https://partner.steamgames.com/doc/store/assets/libraryassets
 
-description
-short description
+//description
+Blue and Pink are trapped in an underground cave where the only way out is via color-code portals. Help them navigate the tricky, sometimes harzardous environment to get back to the surface world.
+
+Swing you way through the cave towards your objective. If you mess up a swing, simply undo.
+
+Interact with the environments and solve the puzzle. Be careful, it can be dangerous sometimes.
+
+Unlock special outfits by collecting stars.
+
+Enter the portals to advance to the next level and get one step closer to the surface world!
+
+
+//short description
+A puzzle platformer game where you control 2 characters chained together in a link.
+
 trailer
-release date
+//release date - Jan 25, 2023
+
+//demo description
+This demo gives players access to the first 5 levels of the full game Coupling.
+
+//demo short description
+Demo for Coupling -  a puzzle platformer game where you control 2 characters chained together in a link.
+
+display font license $25 - https://chequered.ink/fonts/font-license
