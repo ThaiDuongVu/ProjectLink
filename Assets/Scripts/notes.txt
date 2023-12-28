@@ -13,7 +13,6 @@ audio settings
 
 audio checklist:
 //player swap
-player move?
 //player collision
 //player enter portal
 //player collect star
@@ -55,8 +54,6 @@ Blue and Pink are trapped in an underground cave where the only way out is via c
 Swing you way through the cave towards your objective. If you mess up a swing, simply undo.
 
 Interact with the environments and solve the puzzle. Be careful, it can be dangerous sometimes.
-
-Unlock special outfits by collecting stars.
 
 Enter the portals to advance to the next level and get one step closer to the surface world!
 

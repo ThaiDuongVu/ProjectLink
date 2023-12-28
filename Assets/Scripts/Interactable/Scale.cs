@@ -8,6 +8,8 @@ public class Scale : Interactable
     private Rigidbody2D _rigidbody;
     private BoxCollider2D _boxCollider;
 
+    private SpriteRenderer[] _sprites;
+
     #region Unity Events
 
     protected override void Awake()
@@ -16,6 +18,7 @@ public class Scale : Interactable
 
         _rigidbody = GetComponent<Rigidbody2D>();
         _boxCollider = GetComponent<BoxCollider2D>();
+        _sprites = GetComponentsInChildren<SpriteRenderer>();
     }
 
     protected override void Start()
@@ -26,4 +29,10 @@ public class Scale : Interactable
     }
 
     #endregion
+
+    public void SetCollision(bool value)
+    {
+        _boxCollider.enabled = value;
+        foreach (var sprite in _sprites) sprite.color = new Color(sprite.color.r, sprite.color.g, sprite.color.b, value ? 1f : 0.1f);
+    }
 }
