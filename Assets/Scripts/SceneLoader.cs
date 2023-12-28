@@ -68,7 +68,8 @@ public class SceneLoader : MonoBehaviour
     public void LoadNextLevel()
     {
         var nextLevelIndex = Convert.ToInt32(SceneManager.GetActiveScene().name[5..]) + 1;
-        Load($"Level{(nextLevelIndex < 10 ? "0" : "")}{nextLevelIndex}");
+        var nextLevelName = $"Level{(nextLevelIndex < 10 ? "0" : "")}{nextLevelIndex}";
+        Load(nextLevelName);
     }
 
     public void Quit()
