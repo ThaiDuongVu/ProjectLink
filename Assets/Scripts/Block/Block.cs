@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
 
-public class Block : MonoBehaviour
+public class Block : MonoBehaviour, ISwitchActivator
 {
     [Header("Stats")]
     [SerializeField] private float swingForce;
