@@ -1,14 +1,15 @@
 //enemies
 //physics objects -> destroy enemies (with enough force), activate switches
 //scale
-force field
 teleportation pad
-length manipulation
 lava floor
+force field
+length manipulation
 
-star outline
-level text splash
-end cutscene
+//star outline
+//level text splash
+//end cutscene
+audio settings
 
 audio checklist:
 //player swap
