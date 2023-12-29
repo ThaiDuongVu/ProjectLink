@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
 
 public class Magnet : Interactable
 {
@@ -8,8 +9,22 @@ public class Magnet : Interactable
     private Rigidbody2D _rigidbody;
     private BoxCollider2D _boxCollider;
     private SpriteRenderer _fieldSprite;
+    private Light2D _light;
 
     private List<IMetal> _targets = new();
+
+    private bool _isActive = true;
+    public bool IsActive
+    {
+        get => _isActive;
+        set
+        {
+            _isActive = value;
+            _light.enabled = value;
+            _fieldSprite.enabled = value;
+        }
+    }
+
 
     #region Unity Events
 
@@ -20,6 +35,7 @@ public class Magnet : Interactable
         _rigidbody = GetComponent<Rigidbody2D>();
         _boxCollider = GetComponents<BoxCollider2D>()[1];
         _fieldSprite = GetComponentsInChildren<SpriteRenderer>()[1];
+        _light = GetComponentInChildren<Light2D>();
     }
 
     protected override void Start()
@@ -34,7 +50,10 @@ public class Magnet : Interactable
     {
         base.FixedUpdate();
 
-        foreach (var target in _targets) target.Attract(transform, attractForce);
+        if (IsActive)
+        {
+            foreach (var target in _targets) target.Attract(transform, attractForce);
+        }
     }
 
     #endregion
@@ -48,5 +67,10 @@ public class Magnet : Interactable
     {
         var metal = other.GetComponent<IMetal>();
         if (metal != null && _targets.Contains(metal)) _targets.Remove(metal);
+    }
+
+    public void SetActive(bool value)
+    {
+        IsActive = value;
     }
 }
