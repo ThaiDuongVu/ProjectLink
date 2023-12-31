@@ -10,7 +10,7 @@ public class EffectsController : MonoBehaviour
     {
         get
         {
-            if (_effectsControllerInstance == null) _effectsControllerInstance = FindObjectOfType<EffectsController>();
+            if (_effectsControllerInstance == null) _effectsControllerInstance = FindFirstObjectByType<EffectsController>();
             return _effectsControllerInstance;
         }
     }

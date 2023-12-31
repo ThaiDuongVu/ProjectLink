@@ -11,7 +11,7 @@ public class CameraShaker : MonoBehaviour
     {
         get
         {
-            if (_cameraShakerInstance == null) _cameraShakerInstance = FindObjectOfType<CameraShaker>();
+            if (_cameraShakerInstance == null) _cameraShakerInstance = FindFirstObjectByType<CameraShaker>();
             return _cameraShakerInstance;
         }
     }

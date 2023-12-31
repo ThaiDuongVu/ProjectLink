@@ -13,7 +13,7 @@ public class SceneLoader : MonoBehaviour
     {
         get
         {
-            if (_sceneLoaderInstance == null) _sceneLoaderInstance = FindObjectOfType<SceneLoader>();
+            if (_sceneLoaderInstance == null) _sceneLoaderInstance = FindFirstObjectByType<SceneLoader>();
             return _sceneLoaderInstance;
         }
     }

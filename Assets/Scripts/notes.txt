@@ -1,11 +1,10 @@
-cat duel
 //enemies
 //physics objects -> destroy enemies (with enough force), activate switches
 //scale
-magnet
-teleportation pad
+//magnet
+vacuum field
 lava floor
-force field
+teleportation pad
 length manipulation
 
 //star outline

@@ -13,7 +13,7 @@ public class TutorialController : MonoBehaviour
     {
         get
         {
-            if (_TutorialControllerInstance == null) _TutorialControllerInstance = FindObjectOfType<TutorialController>();
+            if (_TutorialControllerInstance == null) _TutorialControllerInstance = FindFirstObjectByType<TutorialController>();
             return _TutorialControllerInstance;
         }
     }

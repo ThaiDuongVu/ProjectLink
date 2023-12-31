@@ -10,7 +10,7 @@ public class MainCameraController : MonoBehaviour
     {
         get
         {
-            if (_mainCameraControllerInstance == null) _mainCameraControllerInstance = FindObjectOfType<MainCameraController>();
+            if (_mainCameraControllerInstance == null) _mainCameraControllerInstance = FindFirstObjectByType<MainCameraController>();
             return _mainCameraControllerInstance;
         }
     }

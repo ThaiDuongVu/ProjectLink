@@ -12,7 +12,7 @@ public class PostProcessingController : MonoBehaviour
     {
         get
         {
-            if (_postprocessingControllerInstance == null) _postprocessingControllerInstance = FindObjectOfType<PostProcessingController>();
+            if (_postprocessingControllerInstance == null) _postprocessingControllerInstance = FindFirstObjectByType<PostProcessingController>();
             return _postprocessingControllerInstance;
         }
     }

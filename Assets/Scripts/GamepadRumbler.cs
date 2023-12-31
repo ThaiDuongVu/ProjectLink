@@ -12,7 +12,7 @@ public class GamepadRumbler : MonoBehaviour
     {
         get
         {
-            if (_gamepadRumblerInstance == null) _gamepadRumblerInstance = FindObjectOfType<GamepadRumbler>();
+            if (_gamepadRumblerInstance == null) _gamepadRumblerInstance = FindFirstObjectByType<GamepadRumbler>();
             return _gamepadRumblerInstance;
         }
     }
