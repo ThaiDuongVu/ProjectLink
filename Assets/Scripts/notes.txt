@@ -4,6 +4,7 @@
 //magnet
 vacuum field
 lava floor
+time manipulation
 teleportation pad
 length manipulation
 
