@@ -2,8 +2,9 @@
 //physics objects -> destroy enemies (with enough force), activate switches
 //scale
 //magnet
-vacuum field
+//vacuum field
 lava floor
+bounce pad
 time manipulation
 teleportation pad
 length manipulation
